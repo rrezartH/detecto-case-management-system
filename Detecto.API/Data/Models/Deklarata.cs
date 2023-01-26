@@ -4,6 +4,6 @@
     {
         public int Id { get; set; }
         public DateTime KohaEMarrjes { get; set; }
-        public string Permbajtja { get; set; }
+        public string Permbajtja { get; set; } = null!;
     }
 }

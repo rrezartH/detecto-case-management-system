@@ -2,6 +2,6 @@
 {
     public class iDyshuari : Personi
     {
-        public string Dyshimi { get; set; }
+        public string Dyshimi { get; set; } = null!;
     }
 }

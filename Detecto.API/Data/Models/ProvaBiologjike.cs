@@ -2,6 +2,6 @@
 {
     public class ProvaBiologjike : Prova
     {
-        public string TeknikaENxjerrjes { get; set; }
+        public string? TeknikaENxjerrjes { get; set; }
     }
 }
