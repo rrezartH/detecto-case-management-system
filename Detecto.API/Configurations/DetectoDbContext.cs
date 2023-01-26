@@ -11,9 +11,12 @@ namespace Detecto.API.Configurations
 
         }
 
+
         public DbSet<DCase> Cases { get; set; } = null!;
-        public DbSet<Personi> Personat { get; set; } = null;
-        public DbSet<Viktima> Viktimat { get; set; } = null;
+        public DbSet<DTask> Tasks { get; set; } = null!;
+        public DbSet<Detective> Detectives { get; set; } = null!;
+        public DbSet<Personi> Personat { get; set; } = null!;
+        public DbSet<Viktima> Viktimat { get; set; } = null!;
 
     }
 }
