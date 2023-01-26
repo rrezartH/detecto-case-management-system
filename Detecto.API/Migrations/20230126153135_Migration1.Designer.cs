@@ -4,6 +4,7 @@ using Detecto.API.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Detecto.API.Migrations
 {
     [DbContext(typeof(DetectoDbContext))]
-    partial class DetectoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230126153135_Migration1")]
+    partial class Migration1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -191,22 +193,6 @@ namespace Detecto.API.Migrations
                     b.HasIndex("DCaseId");
 
                     b.HasDiscriminator().HasValue("CaseTask");
-                });
-
-            modelBuilder.Entity("Detecto.API.Data.Models.Deshmitari", b =>
-                {
-                    b.HasBaseType("Detecto.API.Data.Models.Personi");
-
-                    b.Property<bool>("Dyshohet")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("RaportiMeViktimen")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Vezhgohet")
-                        .HasColumnType("bit");
-
-                    b.HasDiscriminator().HasValue("Deshmitari");
                 });
 
             modelBuilder.Entity("Detecto.API.Data.Models.Viktima", b =>

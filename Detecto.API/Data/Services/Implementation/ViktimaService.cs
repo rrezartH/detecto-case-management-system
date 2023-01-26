@@ -2,6 +2,7 @@
 using AutoMapper;
 using Detecto.API.Case.DTOs;
 using Detecto.API.Configurations;
+using Detecto.API.Data.DTOs;
 using Detecto.API.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,7 @@ namespace Detecto.API.Data
             _context = context;
             _mapper = mapper;
         }
+
         public async Task<ActionResult<List<ViktimaDTO>>> GetViktimat()
         {
             return _mapper.Map<List<ViktimaDTO>>(await _context.Viktimat.ToListAsync());
@@ -49,10 +51,17 @@ namespace Detecto.API.Data
             if (dbViktima == null)
                 return new NotFoundObjectResult("Viktima nuk ekziston!!");
 
+            dbViktima.Emri = updateViktimaDTO.Emri ?? dbViktima.Emri;
+            dbViktima.Gjinia = updateViktimaDTO.Gjinia ?? dbViktima.Gjinia;
             dbViktima.Profesioni = updateViktimaDTO.Profesioni ?? dbViktima.Profesioni;
             dbViktima.Statusi = updateViktimaDTO.Statusi ?? dbViktima.Statusi;
+            dbViktima.Vendbanimi = updateViktimaDTO.Vendbanimi ?? dbViktima.Vendbanimi;
             dbViktima.GjendjaMendore = updateViktimaDTO.GjendjaMendore ?? dbViktima.GjendjaMendore;
             dbViktima.eKaluara = updateViktimaDTO.eKaluara ?? dbViktima.eKaluara;
+            dbViktima.Vendi = updateViktimaDTO.Vendi ?? dbViktima.Vendi;
+            dbViktima.Koha = updateViktimaDTO.Koha ?? dbViktima.Koha;
+            dbViktima.Menyra = updateViktimaDTO.Menyra ?? dbViktima.Menyra;
+            dbViktima.Gjendja = updateViktimaDTO.Gjendja ?? dbViktima.Gjendja;
             await _context.SaveChangesAsync();
 
             return new OkObjectResult("Viktima updated succesfully!");
