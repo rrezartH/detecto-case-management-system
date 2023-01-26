@@ -6,6 +6,6 @@ namespace Detecto.API.Case.Models
     {
         public int Id { get; set; }
         public string Name { get; set; } = null!;
-        public IFileUploader FileUploader { get; set; }
+        //public IFileUploader FileUploader { get; set; }
     }
 }

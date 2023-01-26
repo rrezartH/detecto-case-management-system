@@ -1,6 +1,7 @@
-﻿namespace Detecto.API.Data
+﻿/*namespace Detecto.API.Data
 {
     public class SetupClass
     {
     }
 }
+*/

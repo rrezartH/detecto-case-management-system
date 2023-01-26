@@ -1,5 +1,6 @@
 using Detecto.API.Case.Services.Implementation;
 using Detecto.API.Configurations;
+using Detecto.API.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +16,8 @@ builder.Services.AddDbContext<DetectoDbContext>(options =>
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 builder.Services.AddTransient<CaseService>();
+builder.Services.AddTransient<ViktimaService>();
+
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
