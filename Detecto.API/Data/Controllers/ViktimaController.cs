@@ -16,17 +16,15 @@ namespace Detecto.API.Data
         }
 
         [HttpGet("GetViktimat")]
-                                            //ViktimaDTO
-        public async Task<ActionResult<List<Viktima>>> GetViktimat()
+        public async Task<ActionResult<List<ViktimaDTO>>> GetViktimat()
         {
             return await _viktimaService.GetViktimat();
         }
 
-        /*[HttpPost]
-        public IActionResult AddViktima([FromBody]ViktimaDTO viktima)
+        [HttpPost]
+        public async Task<ActionResult> AddViktima(ViktimaDTO viktimaDTO)
         {
-            _viktimaService.AddViktima(viktima);
-            return Ok();
-        }*/
+            return await _viktimaService.AddViktima(viktimaDTO);
+        }
     }
 }

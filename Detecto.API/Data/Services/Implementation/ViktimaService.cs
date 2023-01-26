@@ -10,27 +10,26 @@ namespace Detecto.API.Data
 {
     public class ViktimaService
     {
-        //public IUnitOfWork _unitOfWork;
         private readonly DetectoDbContext _context;
         private readonly IMapper _mapper;
-        public ViktimaService(DetectoDbContext context, IMapper mapper/*, IUnitOfWork _unitOfWork*/)
+        public ViktimaService(DetectoDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
-            /*_unitOfWork = _unitOfWork;*/
         }
-                                            //ViktimaDTO
-        public async Task<ActionResult<List<Viktima>>> GetViktimat()
-        {                           //ViktimaDTO
-            return _mapper.Map<List<Viktima>>(await _context.Viktimat.ToListAsync());
-        }
-
-        /*public async void AddViktima(ViktimaDTO viktima)
+        public async Task<ActionResult<List<ViktimaDTO>>> GetViktimat()
         {
-            var _mapped = _mapper.Map<Viktima>(viktima);
+            return _mapper.Map<List<ViktimaDTO>>(await _context.Viktimat.ToListAsync());
+        }
 
-            await _unitOfWork.Viktimat.Add(_mapped);
-            await _unitOfWork.CompleteAsync();
-        }*/
+        public async Task<ActionResult> AddViktima(ViktimaDTO viktimaDTO)
+        {
+            if (viktimaDTO == null)
+                return new BadRequestObjectResult("Viktima can't be null!");
+            var mappedViktima = _mapper.Map<Viktima>(viktimaDTO);
+            await _context.Viktimat.AddAsync(mappedViktima);
+            await _context.SaveChangesAsync();
+            return new OkObjectResult("Viktima added succesfully!");
+        }
     }
 }
