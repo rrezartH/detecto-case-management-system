@@ -2,6 +2,7 @@
 using Detecto.API.Case.Services.Implementation;
 using Detecto.API.Data.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Detecto.API.Data
 {
@@ -21,10 +22,28 @@ namespace Detecto.API.Data
             return await _viktimaService.GetViktimat();
         }
 
-        [HttpPost]
+        [HttpGet("GetViktimatById")]
+        public async Task<ActionResult<List<ViktimaDTO>>> GetViktimatById(int id)
+        {
+            return await _viktimaService.GetViktimaById(id);
+        }
+
+        [HttpPost("AddViktima")]
         public async Task<ActionResult> AddViktima(ViktimaDTO viktimaDTO)
         {
             return await _viktimaService.AddViktima(viktimaDTO);
+        }
+
+        [HttpPut("UpdateViktima")]
+        public async Task<ActionResult> UpdateViktima(int id, UpdateViktimaDTO updateViktimaDTO)
+        {
+            return await _viktimaService.UpdateViktima(id, updateViktimaDTO);
+        }
+
+        [HttpDelete("DeleteViktimen")]
+        public async Task<ActionResult> DeleteViktima(int id)
+        {
+            return await _viktimaService.DeleteViktima(id);
         }
     }
 }
