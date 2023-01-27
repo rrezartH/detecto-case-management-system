@@ -27,6 +27,7 @@ builder.Services.AddScoped<IiDyshuariService, iDyshuariService>();
 builder.Services.AddScoped<IProvaBiologjikeService, ProvaBiologjikeService>();
 builder.Services.AddScoped<IProvaFizikeService, ProvaFizikeService>();
 builder.Services.AddScoped<IGjurmaBiologjikeService, GjurmaBiologjikeService>();
+builder.Services.AddScoped<IDeklarataService, DeklarataService>();
 
 
 
