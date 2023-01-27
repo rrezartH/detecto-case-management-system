@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Detecto.API.Case.Models;
+﻿using Detecto.API.Case.Models;
 using Detecto.API.Data.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Detecto.API.Configurations
 {
@@ -18,6 +18,10 @@ namespace Detecto.API.Configurations
         public DbSet<Personi> Personat { get; set; } = null!;
         public DbSet<Viktima> Viktimat { get; set; } = null!;
         public DbSet<Deshmitari> Deshmitaret { get; set; } = null!;
+        public DbSet<iDyshuari> TeDyshuarit { get; set; } = null!;
+        public DbSet<Prova> Provat { get; set; } = null!;
+        public DbSet<ProvaFizike> ProvatFizike { get; set; } = null!;
+        public DbSet<ProvaBiologjike> ProvatBiologjike { get; set; } = null!;
 
     }
 }

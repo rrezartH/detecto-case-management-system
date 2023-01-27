@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using Detecto.API.Configurations;
-using Detecto.API.Data.DTOs;
+using Detecto.API.Data.DTOs.PersonatDTOs;
 using Detecto.API.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace Detecto.API.Data.Services.Implementation
+namespace Detecto.API.Data.Services.Implementation.PersonatServices
 {
     public class DeshmitariService
     {
@@ -26,7 +26,7 @@ namespace Detecto.API.Data.Services.Implementation
         {
             var mappedDeshmitari = _mapper.Map<DeshmitariDTO>(await _context.Deshmitaret.FindAsync(id));
             if (mappedDeshmitari == null)
-                return new NotFoundObjectResult("Deshmitari nuk ekziston.");
+                return new NotFoundObjectResult("Deshmitari nuk ekziston!!");
             return new OkObjectResult(mappedDeshmitari);
         }
 
@@ -64,7 +64,7 @@ namespace Detecto.API.Data.Services.Implementation
             return new OkObjectResult("Dëshmitari updated succesfully!");
         }
 
-        public async Task<ActionResult> DeleteDëshmitari(int id)
+        public async Task<ActionResult> DeleteDeshmitari(int id)
         {
             var dbDeshmitari = await _context.Deshmitaret.FindAsync(id);
             if (dbDeshmitari == null)

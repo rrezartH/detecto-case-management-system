@@ -1,7 +1,6 @@
 using Detecto.API.Case.Services.Implementation;
 using Detecto.API.Configurations;
-using Detecto.API.Data;
-using Detecto.API.Data.Services.Implementation;
+using Detecto.API.Data.Services.Implementation.PersonatServices;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,8 +17,8 @@ builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 builder.Services.AddTransient<CaseService>();
 builder.Services.AddTransient<ViktimaService>();
-builder.Services.AddTransient<PersoniService>();
 builder.Services.AddTransient<DeshmitariService>();
+builder.Services.AddTransient<iDyshuariService>();
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

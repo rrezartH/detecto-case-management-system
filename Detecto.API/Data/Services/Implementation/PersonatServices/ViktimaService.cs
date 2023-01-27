@@ -1,13 +1,11 @@
-﻿using Abp.Domain.Uow;
-using AutoMapper;
-using Detecto.API.Case.DTOs;
+﻿using AutoMapper;
 using Detecto.API.Configurations;
-using Detecto.API.Data.DTOs;
+using Detecto.API.Data.DTOs.PersonatDTOs;
 using Detecto.API.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace Detecto.API.Data
+namespace Detecto.API.Data.Services.Implementation.PersonatServices
 {
     public class ViktimaService
     {
