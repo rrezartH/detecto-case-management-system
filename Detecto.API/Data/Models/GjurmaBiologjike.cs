@@ -1,6 +1,6 @@
 ﻿namespace Detecto.API.Data.Models
 {
-    public class GjurmetBiologjike
+    public class GjurmaBiologjike
     {
         public int Id { get; set; }
         public string Emertimi { get; set; } = null!;
