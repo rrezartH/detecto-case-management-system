@@ -2,7 +2,7 @@
 
 namespace Detecto.API.Case.Models
 {
-    public class File
+    public class DFile
     {
         public int Id { get; set; }
         public string Name { get; set; } = null!;

@@ -3,6 +3,7 @@ using Detecto.API.Configurations;
 using Detecto.API.Data.DTOs.PersonatDTOs;
 using Detecto.API.Data.Models;
 using Detecto.API.Data.Services.Interfaces.PersonatIntrefaces;
+using Detecto.API.Data.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -56,7 +57,7 @@ namespace Detecto.API.Data.Services.Implementation.PersonatServices
             dbIDyshuari.Statusi = updateiDyshuariDto.Statusi ?? dbIDyshuari.Statusi;
             dbIDyshuari.Vendbanimi = updateiDyshuariDto.Vendbanimi ?? dbIDyshuari.Vendbanimi;
             dbIDyshuari.GjendjaMendore = updateiDyshuariDto.GjendjaMendore ?? dbIDyshuari.GjendjaMendore;
-            dbIDyshuari.eKaluara = updateiDyshuariDto.eKaluara ?? dbIDyshuari.eKaluara;
+            dbIDyshuari.EKaluara = updateiDyshuariDto.eKaluara ?? dbIDyshuari.EKaluara;
             dbIDyshuari.Dyshimi = updateiDyshuariDto.Dyshimi ?? dbIDyshuari.Dyshimi;
             await _context.SaveChangesAsync();
 

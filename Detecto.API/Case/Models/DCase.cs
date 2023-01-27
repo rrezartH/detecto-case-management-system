@@ -1,4 +1,6 @@
-﻿namespace Detecto.API.Case.Models
+﻿using Detecto.API.Data.Models;
+
+namespace Detecto.API.Case.Models
 {
     public class DCase
     {
@@ -9,8 +11,11 @@
         public string? Details { get; set; }
         public DateTime DateOpened { get; set; }
         public DateTime? DateClosed { get; set; }
-        public string? Palet { get; set; }
+        public ICollection<Viktima>? Viktimat { get; set; }
+        public ICollection<Deshmitari>? Deshmitaret { get; set; }
+        public ICollection<iDyshuari>? TeDyshuarit { get; set; }
+
         public ICollection<CaseTask>? CaseTasks { get; set; }
-        public ICollection<File>? Files { get; set; }
+        public ICollection<DFile>? Files { get; set; }
     }
 }

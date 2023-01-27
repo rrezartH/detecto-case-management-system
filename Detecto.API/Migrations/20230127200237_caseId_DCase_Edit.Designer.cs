@@ -4,6 +4,7 @@ using Detecto.API.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Detecto.API.Migrations
 {
     [DbContext(typeof(DetectoDbContext))]
-    partial class DetectoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230127200237_caseId_DCase_Edit")]
+    partial class caseId_DCase_Edit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -180,6 +182,9 @@ namespace Detecto.API.Migrations
                     b.Property<int>("CaseId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("DCaseId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Discriminator")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -213,6 +218,8 @@ namespace Detecto.API.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DCaseId");
 
                     b.ToTable("Personat");
 
@@ -271,9 +278,6 @@ namespace Detecto.API.Migrations
                 {
                     b.HasBaseType("Detecto.API.Data.Models.Personi");
 
-                    b.Property<int?>("DCaseId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("Dyshohet")
                         .HasColumnType("bit");
 
@@ -283,8 +287,6 @@ namespace Detecto.API.Migrations
                     b.Property<bool>("Vezhgohet")
                         .HasColumnType("bit");
 
-                    b.HasIndex("DCaseId");
-
                     b.HasDiscriminator().HasValue("Deshmitari");
                 });
 
@@ -292,15 +294,9 @@ namespace Detecto.API.Migrations
                 {
                     b.HasBaseType("Detecto.API.Data.Models.Personi");
 
-                    b.Property<int?>("DCaseId")
-                        .HasColumnType("int")
-                        .HasColumnName("iDyshuari_DCaseId");
-
                     b.Property<string>("Dyshimi")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.HasIndex("DCaseId");
 
                     b.HasDiscriminator().HasValue("iDyshuari");
                 });
@@ -342,10 +338,6 @@ namespace Detecto.API.Migrations
                 {
                     b.HasBaseType("Detecto.API.Data.Models.Personi");
 
-                    b.Property<int?>("DCaseId")
-                        .HasColumnType("int")
-                        .HasColumnName("Viktima_DCaseId");
-
                     b.Property<string>("Gjendja")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -360,8 +352,6 @@ namespace Detecto.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("DCaseId");
-
                     b.HasDiscriminator().HasValue("Viktima");
                 });
 
@@ -372,6 +362,13 @@ namespace Detecto.API.Migrations
                         .HasForeignKey("DCaseId");
                 });
 
+            modelBuilder.Entity("Detecto.API.Data.Models.Personi", b =>
+                {
+                    b.HasOne("Detecto.API.Case.Models.DCase", null)
+                        .WithMany("Palet")
+                        .HasForeignKey("DCaseId");
+                });
+
             modelBuilder.Entity("Detecto.API.Case.Models.CaseTask", b =>
                 {
                     b.HasOne("Detecto.API.Case.Models.DCase", null)
@@ -379,38 +376,13 @@ namespace Detecto.API.Migrations
                         .HasForeignKey("DCaseId");
                 });
 
-            modelBuilder.Entity("Detecto.API.Data.Models.Deshmitari", b =>
-                {
-                    b.HasOne("Detecto.API.Case.Models.DCase", null)
-                        .WithMany("Deshmitaret")
-                        .HasForeignKey("DCaseId");
-                });
-
-            modelBuilder.Entity("Detecto.API.Data.Models.iDyshuari", b =>
-                {
-                    b.HasOne("Detecto.API.Case.Models.DCase", null)
-                        .WithMany("IDyshuari")
-                        .HasForeignKey("DCaseId");
-                });
-
-            modelBuilder.Entity("Detecto.API.Data.Models.Viktima", b =>
-                {
-                    b.HasOne("Detecto.API.Case.Models.DCase", null)
-                        .WithMany("Viktima")
-                        .HasForeignKey("DCaseId");
-                });
-
             modelBuilder.Entity("Detecto.API.Case.Models.DCase", b =>
                 {
                     b.Navigation("CaseTasks");
 
-                    b.Navigation("Deshmitaret");
-
                     b.Navigation("Files");
 
-                    b.Navigation("IDyshuari");
-
-                    b.Navigation("Viktima");
+                    b.Navigation("Palet");
                 });
 #pragma warning restore 612, 618
         }

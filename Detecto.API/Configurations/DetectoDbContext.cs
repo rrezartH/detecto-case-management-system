@@ -1,5 +1,6 @@
-﻿using Detecto.API.Case.Models;
-using Detecto.API.Data.Models;
+﻿using Detecto.API.Data.Models;
+using Detecto.API.Case.Models;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace Detecto.API.Configurations

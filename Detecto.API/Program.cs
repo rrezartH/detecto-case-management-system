@@ -28,7 +28,7 @@ builder.Services.AddScoped<IProvaBiologjikeService, ProvaBiologjikeService>();
 builder.Services.AddScoped<IProvaFizikeService, ProvaFizikeService>();
 builder.Services.AddScoped<IGjurmaBiologjikeService, GjurmaBiologjikeService>();
 builder.Services.AddScoped<IDeklarataService, DeklarataService>();
-
+builder.Services.AddScoped<IPala, PalaService>();
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

@@ -56,7 +56,7 @@ namespace Detecto.API.Data.Services.Implementation.PersonatServices
             dbDeshmitari.Statusi = updateDeshmitariDTO.Statusi ?? dbDeshmitari.Statusi;
             dbDeshmitari.Vendbanimi = updateDeshmitariDTO.Vendbanimi ?? dbDeshmitari.Vendbanimi;
             dbDeshmitari.GjendjaMendore = updateDeshmitariDTO.GjendjaMendore ?? dbDeshmitari.GjendjaMendore;
-            dbDeshmitari.eKaluara = updateDeshmitariDTO.eKaluara ?? dbDeshmitari.eKaluara;
+            dbDeshmitari.EKaluara = updateDeshmitariDTO.eKaluara ?? dbDeshmitari.EKaluara;
             dbDeshmitari.RaportiMeViktimen = updateDeshmitariDTO.RaportiMeViktimen ?? dbDeshmitari.RaportiMeViktimen;
             dbDeshmitari.Vezhgohet = updateDeshmitariDTO.Vezhgohet ?? dbDeshmitari.Vezhgohet;
             dbDeshmitari.Dyshohet = updateDeshmitariDTO.Dyshohet ?? dbDeshmitari.Dyshohet;
