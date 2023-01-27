@@ -2,6 +2,7 @@
 using Detecto.API.Data.DTOs.ProvatDTOs;
 using Detecto.API.Data.Services.Implementation.PersonatServices;
 using Detecto.API.Data.Services.Implementation.ProvatServices;
+using Detecto.API.Data.Services.Interfaces.ProvatInterfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Detecto.API.Data.Controllers.Provat
@@ -10,9 +11,9 @@ namespace Detecto.API.Data.Controllers.Provat
     [ApiController]
     public class ProvaFizikeController : ControllerBase
     {
-        private readonly ProvaFizikeService _provaFizikeService;
+        private readonly IProvaFizikeService _provaFizikeService;
 
-        public ProvaFizikeController(ProvaFizikeService provaService)
+        public ProvaFizikeController(IProvaFizikeService provaService)
         {
             _provaFizikeService = provaService;
         }

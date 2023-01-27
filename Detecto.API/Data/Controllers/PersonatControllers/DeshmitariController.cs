@@ -1,5 +1,6 @@
 ﻿using Detecto.API.Data.DTOs.PersonatDTOs;
 using Detecto.API.Data.Services.Implementation.PersonatServices;
+using Detecto.API.Data.Services.Interfaces.PersonatIntrefaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Detecto.API.Data.Controllers.Personat
@@ -8,9 +9,9 @@ namespace Detecto.API.Data.Controllers.Personat
     [ApiController]
     public class DeshmitariController : ControllerBase
     {
-        private readonly DeshmitariService _deshmitariService;
+        private readonly IDeshmitariService _deshmitariService;
 
-        public DeshmitariController(DeshmitariService deshmitariService)
+        public DeshmitariController(IDeshmitariService deshmitariService)
         {
             _deshmitariService = deshmitariService;
         }

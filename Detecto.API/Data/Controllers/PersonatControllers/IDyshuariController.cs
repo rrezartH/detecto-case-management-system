@@ -1,5 +1,6 @@
 ﻿using Detecto.API.Data.DTOs.PersonatDTOs;
 using Detecto.API.Data.Services.Implementation.PersonatServices;
+using Detecto.API.Data.Services.Interfaces.PersonatIntrefaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Detecto.API.Data.Controllers.Personat
@@ -8,9 +9,9 @@ namespace Detecto.API.Data.Controllers.Personat
     [ApiController]
     public class IDyshuariController : ControllerBase
     {
-        private readonly iDyshuariService _iDyshuariService;
+        private readonly IiDyshuariService _iDyshuariService;
 
-        public IDyshuariController(iDyshuariService iDyshuariSrv)
+        public IDyshuariController(IiDyshuariService iDyshuariSrv)
         {
             _iDyshuariService = iDyshuariSrv;
         }

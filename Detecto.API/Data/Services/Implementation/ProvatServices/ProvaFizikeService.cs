@@ -1,14 +1,14 @@
 ﻿using AutoMapper;
 using Detecto.API.Configurations;
-using Detecto.API.Data.DTOs.PersonatDTOs;
 using Detecto.API.Data.DTOs.ProvatDTOs;
 using Detecto.API.Data.Models;
+using Detecto.API.Data.Services.Interfaces.ProvatInterfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Detecto.API.Data.Services.Implementation.ProvatServices
 {
-    public class ProvaFizikeService
+    public class ProvaFizikeService : IProvaFizikeService
     {
         private readonly DetectoDbContext _context;
         private readonly IMapper _mapper;

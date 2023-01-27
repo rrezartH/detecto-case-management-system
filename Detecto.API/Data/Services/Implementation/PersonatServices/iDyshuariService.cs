@@ -2,12 +2,13 @@
 using Detecto.API.Configurations;
 using Detecto.API.Data.DTOs.PersonatDTOs;
 using Detecto.API.Data.Models;
+using Detecto.API.Data.Services.Interfaces.PersonatIntrefaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Detecto.API.Data.Services.Implementation.PersonatServices
 {
-    public class iDyshuariService
+    public class iDyshuariService : IiDyshuariService
     {
         private readonly DetectoDbContext _context;
         private readonly IMapper _mapper;

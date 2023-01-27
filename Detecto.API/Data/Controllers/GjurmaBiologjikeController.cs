@@ -1,5 +1,6 @@
 ﻿using Detecto.API.Data.DTOs;
 using Detecto.API.Data.Services.Implementation;
+using Detecto.API.Data.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Detecto.API.Data.Controllers
@@ -8,9 +9,9 @@ namespace Detecto.API.Data.Controllers
     [ApiController]
     public class GjurmaBiologjikeController : ControllerBase
     {
-        private readonly GjurmaBiologjikeService _gjurmetBiologjikeService;
+        private readonly IGjurmaBiologjikeService _gjurmetBiologjikeService;
 
-        public GjurmaBiologjikeController(GjurmaBiologjikeService gjurmetBiologjikeService)
+        public GjurmaBiologjikeController(IGjurmaBiologjikeService gjurmetBiologjikeService)
         {
             _gjurmetBiologjikeService = gjurmetBiologjikeService;
         }

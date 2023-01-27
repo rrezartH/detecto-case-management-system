@@ -2,12 +2,13 @@
 using Detecto.API.Configurations;
 using Detecto.API.Data.DTOs.ProvatDTOs;
 using Detecto.API.Data.Models;
+using Detecto.API.Data.Services.Interfaces.ProvatInterfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Detecto.API.Data.Services.Implementation.ProvatServices
 {
-    public class ProvaBiologjikeService
+    public class ProvaBiologjikeService : IProvaBiologjikeService
     {
         private readonly DetectoDbContext _context;
         private readonly IMapper _mapper;

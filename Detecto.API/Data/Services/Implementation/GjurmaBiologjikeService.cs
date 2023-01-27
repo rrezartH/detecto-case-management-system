@@ -3,12 +3,13 @@ using Detecto.API.Configurations;
 using Detecto.API.Data.DTOs;
 using Detecto.API.Data.DTOs.ProvatDTOs;
 using Detecto.API.Data.Models;
+using Detecto.API.Data.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Detecto.API.Data.Services.Implementation
 {
-    public class GjurmaBiologjikeService
+    public class GjurmaBiologjikeService : IGjurmaBiologjikeService
     {
         private readonly DetectoDbContext _context;
         private readonly IMapper _mapper;
