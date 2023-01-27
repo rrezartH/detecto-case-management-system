@@ -1,6 +1,5 @@
 
 *.dll
-*.json
 *.props
 *.cache
 *.editorconfig
