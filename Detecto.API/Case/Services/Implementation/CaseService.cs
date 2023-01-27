@@ -2,6 +2,7 @@
 using Detecto.API.Case.DTOs;
 using Detecto.API.Case.Models;
 using Detecto.API.Configurations;
+using Detecto.API.Data.DTOs.PersonatDTOs;
 using Detecto.API.Data.Services.Interfaces;
 using Detecto.API.Data.Services.Interfaces.PersonatIntrefaces;
 using Microsoft.AspNetCore.Mvc;
@@ -52,14 +53,34 @@ namespace Detecto.API.Case.Services.Implementation
             return new OkObjectResult("Dosja u shtua me sukses!");
         }
 
-        internal Task<ActionResult> UpdateCase(int id, UpdateCaseDTO updateCaseDTO)
+        public async Task<ActionResult> UpdateCase(int id, UpdateCaseDTO updateCaseDTO)
         {
-            throw new NotImplementedException();
-        }
-        internal Task<ActionResult> DeleteCase(int id)
-        {
-            throw new NotImplementedException();
-        }
+            if (updateCaseDTO == null)
+                return new BadRequestObjectResult("Nuk ka nevoje te perditesohet asgje.");
 
+            var dbCase = await _context.Cases.FindAsync(id);
+            if (dbCase == null)
+                return new NotFoundObjectResult("Dosja nuk ekziston!");
+
+            dbCase.Identifier = updateCaseDTO.Identifier ?? dbCase.Identifier;
+            dbCase.Title = updateCaseDTO.Title ?? dbCase.Title;
+            dbCase.Status = updateCaseDTO.Status ?? dbCase.Status;
+            dbCase.Details = updateCaseDTO.Details ?? dbCase.Details;
+            dbCase.DateClosed = updateCaseDTO.DateClosed ?? dbCase.DateClosed;
+
+            await _context.SaveChangesAsync();
+
+            return new OkObjectResult("Dosja updated succesfully!");
+        }
+        public async Task<ActionResult> DeleteCase(int id)
+        {
+            var dbCase = await _context.Cases.FindAsync(id);
+            if (dbCase == null)
+                return new NotFoundObjectResult("Dosja nuk ekziston!!");
+
+            _context.Cases.Remove(dbCase);
+            await _context.SaveChangesAsync();
+            return new OkObjectResult("Dosja u fshi me sukses!");
+        }
     }
 }

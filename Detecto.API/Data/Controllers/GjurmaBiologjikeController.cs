@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Detecto.API.Data.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Data/[controller]")]
     [ApiController]
     public class GjurmaBiologjikeController : ControllerBase
     {

@@ -10,7 +10,7 @@ using Detecto.API.Configurations;
 
 namespace Detecto.API.Case.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Case/[controller]")]
     [ApiController]
     public class DetectiveController : ControllerBase
     {

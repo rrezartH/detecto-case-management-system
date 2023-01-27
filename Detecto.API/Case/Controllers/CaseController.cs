@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Detecto.API.Case.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Case/[controller]")]
     [ApiController]
     public class CaseController : ControllerBase
     {

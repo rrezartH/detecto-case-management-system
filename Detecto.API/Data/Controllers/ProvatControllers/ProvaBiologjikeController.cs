@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Detecto.API.Data.Controllers.ProvatControllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Data/[controller]")]
     [ApiController]
     public class ProvaBiologjikeController : ControllerBase
     {
