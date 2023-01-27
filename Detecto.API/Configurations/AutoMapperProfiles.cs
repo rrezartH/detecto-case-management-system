@@ -17,6 +17,7 @@ namespace Detecto.API.Configurations
             CreateMap<Deshmitari, DeshmitariDTO>().ReverseMap();
             CreateMap<iDyshuari, iDyshuariDTO>().ReverseMap();
             CreateMap<ProvaFizike, ProvaFizikeDTO>().ReverseMap();
+            CreateMap<ProvaBiologjike, ProvaBiologjikeDTO>().ReverseMap();
         }
     }
 }
