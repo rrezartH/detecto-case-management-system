@@ -7,5 +7,9 @@
         public DateTime KohaENxjerrjes { get; set; } 
         public string? Vendndodhja { get; set; } 
         public string Attachment { get; set; } = null!;
+
+        //Navigation Properties
+        public int PersoniId { get; set; }
+        public Personi Personi { get; set; } = null!;
     }
 }

@@ -4,6 +4,7 @@ using Detecto.API.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Detecto.API.Migrations
 {
     [DbContext(typeof(DetectoDbContext))]
-    partial class DetectoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230128081029_Synchronizing_Models")]
+    partial class Synchronizing_Models
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -146,12 +148,7 @@ namespace Detecto.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PersoniId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("PersoniId");
 
                     b.ToTable("Deklaratat");
                 });
@@ -172,12 +169,7 @@ namespace Detecto.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PersoniId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("PersoniId");
 
                     b.ToTable("GjurmetBiologjike");
                 });
@@ -255,15 +247,10 @@ namespace Detecto.API.Migrations
                     b.Property<DateTime>("KohaENxjerrjes")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("PersoniId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Vendndodhja")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PersoniId");
 
                     b.ToTable("Provat");
 
@@ -390,39 +377,6 @@ namespace Detecto.API.Migrations
                         .HasForeignKey("DCaseId");
                 });
 
-            modelBuilder.Entity("Detecto.API.Data.Models.Deklarata", b =>
-                {
-                    b.HasOne("Detecto.API.Data.Models.Personi", "Personi")
-                        .WithMany("Deklaratat")
-                        .HasForeignKey("PersoniId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Personi");
-                });
-
-            modelBuilder.Entity("Detecto.API.Data.Models.GjurmaBiologjike", b =>
-                {
-                    b.HasOne("Detecto.API.Data.Models.Personi", "Personi")
-                        .WithMany("GjurmetBiologjike")
-                        .HasForeignKey("PersoniId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Personi");
-                });
-
-            modelBuilder.Entity("Detecto.API.Data.Models.Prova", b =>
-                {
-                    b.HasOne("Detecto.API.Data.Models.Personi", "Personi")
-                        .WithMany("Provat")
-                        .HasForeignKey("PersoniId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Personi");
-                });
-
             modelBuilder.Entity("Detecto.API.Case.Models.CaseTask", b =>
                 {
                     b.HasOne("Detecto.API.Case.Models.DCase", null)
@@ -462,15 +416,6 @@ namespace Detecto.API.Migrations
                     b.Navigation("TeDyshuarit");
 
                     b.Navigation("Viktimat");
-                });
-
-            modelBuilder.Entity("Detecto.API.Data.Models.Personi", b =>
-                {
-                    b.Navigation("Deklaratat");
-
-                    b.Navigation("GjurmetBiologjike");
-
-                    b.Navigation("Provat");
                 });
 #pragma warning restore 612, 618
         }

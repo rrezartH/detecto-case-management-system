@@ -31,3 +31,5 @@ const Cases = () => {
     </div>
   );
 };
+
+export default Cases;
