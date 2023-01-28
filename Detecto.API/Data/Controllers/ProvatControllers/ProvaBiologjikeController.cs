@@ -1,4 +1,5 @@
-﻿using Detecto.API.Data.DTOs.ProvatDTOs;
+﻿using Detecto.API.Data.DTOs;
+using Detecto.API.Data.DTOs.ProvatDTOs;
 using Detecto.API.Data.Services.Interfaces.ProvatInterfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,7 +22,7 @@ namespace Detecto.API.Data.Controllers.ProvatControllers
             return await _provaBiologjikeService.GetProvatBiologjike();
         }
 
-        [HttpGet("GetProvenBiologjikeById")]
+        [HttpGet("GetProvenBiologjikeById/{id}")]
         public async Task<ActionResult<List<ProvaBiologjikeDTO>>> GetProvenBiologjikeById(int id)
         {
             return await _provaBiologjikeService.GetProvenBiologjikeById(id);
@@ -33,16 +34,22 @@ namespace Detecto.API.Data.Controllers.ProvatControllers
             return await _provaBiologjikeService.AddProvaBiologjike(provaDTO);
         }
 
-        [HttpPut("UpdateProvaBiologjike")]
+        [HttpPut("UpdateProvaBiologjike/{id}")]
         public async Task<ActionResult> UpdateProvaBiologjike(int id, UpdateProvaBiologjikeDTO updateProvaDTO)
         {
             return await _provaBiologjikeService.UpdateProvaBiologjike(id, updateProvaDTO);
         }
 
-        [HttpDelete("DeleteProvaBiologjike")]
+        [HttpDelete("DeleteProvaBiologjike/{id}")]
         public async Task<ActionResult> DeleteProvaBiologjike(int id)
         {
             return await _provaBiologjikeService.DeleteProvaBiologjike(id);
         }
+
+        /*[HttpGet("KrahasoProvat")]
+        public async Task<bool> KrahasoProvat(ProvaDTO p, GjurmaBiologjikeDTO gj)
+        {
+            return await _provaBiologjikeService.Krahaso(p, gj);
+        }*/
     }
 }

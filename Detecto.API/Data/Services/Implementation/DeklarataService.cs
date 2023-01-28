@@ -32,6 +32,26 @@ namespace Detecto.API.Data.Services.Implementation
             return new OkObjectResult(mappedDeklarata);
         }
 
+        public async Task<ActionResult<List<DeklarataDTO>>> GetDeklaratatEPersonit(int id)
+        {
+            var dbPersoni = await _context.Personat.FindAsync(id);
+            if (dbPersoni == null)
+                return new NotFoundObjectResult("Personi nuk ekziston!!");
+
+            return _mapper.Map<List<DeklarataDTO>>(await _context.Deklaratat
+                                .Where(p => p.PersoniId == id)
+                                .ToListAsync());
+        }
+
+        public async Task<ActionResult<string>> GetPerbajtjaEDeklarates(int id)
+        {
+            var dbPermbajtja = await _context.Deklaratat.FindAsync(id);
+            if (dbPermbajtja == null)
+                return new NotFoundObjectResult("Deklarata nuk ekziston!!");
+
+            return dbPermbajtja.Permbajtja;
+        }
+
         public async Task<ActionResult> AddDeklarata(DeklarataDTO deklarataDTO)
         {
             if (deklarataDTO == null)
@@ -68,5 +88,11 @@ namespace Detecto.API.Data.Services.Implementation
             await _context.SaveChangesAsync();
             return new OkObjectResult("Deklarata deleted succesfully!");
         }
+
+        /*public string Compare(string deklarata1, string deklarata2)
+        {
+            KrahasoTekst kT = new KrahasoTekst();
+            return kT.Compare(deklarata1, deklarata2);
+        }*/
     }
 }

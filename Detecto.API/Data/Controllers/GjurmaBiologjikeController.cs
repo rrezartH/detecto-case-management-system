@@ -22,10 +22,16 @@ namespace Detecto.API.Data.Controllers
             return await _gjurmetBiologjikeService.GetGjurmetBiologjike();
         }
 
-        [HttpGet("GetGjurmaBiologjikeById")]
+        [HttpGet("GetGjurmaBiologjikeById/{id}")]
         public async Task<ActionResult<GjurmaBiologjikeDTO>> GetGjurmaBiologjikeById(int id)
         {
             return await _gjurmetBiologjikeService.GetGjurmaBiologjikeById(id);
+        }
+
+        [HttpGet("GetGjurmetEPersonit/{id}")]
+        public async Task<ActionResult<List<GjurmaBiologjikeDTO>>> GetGjurmetEPersonit(int id)
+        {
+            return await _gjurmetBiologjikeService.GetGjurmetEPersonit(id);
         }
 
         [HttpPost("AddGjurmaBiologjike")]
@@ -34,13 +40,13 @@ namespace Detecto.API.Data.Controllers
             return await _gjurmetBiologjikeService.AddGjurmaBiologjike(gjurmaBiologjikeDTO);
         }
 
-        [HttpPut("UpdateGjurmaBiologjike")]
+        [HttpPut("UpdateGjurmaBiologjike/{id}")]
         public async Task<ActionResult> UpdateGjurmaBiologjike(int id, UpdateGjurmaBiologjikeDTO updateGjurmaBiologjikeDTO)
         {
             return await _gjurmetBiologjikeService.UpdateGjurmaBiologjike(id, updateGjurmaBiologjikeDTO);
         }
 
-        [HttpDelete("DeleteGjurmenBiologjike")]
+        [HttpDelete("DeleteGjurmenBiologjike/{id}")]
         public async Task<ActionResult> DeleteGjurmaBiologjike(int id)
         {
             return await _gjurmetBiologjikeService.DeleteGjurmenBiologjike(id);

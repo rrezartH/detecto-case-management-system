@@ -1,5 +1,4 @@
 ﻿using Detecto.API.Data.DTOs.PersonatDTOs;
-using Detecto.API.Data.Services.Implementation.PersonatServices;
 using Detecto.API.Data.Services.Interfaces.PersonatIntrefaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,10 +21,22 @@ namespace Detecto.API.Data.Controllers.Personat
             return await _deshmitariService.GetDeshmitaret();
         }
 
-        [HttpGet("GetDeshmitaretById")]
+        [HttpGet("GetDeshmitaretById/{id}")]
         public async Task<ActionResult<List<DeshmitariDTO>>> GetDeshmitaritById(int id)
         {
             return await _deshmitariService.GetDeshmitariById(id);
+        }
+
+        [HttpGet("ADyshohet/{id}")]
+        public async Task<ActionResult<bool>> ADyshohet(int id)
+        {
+            return await _deshmitariService.ADyshohet(id);
+        }
+
+        [HttpGet("AVezhgohet/{id}")]
+        public async Task<ActionResult<bool>> AVezhgohet(int id)
+        {
+            return await _deshmitariService.AVezhgohet(id);
         }
 
         [HttpPost("AddDeshmitari")]
@@ -34,16 +45,17 @@ namespace Detecto.API.Data.Controllers.Personat
             return await _deshmitariService.AddDeshmitari(deshmitariDTO);
         }
 
-        [HttpPut("UpdateDeshmitari")]
+        [HttpPut("UpdateDeshmitari/{id}")]
         public async Task<ActionResult> UpdateDeshmitari(int id, UpdateDeshmitariDTO updateDeshmitariDTO)
         {
             return await _deshmitariService.UpdateDeshmitari(id, updateDeshmitariDTO);
         }
 
-        [HttpDelete("DeleteDeshmitari")]
+        [HttpDelete("DeleteDeshmitari/{id}")]
         public async Task<ActionResult> DeleteDeshmitari(int id)
         {
             return await _deshmitariService.DeleteDeshmitari(id);
         }
+
     }
 }

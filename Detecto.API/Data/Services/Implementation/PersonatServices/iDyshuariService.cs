@@ -32,6 +32,15 @@ namespace Detecto.API.Data.Services.Implementation.PersonatServices
             return new OkObjectResult(mappedIDyshuari);
         }
 
+        public async Task<ActionResult<string>> GetDyshimiMbiTeDyshuarin(int id)
+        {
+            var dbDyshimi = await _context.TeDyshuarit.FindAsync(id);
+            if (dbDyshimi == null)
+                return new NotFoundObjectResult("Personi nuk dyshohet!!");
+
+            return dbDyshimi.Dyshimi;
+        }
+
         public async Task<ActionResult> AddTeDyshuarin(iDyshuariDTO iDyshuariDto)
         {
             if (iDyshuariDto == null)

@@ -22,7 +22,7 @@ namespace Detecto.API.Data.Controllers.Personat
             return await _viktimaService.GetViktimat();
         }
 
-        [HttpGet("GetViktimatById")]
+        [HttpGet("GetViktimatById/{id}")]
         public async Task<ActionResult<List<ViktimaDTO>>> GetViktimatById(int id)
         {
             return await _viktimaService.GetViktimaById(id);
@@ -34,13 +34,13 @@ namespace Detecto.API.Data.Controllers.Personat
             return await _viktimaService.AddViktima(viktimaDTO);
         }
 
-        [HttpPut("UpdateViktima")]
+        [HttpPut("UpdateViktima/{id}")]
         public async Task<ActionResult> UpdateViktima(int id, UpdateViktimaDTO updateViktimaDTO)
         {
             return await _viktimaService.UpdateViktima(id, updateViktimaDTO);
         }
 
-        [HttpDelete("DeleteViktimen")]
+        [HttpDelete("DeleteViktimen/{id}")]
         public async Task<ActionResult> DeleteViktima(int id)
         {
             return await _viktimaService.DeleteViktima(id);
