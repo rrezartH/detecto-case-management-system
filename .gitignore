@@ -49,3 +49,4 @@ packages/react-devtools-timeline/dist
 
 bin/
 
+client/.env

@@ -5,6 +5,7 @@ namespace Detecto.API.Case.Models
     public class DCase
     {
         public int Id { get; set; }
+        public string? ImageUrl { get; set; }
         public string Identifier { get; set; } = null!;
         public string Title { get; set; } = null!;
         public string Status { get; set; } = "E Hapur";

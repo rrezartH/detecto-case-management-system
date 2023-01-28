@@ -62,6 +62,7 @@ namespace Detecto.API.Case.Services.Implementation
             if (dbCase == null)
                 return new NotFoundObjectResult("Dosja nuk ekziston!");
 
+            dbCase.ImageUrl = updateCaseDTO.ImageUrl ?? dbCase.ImageUrl;
             dbCase.Identifier = updateCaseDTO.Identifier ?? dbCase.Identifier;
             dbCase.Title = updateCaseDTO.Title ?? dbCase.Title;
             dbCase.Status = updateCaseDTO.Status ?? dbCase.Status;

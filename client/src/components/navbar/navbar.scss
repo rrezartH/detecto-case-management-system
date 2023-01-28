@@ -1,0 +1,14 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  img {
+    width: 5%;
+  }
+  ul {
+    display: flex;
+    width: 50%;
+    justify-content: space-around;
+  }
+}

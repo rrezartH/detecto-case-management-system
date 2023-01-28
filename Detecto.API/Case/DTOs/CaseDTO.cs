@@ -6,6 +6,7 @@ namespace Detecto.API.Case.DTOs
 {
     public class GetCaseDTO
     {
+        public string? ImageUrl { get; set; }
         public string Identifier { get; set; } = null!;
         public string Title { get; set; } = null!;
         public string Status { get; set; } = "E Hapur";
@@ -21,6 +22,7 @@ namespace Detecto.API.Case.DTOs
 
     public class AddCaseDTO
     {
+        public string? ImageUrl { get; set; }
         public string Identifier { get; set; } = null!;
         public string Title { get; set; } = null!;
         public string Status { get; set; } = "E Hapur";
@@ -30,6 +32,7 @@ namespace Detecto.API.Case.DTOs
 
     public class UpdateCaseDTO
     {
+        public string? ImageUrl { get; set; }
         public string? Identifier { get; set; } = null!;
         public string? Title { get; set; } = null!;
         public string? Status { get; set; } = "E Hapur";
