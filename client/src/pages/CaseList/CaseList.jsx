@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import "./cases.scss";
+import "./case-list.scss";
 import { CaseCard } from "../../components";
 import agent from "../../api/agents";
 
-const Cases = () => {
+const CaseList = () => {
   const [cases, setCases] = useState([]);
 
   useEffect(() => {
@@ -13,12 +13,13 @@ const Cases = () => {
   }, []);
 
   return (
-    <div>
+    <>
       <h1>Cases</h1>
       <div className="card-layout">
         {React.Children.toArray(
           cases.map((cases) => (
             <CaseCard
+              caseId={cases.id}
               imgUrl={cases.imageUrl}
               identifier={cases.identifier}
               title={cases.title}
@@ -28,8 +29,8 @@ const Cases = () => {
           ))
         )}
       </div>
-    </div>
+    </>
   );
 };
 
-export default Cases;
+export default CaseList;

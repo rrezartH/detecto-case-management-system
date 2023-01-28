@@ -23,9 +23,9 @@ namespace Detecto.API.Case.Services.Implementation
             _palet = palet;
         }
 
-        public async Task<ActionResult<List<GetCaseDTO>>> GetCases()
+        public async Task<ActionResult<List<GetCasesDetailsDTO>>> GetCases()
         {
-            return _mapper.Map<List<GetCaseDTO>>(await _context.Cases.ToListAsync());
+            return _mapper.Map<List<GetCasesDetailsDTO>>(await _context.Cases.ToListAsync());
         }
 
         public async Task<ActionResult<List<GetCaseDTO>>> GetCaseById(int id)

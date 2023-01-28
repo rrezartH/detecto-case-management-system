@@ -18,31 +18,31 @@ namespace Detecto.API.Case.Controllers
             _caseService = caseService;
         }
 
-        [HttpGet("GetCases")]
-        public async Task<ActionResult<List<GetCaseDTO>>> GetCases()
+        [HttpGet("get-cases")]
+        public async Task<ActionResult<List<GetCasesDetailsDTO>>> GetCases()
         {
             return await _caseService.GetCases();
         }
 
-        [HttpGet("GetCaseById")]
+        [HttpGet("get-case-by-id/{id}")]
         public async Task<ActionResult<List<GetCaseDTO>>> GetCaseById(int id)
         {
             return await _caseService.GetCaseById(id);
         }
 
-        [HttpPost("AddCase")]
+        [HttpPost("add-case")]
         public async Task<ActionResult> AddCase(AddCaseDTO caseDTO)
         {
             return await _caseService.AddCase(caseDTO);
         }
 
-        [HttpPut("UpdateCase/{id}")]
+        [HttpPut("update-case/{id}")]
         public async Task<ActionResult> UpdateCase(int id, UpdateCaseDTO updateCaseDTO)
         {
             return await _caseService.UpdateCase(id, updateCaseDTO);
         }
 
-        [HttpDelete("DeleteCase/{id}")]
+        [HttpDelete("delete-case/{id}")]
         public async Task<ActionResult> DeleteCase(int id)
         {
             return await _caseService.DeleteCase(id);

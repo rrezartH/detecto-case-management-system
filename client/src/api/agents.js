@@ -12,7 +12,8 @@ const requests ={
 }
 
 const Cases = {
-    get: () => requests.get('Case/Case/GetCases')
+    get: () => requests.get('Case/Case/get-cases'),
+    getById: (id) => requests.get(`Case/Case/get-case-by-id/${id}`)
 }
 
 const agent = {

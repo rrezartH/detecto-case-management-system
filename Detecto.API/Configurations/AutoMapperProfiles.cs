@@ -14,6 +14,7 @@ namespace Detecto.API.Configurations
         public AutoMapperProfiles()
         {
             CreateMap<DCase, GetCaseDTO>().ReverseMap();
+            CreateMap<DCase, GetCasesDetailsDTO>().ReverseMap();
             CreateMap<AddCaseDTO, DCase>();
             CreateMap<Viktima, ViktimaDTO>().ReverseMap();
             CreateMap<Deshmitari, DeshmitariDTO>().ReverseMap();

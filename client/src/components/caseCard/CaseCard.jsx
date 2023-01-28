@@ -1,5 +1,6 @@
 import "./caseCard.scss";
-const CaseCard = ({ imgUrl, identifier, title, details, status }) => {
+import { Link } from "react-router-dom";
+const CaseCard = ({ caseId, imgUrl, identifier, title, details, status }) => {
   return (
     <div className="card">
       <img src={imgUrl} alt="Case Card" />
@@ -9,7 +10,9 @@ const CaseCard = ({ imgUrl, identifier, title, details, status }) => {
         <p className="card-details">{details}</p>
       </div>
       <div className="card-buttons">
-        <button className="card-button">Shiko Detajet</button>
+        <button className="card-button">
+          <Link to={`../case/${caseId}`}>Shiko</Link>
+        </button>
         <button className="card-status">{status}</button>
       </div>
     </div>
