@@ -1,5 +1,4 @@
 ﻿using Detecto.API.Data.DTOs.ProvatDTOs;
-using Detecto.API.Data.Services.Implementation.ProvatServices;
 using Detecto.API.Data.Services.Interfaces.ProvatInterfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,10 +21,16 @@ namespace Detecto.API.Data.Controllers.ProvatControllers
             return await _provaService.GetProvat();
         }
 
-        [HttpGet("GetProvaById")]
+        [HttpGet("GetProvaById/{id}")]
         public async Task<ActionResult<List<ProvaDTO>>> GetProvaById(int id)
         {
             return await _provaService.GetProvaById(id);
         }
+
+        /*[HttpGet("GetProvatLloji")]
+        public async Task<ActionResult<List<ProvaDTO>>> GetProvatLloji(string lloji)
+        {
+            return await _provaService.GetProvatLloji(lloji);
+        }*/
     }
 }

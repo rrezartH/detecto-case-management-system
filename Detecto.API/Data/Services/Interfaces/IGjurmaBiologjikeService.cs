@@ -7,6 +7,7 @@ namespace Detecto.API.Data.Services.Interfaces
     {
         public Task<ActionResult<List<GjurmaBiologjikeDTO>>> GetGjurmetBiologjike();
         public Task<ActionResult<GjurmaBiologjikeDTO>> GetGjurmaBiologjikeById(int id);
+        public Task<ActionResult<List<GjurmaBiologjikeDTO>>> GetGjurmetEPersonit(int id);
         public Task<ActionResult> AddGjurmaBiologjike(GjurmaBiologjikeDTO gjurmaBiologjikeDTO);
         public Task<ActionResult> UpdateGjurmaBiologjike(int id, UpdateGjurmaBiologjikeDTO updateGjurmaBiologjikeDTO);
         public Task<ActionResult> DeleteGjurmenBiologjike(int id);

@@ -22,10 +22,16 @@ namespace Detecto.API.Data.Controllers.Personat
             return await _iDyshuariService.GetTeDyshuarit();
         }
 
-        [HttpGet("GetTeDyshuaritById")]
+        [HttpGet("GetTeDyshuaritById/{id}")]
         public async Task<ActionResult<iDyshuariDTO>> GetTeDyshuarinById(int id)
         {
             return await _iDyshuariService.GetTeDyshuarinById(id);
+        }
+
+        [HttpGet("GetDyshimiMbiTeDyshuarin/{id}")]
+        public async Task<ActionResult<string>> GetDyshimiMbiTeDyshuarin(int id)
+        {
+            return await _iDyshuariService.GetDyshimiMbiTeDyshuarin(id);
         }
 
         [HttpPost("AddTeDyshuar")]
@@ -34,13 +40,13 @@ namespace Detecto.API.Data.Controllers.Personat
             return await _iDyshuariService.AddTeDyshuarin(iDyshuariDto);
         }
 
-        [HttpPut("UpdateTeDyshuarin")]
+        [HttpPut("UpdateTeDyshuarin/{id}")]
         public async Task<ActionResult> UpdateTeDyshuarin(int id, UpdateiDyshuariDTO UpdateiDyshuariDto)
         {
             return await _iDyshuariService.UpdateTeDyshuarin(id, UpdateiDyshuariDto);
         }
 
-        [HttpDelete("DeleteTeDyshuarin")]
+        [HttpDelete("DeleteTeDyshuarin/{id}")]
         public async Task<ActionResult> DeleteTeDyshuarin(int id)
         {
             return await _iDyshuariService.DeleteTeDyshuarin(id);

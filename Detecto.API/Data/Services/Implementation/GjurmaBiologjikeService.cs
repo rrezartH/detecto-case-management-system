@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Detecto.API.Configurations;
 using Detecto.API.Data.DTOs;
-using Detecto.API.Data.DTOs.ProvatDTOs;
 using Detecto.API.Data.Models;
 using Detecto.API.Data.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -31,6 +30,17 @@ namespace Detecto.API.Data.Services.Implementation
             if (mappedGjurma == null)
                 return new NotFoundObjectResult("Gjurma nuk ekziston.");
             return new OkObjectResult(mappedGjurma);
+        }
+
+        public async Task<ActionResult<List<GjurmaBiologjikeDTO>>> GetGjurmetEPersonit(int id)
+        {
+            var dbPersoni = await _context.Personat.FindAsync(id);
+            if (dbPersoni == null)
+                return new NotFoundObjectResult("Personi nuk ekziston!!");
+
+            return _mapper.Map<List<GjurmaBiologjikeDTO>>(await _context.GjurmetBiologjike
+                                .Where(p => p.PersoniId == id)
+                                .ToListAsync());
         }
 
         public async Task<ActionResult> AddGjurmaBiologjike(GjurmaBiologjikeDTO gjurmaBiologjikeDTO)

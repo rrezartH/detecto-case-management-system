@@ -1,12 +1,9 @@
 ﻿using AutoMapper;
 using Detecto.API.Configurations;
-using Detecto.API.Data.DTOs.PersonatDTOs;
 using Detecto.API.Data.DTOs.ProvatDTOs;
 using Detecto.API.Data.Services.Interfaces.ProvatInterfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.Operations;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
 
 namespace Detecto.API.Data.Services.Implementation.ProvatServices
 {
@@ -32,5 +29,10 @@ namespace Detecto.API.Data.Services.Implementation.ProvatServices
                 return new NotFoundObjectResult("Prova nuk ekziston.");
             return new OkObjectResult(mappedProva);
         }
+
+        /*public async Task<ActionResult<List<ProvaDTO>>> GetProvatLloji(string lloji)
+        {
+            
+        }*/
     }
 }

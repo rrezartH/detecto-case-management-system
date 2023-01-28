@@ -10,12 +10,12 @@ namespace Detecto.API.Data.Services.Implementation.ProvatServices
 {
     public class ProvaBiologjikeService : IProvaBiologjikeService
     {
-        private readonly DetectoDbContext _context;
         private readonly IMapper _mapper;
-        public ProvaBiologjikeService(DetectoDbContext context, IMapper mapper)
+        private readonly DetectoDbContext _context;
+        public ProvaBiologjikeService(IMapper mapper, DetectoDbContext detectoDbContext)
         {
-            _context = context;
             _mapper = mapper;
+            _context = detectoDbContext;
         }
 
         public async Task<ActionResult<List<ProvaBiologjikeDTO>>> GetProvatBiologjike()
@@ -70,5 +70,10 @@ namespace Detecto.API.Data.Services.Implementation.ProvatServices
             await _context.SaveChangesAsync();
             return new OkObjectResult("Prova deleted succesfully!");
         }
+
+        /*public async Task<bool> Krahaso(ProvaDTO prova, GjurmaBiologjikeDTO gj)
+        {
+            
+        }*/
     }
 }

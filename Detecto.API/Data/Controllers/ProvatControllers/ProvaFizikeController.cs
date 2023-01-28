@@ -24,7 +24,7 @@ namespace Detecto.API.Data.Controllers.Provat
             return await _provaFizikeService.GetProvatFizike();
         }
 
-        [HttpGet("GetProvenFizikeById")]
+        [HttpGet("GetProvenFizikeById/{id}")]
         public async Task<ActionResult<List<ProvaFizikeDTO>>> GetProvenFizikeById(int id)
         {
             return await _provaFizikeService.GetProvenFizikeById(id);
@@ -36,13 +36,13 @@ namespace Detecto.API.Data.Controllers.Provat
             return await _provaFizikeService.AddProvaFizike(provaDTO);
         }
 
-        [HttpPut("UpdateProvaFizike")]
+        [HttpPut("UpdateProvaFizike/{id}")]
         public async Task<ActionResult> UpdateProvaFizike(int id, UpdateProvaFizikeDTO updateProvaDTO)
         {
             return await _provaFizikeService.UpdateProvaFizike(id, updateProvaDTO);
         }
 
-        [HttpDelete("DeleteProvaFizike")]
+        [HttpDelete("DeleteProvaFizike/{id}")]
         public async Task<ActionResult> DeleteProvaFizike(int id)
         {
             return await _provaFizikeService.DeleteProvaFizike(id);

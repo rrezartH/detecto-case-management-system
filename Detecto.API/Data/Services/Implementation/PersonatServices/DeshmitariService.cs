@@ -31,6 +31,22 @@ namespace Detecto.API.Data.Services.Implementation.PersonatServices
             return new OkObjectResult(mappedDeshmitari);
         }
 
+        public async Task<ActionResult<bool>> ADyshohet(int id)
+        {
+            var dbDeshmitari = await _context.Deshmitaret.FindAsync(id);
+            if (dbDeshmitari == null)
+                return new NotFoundObjectResult("Dëshmitari nuk ekziston!!");
+            return dbDeshmitari.Dyshohet;
+        }
+
+        public async Task<ActionResult<bool>> AVezhgohet(int id)
+        {
+            var dbDeshmitari = await _context.Deshmitaret.FindAsync(id);
+            if (dbDeshmitari == null)
+                return new NotFoundObjectResult("Dëshmitari nuk ekziston!!");
+            return dbDeshmitari.Vezhgohet;
+        }
+
         public async Task<ActionResult> AddDeshmitari(DeshmitariDTO deshmitariDTO)
         {
             if (deshmitariDTO == null)
