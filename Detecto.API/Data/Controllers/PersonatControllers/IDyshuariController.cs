@@ -34,6 +34,12 @@ namespace Detecto.API.Data.Controllers.Personat
             return await _iDyshuariService.GetDyshimiMbiTeDyshuarin(id);
         }
 
+        [HttpGet("GetInfo/{id}")]
+        public async Task<ActionResult<string>> GetInfo(int id)
+        {
+            return await _iDyshuariService.GetInfo(id);
+        }
+
         [HttpPost("AddTeDyshuar")]
         public async Task<ActionResult> AddTeDyshuarin(iDyshuariDTO iDyshuariDto)
         {

@@ -5,14 +5,15 @@ using Detecto.API.Data.Models;
 using Detecto.API.Data.Services.Interfaces.PersonatIntrefaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Xml.Linq;
 
 namespace Detecto.API.Data.Services.Implementation.PersonatServices
 {
-    public class DeshmitariService : IDeshmitariService
+    public class DeshmitariService : PalaService, IDeshmitariService
     {
         private readonly DetectoDbContext _context;
         private readonly IMapper _mapper;
-        public DeshmitariService(DetectoDbContext context, IMapper mapper)
+        public DeshmitariService(DetectoDbContext context, IMapper mapper) : base(context, mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -91,5 +92,22 @@ namespace Detecto.API.Data.Services.Implementation.PersonatServices
             await _context.SaveChangesAsync();
             return new OkObjectResult("Dëshmitari u fshi me sukses!");
         }
+
+        //Strategy Pattern
+        //Metoda GetInfo është metodë e klasës bazë, vetëm se tek kjo nënklasë bëhet override!
+        public async override Task<ActionResult<string>> GetInfo(int id)
+        {
+            var dbDeshmitari = await _context.Deshmitaret.FindAsync(id);
+            if (dbDeshmitari == null)
+                return "Dëshmitari nuk ekziston!!";
+            return $"Deshmitari: Emri -> " +
+                dbDeshmitari.Emri + ", Profesioni -> " + dbDeshmitari.Profesioni + ", Vendbanimi -> " + dbDeshmitari.Vendbanimi + ", " + 
+                "\nRaporti me viktimen -> " + dbDeshmitari.RaportiMeViktimen + ", A vëzhgohet? " + dbDeshmitari.Vezhgohet + ", A dyshohet? " + dbDeshmitari.Dyshohet + ".";
+        }
+
+        /*public async Task<ActionResult> RuajSiIDyshuar(PersoniDTO personiDTO)
+        {
+
+        }*/
     }
 }

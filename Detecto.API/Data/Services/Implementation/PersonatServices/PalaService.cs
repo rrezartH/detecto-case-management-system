@@ -2,6 +2,7 @@
 using Detecto.API.Configurations;
 using Detecto.API.Data.DTOs.PersonatDTOs;
 using Detecto.API.Data.Services.Interfaces.PersonatIntrefaces;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Detecto.API.Data.Services.Implementation.PersonatServices
@@ -35,6 +36,13 @@ namespace Detecto.API.Data.Services.Implementation.PersonatServices
             return _mapper.Map<ICollection<ViktimaDTO>>(await _context.Viktimat
                                     .Where(p => p.CaseId == caseId)
                                     .ToListAsync());
+        }
+
+        //Strategy Pattern
+        //Metoda kthen një empty string sepse bëhet override tek nënklasat!
+        public async virtual Task<ActionResult<string>> GetInfo(int id)
+        {
+            return "";
         }
     }
 }

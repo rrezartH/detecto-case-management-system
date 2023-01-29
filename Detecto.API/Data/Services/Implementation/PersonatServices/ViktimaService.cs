@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Detecto.API.Data.Services.Implementation.PersonatServices
 {
-    public class ViktimaService : IViktimaService
+    public class ViktimaService : PalaService, IViktimaService
     {
         private readonly DetectoDbContext _context;
         private readonly IMapper _mapper;
-        public ViktimaService(DetectoDbContext context, IMapper mapper)
+        public ViktimaService(DetectoDbContext context, IMapper mapper) : base(context, mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -75,6 +75,21 @@ namespace Detecto.API.Data.Services.Implementation.PersonatServices
             _context.Viktimat.Remove(dbViktima);
             await _context.SaveChangesAsync();
             return new OkObjectResult("Viktima deleted succesfully!");
+        }
+
+        //Strategy Pattern
+        //Metoda GetInfo është metodë e klasës bazë, vetëm se tek kjo nënklasë bëhet override!
+        public async override Task<ActionResult<string>> GetInfo(int id)
+        {
+            var dbViktima = await _context.Viktimat.FindAsync(id);
+            if (dbViktima == null)
+                return "Viktima nuk ekziston!!";
+            return $"Viktima: Emri -> " +
+                dbViktima.Emri + ", Profesioni -> " + dbViktima.Profesioni + ", Vendbanimi -> " + dbViktima.Vendbanimi + ", " +
+                "\nKu u gjet? " + dbViktima.Vendi + 
+                ",\nKur u gjet? " + dbViktima.Koha +
+                ",\nSi u gjet? " + dbViktima.Menyra + 
+                ",\nNë çfarë gjendje u gjet? " + dbViktima.Gjendja + ".";
         }
     }
 }

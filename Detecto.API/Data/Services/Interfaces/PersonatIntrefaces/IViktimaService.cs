@@ -10,5 +10,6 @@ namespace Detecto.API.Data.Services.Interfaces.PersonatIntrefaces
         public Task<ActionResult> AddViktima(ViktimaDTO viktimaDTO);
         public Task<ActionResult> UpdateViktima(int id, UpdateViktimaDTO updateViktimaDTO);
         public Task<ActionResult> DeleteViktima(int id);
+        public Task<ActionResult<string>> GetInfo(int id);
     }
 }

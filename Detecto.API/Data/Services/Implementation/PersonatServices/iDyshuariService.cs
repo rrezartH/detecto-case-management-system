@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Detecto.API.Data.Services.Implementation.PersonatServices
 {
-    public class iDyshuariService : IiDyshuariService
+    public class iDyshuariService : PalaService, IiDyshuariService
     {
         private readonly DetectoDbContext _context;
         private readonly IMapper _mapper;
-        public iDyshuariService(DetectoDbContext context, IMapper mapper)
+        public iDyshuariService(DetectoDbContext context, IMapper mapper) : base(context, mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -82,6 +82,18 @@ namespace Detecto.API.Data.Services.Implementation.PersonatServices
             _context.TeDyshuarit.Remove(dbIDyshuari);
             await _context.SaveChangesAsync();
             return new OkObjectResult("I dyshuari u fshi me sukses!");
+        }
+
+        //Strategy Pattern
+        //Metoda GetInfo është metodë e klasës bazë, vetëm se tek kjo nënklasë bëhet override!
+        public async override Task<ActionResult<string>> GetInfo(int id)
+        {
+            var dbIDyshuari = await _context.TeDyshuarit.FindAsync(id);
+            if (dbIDyshuari == null)
+                return "I dyshuari nuk ekziston!!";
+            return $"I dyshuari: Emri -> " +
+                dbIDyshuari.Emri + ", Profesioni -> " + dbIDyshuari.Profesioni + ", Vendbanimi -> " + dbIDyshuari.Vendbanimi + ", " +
+                "\nPse dyshohet? " + dbIDyshuari.Dyshimi + ".";
         }
     }
 }

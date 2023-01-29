@@ -28,6 +28,12 @@ namespace Detecto.API.Data.Controllers.Personat
             return await _viktimaService.GetViktimaById(id);
         }
 
+        [HttpGet("GetInfo/{id}")]
+        public async Task<ActionResult<string>> GetInfo(int id)
+        {
+            return await _viktimaService.GetInfo(id);
+        }
+
         [HttpPost("AddViktima")]
         public async Task<ActionResult> AddViktima(ViktimaDTO viktimaDTO)
         {
