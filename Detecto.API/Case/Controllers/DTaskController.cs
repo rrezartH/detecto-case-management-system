@@ -1,108 +1,67 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Detecto.API.Case.Models;
-using Detecto.API.Configurations;
+using Detecto.API.Case.DTOs;
+using Detecto.API.Case.Services;
+using Detecto.API.Case.Services.Interfaces;
 
 namespace Detecto.API.Case.Controllers
 {
-    [Route("api/Case/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
-    public class DTaskController : ControllerBase
+    public class TaskController : ControllerBase
     {
-        private readonly DetectoDbContext _context;
+        private readonly ITaskService _taskService;
 
-        public DTaskController(DetectoDbContext context)
+        public TaskController(ITaskService taskService)
         {
-            _context = context;
+            _taskService = taskService;
         }
 
-        // GET: api/DTask
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<DTask>>> GetTasks()
+        public async Task<IEnumerable<TaskDTO>> GetTasks()
         {
-            return await _context.Tasks.ToListAsync();
+            return await _taskService.GetTasks();
+           
         }
 
-        // GET: api/DTask/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<DTask>> GetDTask(int id)
+        public async Task<ActionResult<TaskDTO>> GetTaskByID(int id)
         {
-            var dTask = await _context.Tasks.FindAsync(id);
+            return await _taskService.GetTaskByID(id);
+            //if (task == null)
+            //    return NotFound();
 
-            if (dTask == null)
-            {
-                return NotFound();
-            }
-
-            return dTask;
+            //return Ok(task);
         }
 
-        // PUT: api/DTask/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutDTask(int id, DTask dTask)
-        {
-            if (id != dTask.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(dTask).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!DTaskExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/DTask
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<DTask>> PostDTask(DTask dTask)
+        public async Task<ActionResult<TaskDTO>> CreateTask(TaskDTO taskDto)
         {
-            _context.Tasks.Add(dTask);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetDTask", new { id = dTask.Id }, dTask);
+            return await _taskService.CreateTask(taskDto);
+           
         }
 
-        // DELETE: api/DTask/5
+        [HttpPut("{id}")]
+        public async Task<ActionResult<TaskDTO>> UpdateTask(UpdateTaskDTO taskDto, int id)
+        {
+            return await _taskService.UpdateTask(taskDto, id);
+            //if (task == null)
+            //    return NotFound();
+
+            //return Ok(task);
+        }
+
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteDTask(int id)
+        public async Task<ActionResult> DeleteTask(int id)
         {
-            var dTask = await _context.Tasks.FindAsync(id);
-            if (dTask == null)
-            {
-                return NotFound();
-            }
+            return await _taskService.DeleteTask(id);
+            //if (task == null)
+            //    return NotFound();
 
-            _context.Tasks.Remove(dTask);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool DTaskExists(int id)
-        {
-            return _context.Tasks.Any(e => e.Id == id);
+            //return Ok();
         }
     }
 }

@@ -1,4 +1,6 @@
+using Detecto.API.Case.Services;
 using Detecto.API.Case.Services.Implementation;
+using Detecto.API.Case.Services.Interfaces;
 using Detecto.API.Configurations;
 using Detecto.API.Data.Services.Implementation;
 using Detecto.API.Data.Services.Implementation.PersonatServices;
@@ -35,6 +37,7 @@ builder.Services.AddScoped<IProvaService, ProvaService>();
 builder.Services.AddScoped<IProvaFizikeService, ProvaFizikeService>();
 builder.Services.AddScoped<IGjurmaBiologjikeService, GjurmaBiologjikeService>();
 builder.Services.AddScoped<IDeklarataService, DeklarataService>();
+builder.Services.AddScoped<ITaskService, TaskService>();
 builder.Services.AddScoped<IPala, PalaService>();
 
 
