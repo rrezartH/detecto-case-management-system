@@ -6,6 +6,8 @@
         public DateTime KohaENxjerrjes { get; set; }
         public string? Vendndodhja { get; set; }
         public string Attachment { get; set; } = null!;
+        public string Lloji { get; set; } = null!;
+        public string Specifikimi { get; set; } = null!;
         public string? TeknikaENxjerrjes { get; set; }
     }
 
@@ -15,6 +17,8 @@
         public DateTime? KohaENxjerrjes { get; set; }
         public string? Vendndodhja { get; set; }
         public string? Attachment { get; set; }
+        public string? Lloji { get; set; }
+        public string? Specifikimi { get; set; }
         public string? TeknikaENxjerrjes { get; set; }
     }
 }

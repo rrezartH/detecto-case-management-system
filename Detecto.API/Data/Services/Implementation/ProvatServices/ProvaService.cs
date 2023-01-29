@@ -29,10 +29,5 @@ namespace Detecto.API.Data.Services.Implementation.ProvatServices
                 return new NotFoundObjectResult("Prova nuk ekziston.");
             return new OkObjectResult(mappedProva);
         }
-
-        /*public async Task<ActionResult<List<ProvaDTO>>> GetProvatLloji(string lloji)
-        {
-            
-        }*/
     }
 }

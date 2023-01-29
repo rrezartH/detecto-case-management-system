@@ -4,6 +4,7 @@ using Detecto.API.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Detecto.API.Migrations
 {
     [DbContext(typeof(DetectoDbContext))]
-    partial class DetectoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230129100307_Made_a_change_on_the_ProvaModel")]
+    partial class Made_a_change_on_the_ProvaModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

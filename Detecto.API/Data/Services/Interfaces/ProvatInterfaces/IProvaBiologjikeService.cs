@@ -11,6 +11,6 @@ namespace Detecto.API.Data.Services.Interfaces.ProvatInterfaces
         public Task<ActionResult> UpdateProvaBiologjike(int id, UpdateProvaBiologjikeDTO updateProvaDTO);
         public Task<ActionResult> DeleteProvaBiologjike(int id);
 
-        //public Task<bool> Krahaso(ProvaDTO prova, GjurmaBiologjikeDTO gj);
+        public Task<bool> Krahaso(int provaId, int personiId);
     }
 }

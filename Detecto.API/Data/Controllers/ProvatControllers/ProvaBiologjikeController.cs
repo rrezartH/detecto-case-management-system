@@ -46,10 +46,10 @@ namespace Detecto.API.Data.Controllers.ProvatControllers
             return await _provaBiologjikeService.DeleteProvaBiologjike(id);
         }
 
-        /*[HttpGet("KrahasoProvat")]
-        public async Task<bool> KrahasoProvat(ProvaDTO p, GjurmaBiologjikeDTO gj)
+        [HttpGet("KrahasoProvat")]
+        public async Task<bool> KrahasoProvat(int provaId, int personiId)
         {
-            return await _provaBiologjikeService.Krahaso(p, gj);
-        }*/
+            return await _provaBiologjikeService.Krahaso(provaId, personiId);
+        }
     }
 }

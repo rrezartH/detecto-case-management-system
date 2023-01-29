@@ -26,11 +26,5 @@ namespace Detecto.API.Data.Controllers.ProvatControllers
         {
             return await _provaService.GetProvaById(id);
         }
-
-        /*[HttpGet("GetProvatLloji")]
-        public async Task<ActionResult<List<ProvaDTO>>> GetProvatLloji(string lloji)
-        {
-            return await _provaService.GetProvatLloji(lloji);
-        }*/
     }
 }

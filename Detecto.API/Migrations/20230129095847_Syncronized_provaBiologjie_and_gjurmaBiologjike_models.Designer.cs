@@ -4,6 +4,7 @@ using Detecto.API.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Detecto.API.Migrations
 {
     [DbContext(typeof(DetectoDbContext))]
-    partial class DetectoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230129095847_Syncronized_provaBiologjie_and_gjurmaBiologjike_models")]
+    partial class Syncronized_provaBiologjie_and_gjurmaBiologjike_models
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -330,10 +332,6 @@ namespace Detecto.API.Migrations
             modelBuilder.Entity("Detecto.API.Data.Models.ProvaBiologjike", b =>
                 {
                     b.HasBaseType("Detecto.API.Data.Models.Prova");
-
-                    b.Property<string>("Lloji")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Specifikimi")
                         .IsRequired()

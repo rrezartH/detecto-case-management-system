@@ -62,8 +62,9 @@ namespace Detecto.API.Data.Services.Implementation
             if (dbGjurma == null)
                 return new NotFoundObjectResult("Gjurma nuk ekziston!!");
 
-            dbGjurma.Emertimi = updateGjurmaBiologjikeDTO.Emertimi ?? dbGjurma.Emertimi;
+            dbGjurma.Emri = updateGjurmaBiologjikeDTO.Emri ?? dbGjurma.Emri;
             dbGjurma.Lloji = updateGjurmaBiologjikeDTO.Lloji ?? dbGjurma.Lloji;
+            dbGjurma.Specifikimi = updateGjurmaBiologjikeDTO.Specifikimi ?? dbGjurma.Specifikimi;
             await _context.SaveChangesAsync();
 
             return new OkObjectResult("Gjurma updated succesfully!");
