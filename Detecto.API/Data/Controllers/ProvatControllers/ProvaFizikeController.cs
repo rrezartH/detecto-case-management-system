@@ -30,6 +30,24 @@ namespace Detecto.API.Data.Controllers.Provat
             return await _provaFizikeService.GetProvenFizikeById(id);
         }
 
+        [HttpGet("GetPerEkzaminim")]
+        public async Task<ActionResult<List<ProvaFizikeDTO>>> GetPerEkzaminim(bool b)
+        {
+            return await _provaFizikeService.GetPerEkzaminim(b);
+        }
+
+        [HttpGet("GetMeGjurmeBiologjike")]
+        public async Task<ActionResult<List<ProvaFizikeDTO>>> GetMeGjurmeBiologjike(bool b)
+        {
+            return await _provaFizikeService.GetMeGjurmeBiologjike(b);
+        }
+
+        [HttpGet("GetSipasRrezikut")]
+        public async Task<ActionResult<List<ProvaFizikeDTO>>> GetSipasRrezikut(string str)
+        {
+            return await _provaFizikeService.GetSipasRrezikut(str);
+        }
+
         [HttpPost("AddProvaFizike")]
         public async Task<ActionResult> AddProvaFizike(ProvaFizikeDTO provaDTO)
         {
@@ -47,5 +65,6 @@ namespace Detecto.API.Data.Controllers.Provat
         {
             return await _provaFizikeService.DeleteProvaFizike(id);
         }
+
     }
 }

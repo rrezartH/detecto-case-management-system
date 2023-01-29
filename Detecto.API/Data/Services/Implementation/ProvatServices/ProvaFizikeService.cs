@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Detecto.API.Configurations;
+using Detecto.API.Data.DTOs;
 using Detecto.API.Data.DTOs.ProvatDTOs;
 using Detecto.API.Data.Models;
 using Detecto.API.Data.Services.Interfaces.ProvatInterfaces;
@@ -18,17 +19,36 @@ namespace Detecto.API.Data.Services.Implementation.ProvatServices
             _mapper = mapper;
         }
 
-        public async Task<ActionResult<List<ProvaFizikeDTO>>> GetProvatFizike()
-        {
-            return _mapper.Map<List<ProvaFizikeDTO>>(await _context.ProvatFizike.ToListAsync());
-        }
+        public async Task<ActionResult<List<ProvaFizikeDTO>>> GetProvatFizike() =>
+                     _mapper.Map<List<ProvaFizikeDTO>>(await _context.ProvatFizike.ToListAsync());
 
         public async Task<ActionResult> GetProvenFizikeById(int id)
         {
             var mappedProva = _mapper.Map<ProvaFizikeDTO>(await _context.ProvatFizike.FindAsync(id));
-            if (mappedProva == null)
-                return new NotFoundObjectResult("Prova nuk ekziston.");
-            return new OkObjectResult(mappedProva);
+            return mappedProva == null
+                ? new NotFoundObjectResult("Prova nuk ekziston.")
+                : new OkObjectResult(mappedProva);
+        }
+
+        public async Task<ActionResult<List<ProvaFizikeDTO>>> GetPerEkzaminim(bool b)
+        {
+            return _mapper.Map<List<ProvaFizikeDTO>>(await _context.ProvatFizike
+                                .Where(p => p.DuhetEkzaminim == b)
+                                .ToListAsync());
+        }
+
+        public async Task<ActionResult<List<ProvaFizikeDTO>>> GetMeGjurmeBiologjike(bool b)
+        {
+            return _mapper.Map<List<ProvaFizikeDTO>>(await _context.ProvatFizike
+                                .Where(p => p.KaGjurmeBiologjike == b)
+                                .ToListAsync());
+        }
+
+        public async Task<ActionResult<List<ProvaFizikeDTO>>> GetSipasRrezikut(string str)
+        {
+            return _mapper.Map<List<ProvaFizikeDTO>>(await _context.ProvatFizike
+                                .Where(p => p.Rrezikshmeria == str)
+                                .ToListAsync());
         }
 
         public async Task<ActionResult> AddProvaFizike(ProvaFizikeDTO provaDTO)
@@ -74,5 +94,6 @@ namespace Detecto.API.Data.Services.Implementation.ProvatServices
             await _context.SaveChangesAsync();
             return new OkObjectResult("Prova deleted succesfully!");
         }
+
     }
 }
