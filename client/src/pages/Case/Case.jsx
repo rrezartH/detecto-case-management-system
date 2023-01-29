@@ -2,24 +2,33 @@ import React, { useState, useEffect } from "react";
 import "./case.scss";
 import { useParams } from "react-router-dom";
 import agent from "../../api/agents";
+import PersonPage from "./Persons/PersonPage";
 
 const Case = () => {
   let params = useParams();
+  const [personType, setPersonType] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
   const [caseData, setCaseData] = useState({
     photo: "",
-    title: "Rasti Pronto",
-    caseId: "#1387FA",
+    title: "",
+    caseId: "",
     details: "",
-    status: "Open",
-    dateOpened: "2023-01-27",
+    status: "",
+    dateOpened: "",
     dateClosed: "",
+    viktimat: [],
+    deshmitaret: [],
+    teDyshuarit: [],
   });
+  const handleOpen = () => {
+    setIsOpen((prev) => !prev);
+  };
 
   useEffect(() => {
     agent.Cases.getById(params.caseId).then((response) => {
       setCaseData(response);
     });
-  }, []);
+  }, [params.caseId]);
 
   return (
     <div className="case-page">
@@ -41,6 +50,41 @@ const Case = () => {
         <h1>Details</h1>
         <p> {caseData.details}</p>
       </div>
+      <div className="case-page__persons">
+        <h1>Palet</h1>
+        <div className="case-page__persons-list">
+          <button
+            onClick={() => {
+              handleOpen();
+              setPersonType("viktimat");
+            }}
+          >
+            {caseData.viktimat.length} Viktima
+          </button>
+          <button
+            onClick={() => {
+              handleOpen();
+              setPersonType("deshmitaret");
+            }}
+          >
+            {caseData.deshmitaret.length} Deshmitare
+          </button>
+          <button
+            onClick={() => {
+              handleOpen();
+              setPersonType("teDyshuarit");
+            }}
+          >
+            {caseData.teDyshuarit.length} Te Dyshuar
+          </button>
+        </div>
+      </div>
+      <PersonPage
+        personArray={caseData[personType]}
+        personType={personType}
+        setIsOpen={setIsOpen}
+        isOpen={isOpen}
+      />
     </div>
   );
 };
