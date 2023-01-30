@@ -47,7 +47,7 @@ namespace Detecto.API.Data.Controllers.ProvatControllers
         }
 
         [HttpGet("KrahasoProvat")]
-        public async Task<bool> KrahasoProvat(int provaId, int personiId)
+        public async Task<ActionResult<List<GjurmaBiologjikeDTO>>> KrahasoProvat(int provaId, int personiId)
         {
             return await _provaBiologjikeService.Krahaso(provaId, personiId);
         }

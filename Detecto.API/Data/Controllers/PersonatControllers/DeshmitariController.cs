@@ -1,6 +1,8 @@
 ﻿using Detecto.API.Data.DTOs.PersonatDTOs;
+using Detecto.API.Data.Models;
 using Detecto.API.Data.Services.Interfaces.PersonatIntrefaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Routing;
 
 namespace Detecto.API.Data.Controllers.Personat
 {
@@ -63,5 +65,10 @@ namespace Detecto.API.Data.Controllers.Personat
             return await _deshmitariService.DeleteDeshmitari(id);
         }
 
+        [HttpHead("RuajSiIDyshuar/{id}")]
+        public async Task<ActionResult> RuajSiIDyshuar(int id)
+        {
+            return await _deshmitariService.RuajSiIDyshuar(id);
+        }
     }
 }

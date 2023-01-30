@@ -8,7 +8,7 @@
         public string Statusi { get; set; } = null!;
         public string Vendbanimi { get; set; } = null!;
         public string GjendjaMendore { get; set; } = null!;
-        public string eKaluara { get; set; } = null!;
+        public string EKaluara { get; set; } = null!;
     }
 
     public class UpdatePersoniDTO
@@ -19,6 +19,6 @@
         public string? Statusi { get; set; } = null!;
         public string? Vendbanimi { get; set; } = null!;
         public string? GjendjaMendore { get; set; } = null!;
-        public string? eKaluara { get; set; } = null!;
+        public string? EKaluara { get; set; } = null!;
     }
 }

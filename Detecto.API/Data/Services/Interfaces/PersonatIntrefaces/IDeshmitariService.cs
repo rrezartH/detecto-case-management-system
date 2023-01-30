@@ -13,5 +13,7 @@ namespace Detecto.API.Data.Services.Interfaces.PersonatIntrefaces
         public Task<ActionResult> UpdateDeshmitari(int id, UpdateDeshmitariDTO updateDeshmitariDTO);
         public Task<ActionResult> DeleteDeshmitari(int id);
         public Task<ActionResult<string>> GetInfo(int id);
+
+        public Task<ActionResult> RuajSiIDyshuar(int id);
     }
 }

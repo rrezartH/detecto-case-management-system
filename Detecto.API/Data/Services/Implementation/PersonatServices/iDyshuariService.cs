@@ -66,7 +66,7 @@ namespace Detecto.API.Data.Services.Implementation.PersonatServices
             dbIDyshuari.Statusi = updateiDyshuariDto.Statusi ?? dbIDyshuari.Statusi;
             dbIDyshuari.Vendbanimi = updateiDyshuariDto.Vendbanimi ?? dbIDyshuari.Vendbanimi;
             dbIDyshuari.GjendjaMendore = updateiDyshuariDto.GjendjaMendore ?? dbIDyshuari.GjendjaMendore;
-            dbIDyshuari.EKaluara = updateiDyshuariDto.eKaluara ?? dbIDyshuari.EKaluara;
+            dbIDyshuari.EKaluara = updateiDyshuariDto.EKaluara ?? dbIDyshuari.EKaluara;
             dbIDyshuari.Dyshimi = updateiDyshuariDto.Dyshimi ?? dbIDyshuari.Dyshimi;
             await _context.SaveChangesAsync();
 

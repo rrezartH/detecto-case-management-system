@@ -79,24 +79,28 @@ namespace Detecto.API.Data.Services.Implementation.ProvatServices
             return new OkObjectResult("Prova deleted succesfully!");
         }
 
-        public async Task<bool> Krahaso(int provaId, int personiId)
+        public async Task<ActionResult<List<GjurmaBiologjikeDTO>>> Krahaso(int provaId, int personiId)
         {
             // Merr proven ne baze te provaId
-            var firstObject = _mapper.Map<ProvaBiologjikeDTO>(await _context.ProvatBiologjike.FindAsync(provaId));
+            var dbProva = _mapper.Map<ProvaBiologjikeDTO>(await _context.ProvatBiologjike.FindAsync(provaId));
+
+            if(dbProva == null)
+                return new NotFoundObjectResult("Prova nuk ekziston!!");
 
             // Merr listen e Gjurmeve te nje personi ne baze te personiId
             var result = await _gjurmaBiologjikeService.GetGjurmetEPersonit(personiId);
             var objectList = result.Value;
 
-            // Check if the first object matches any name of the objects in the list
+            List<GjurmaBiologjikeDTO> gjurmet = new List<GjurmaBiologjikeDTO>();
+            // Check if the first object matches any Lloji dhe Specifikimi of the objects in the list
             foreach (var obj in objectList)
             {
-                if (firstObject.Lloji == obj.Lloji && firstObject.Specifikimi == obj.Specifikimi)
+                if (dbProva.Lloji == obj.Lloji && dbProva.Specifikimi == obj.Specifikimi)
                 {
-                    return true;
+                    gjurmet.Add(obj);
                 }
             }
-            return false;
+            return gjurmet;
         }
     }
 }

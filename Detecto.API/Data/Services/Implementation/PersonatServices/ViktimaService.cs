@@ -56,7 +56,7 @@ namespace Detecto.API.Data.Services.Implementation.PersonatServices
             dbViktima.Statusi = updateViktimaDTO.Statusi ?? dbViktima.Statusi;
             dbViktima.Vendbanimi = updateViktimaDTO.Vendbanimi ?? dbViktima.Vendbanimi;
             dbViktima.GjendjaMendore = updateViktimaDTO.GjendjaMendore ?? dbViktima.GjendjaMendore;
-            dbViktima.EKaluara = updateViktimaDTO.eKaluara ?? dbViktima.EKaluara;
+            dbViktima.EKaluara = updateViktimaDTO.EKaluara ?? dbViktima.EKaluara;
             dbViktima.Vendi = updateViktimaDTO.Vendi ?? dbViktima.Vendi;
             dbViktima.Koha = updateViktimaDTO.Koha ?? dbViktima.Koha;
             dbViktima.Menyra = updateViktimaDTO.Menyra ?? dbViktima.Menyra;
