@@ -1,0 +1,1 @@
+export const caseStatus = ["E Hapur", "Ne Progres", "E Mbyllur"];

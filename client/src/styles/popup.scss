@@ -37,4 +37,29 @@
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 1rem;
   }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+
+    input,
+    select,
+    option {
+      padding: 15px;
+      margin: 10px 0px;
+    }
+
+    button {
+      color: white;
+      height: 3rem;
+      font-weight: bolder;
+      transition: all 0.2s ease-in-out;
+    }
+    button:hover {
+      background-color: #fff;
+      color: #00176a;
+      border: 1px solid #00176a;
+    }
+  }
 }

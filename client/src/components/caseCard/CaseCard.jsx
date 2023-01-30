@@ -10,9 +10,7 @@ const CaseCard = ({ caseId, imgUrl, identifier, title, details, status }) => {
         <p className="card-details">{details}</p>
       </div>
       <div className="card-buttons">
-        <button className="card-button">
-          <Link to={`../case/${caseId}`}>Shiko</Link>
-        </button>
+        <Link to={`../case/${caseId}`}>Shiko</Link>
         <button className="card-status">{status}</button>
       </div>
     </div>

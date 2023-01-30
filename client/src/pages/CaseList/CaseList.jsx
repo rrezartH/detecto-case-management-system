@@ -2,9 +2,15 @@ import React, { useState, useEffect } from "react";
 import "./case-list.scss";
 import { CaseCard } from "../../components";
 import agent from "../../api/agents";
+import CreateCase from "../Case/CreateCase/CreateCase";
 
 const CaseList = () => {
   const [cases, setCases] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleOpen = () => {
+    setIsOpen((prev) => !prev);
+  };
 
   useEffect(() => {
     agent.Cases.get().then((response) => {
@@ -16,6 +22,9 @@ const CaseList = () => {
     <>
       <h1>Cases</h1>
       <div className="card-layout">
+        <button className="card-layout__add-case" onClick={handleOpen}>
+          Shto Case
+        </button>
         {React.Children.toArray(
           cases.map((cases) => (
             <CaseCard
@@ -29,6 +38,7 @@ const CaseList = () => {
           ))
         )}
       </div>
+      <CreateCase setIsOpen={setIsOpen} isOpen={isOpen} />
     </>
   );
 };

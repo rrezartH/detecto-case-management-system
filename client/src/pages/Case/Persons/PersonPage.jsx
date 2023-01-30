@@ -1,5 +1,5 @@
 import React from "react";
-import "./persons.scss";
+import "../../../styles/popup.scss";
 import PersonCard from "../../../components/caseCard/PersonCard";
 
 const PersonPage = ({ personArray, personType, setIsOpen, isOpen }) => {
