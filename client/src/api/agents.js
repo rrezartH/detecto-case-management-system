@@ -13,7 +13,8 @@ const requests ={
 
 const Cases = {
     get: () => requests.get('Case/Case/get-cases'),
-    getById: (id) => requests.get(`Case/Case/get-case-by-id/${id}`)
+    getById: (id) => requests.get(`Case/Case/get-case-by-id/${id}`),
+    create: (values) => requests.post(`Case/Case/add-case`, values)
 }
 
 const agent = {

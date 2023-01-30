@@ -8,9 +8,24 @@
   box-shadow: 0.05rem 0.1rem 0.3rem -0.03rem rgba(0, 0, 0, 0.45);
   text-align: left;
   padding-bottom: 1rem;
+  transition: all 0.2s ease-in-out;
 
   a {
+    display: flex;
+    justify-content: center;
     color: white;
+    background-color: #00176a;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    width: 65%;
+    transition: all 0.2s ease-in-out;
+  }
+
+  a:hover {
+    background-color: white;
+    color: #00176a;
+    font-weight: bolder;
   }
 
   img {
@@ -48,13 +63,6 @@
     justify-content: space-between;
     margin: 0px 16px;
 
-    .card-button {
-      background-color: #00176a;
-      color: #fff;
-      padding: 10px;
-      border-radius: 5px;
-      width: 65%;
-    }
     .card-status {
       background-color: #000b31;
       color: #fff;
