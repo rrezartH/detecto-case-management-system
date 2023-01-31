@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Detecto.API.Data.Services.Implementation.PersonatServices
 {
-    public class iDyshuariService : PalaService, IiDyshuariService
+    public class iDyshuariService : PalaService, IiDyshuariService, GetInfo
     {
         private readonly DetectoDbContext _context;
         private readonly IMapper _mapper;

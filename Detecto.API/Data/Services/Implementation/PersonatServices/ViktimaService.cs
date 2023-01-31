@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Detecto.API.Data.Services.Implementation.PersonatServices
 {
-    public class ViktimaService : PalaService, IViktimaService
+    public class ViktimaService : PalaService, IViktimaService, GetInfo
     {
         private readonly DetectoDbContext _context;
         private readonly IMapper _mapper;
