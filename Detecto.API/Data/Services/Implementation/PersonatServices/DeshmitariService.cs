@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Detecto.API.Data.Services.Implementation.PersonatServices
 {
-    public class DeshmitariService : PalaService, IDeshmitariService
+    public class DeshmitariService : PalaService, IDeshmitariService, GetInfo
     {
         private readonly DetectoDbContext _context;
         private readonly IMapper _mapper;
@@ -35,6 +35,15 @@ namespace Detecto.API.Data.Services.Implementation.PersonatServices
             if (dbDeshmitari == null)
                 return new NotFoundObjectResult("Dëshmitari nuk ekziston!!");
             return dbDeshmitari.Dyshohet;
+        }
+
+        public async Task SetDyshohet(int id)
+        {
+            var dbDeshmitari = await _context.Deshmitaret.FindAsync(id);
+            if (dbDeshmitari == null)
+                 return;
+            dbDeshmitari.Dyshohet = true;
+            await _context.SaveChangesAsync();
         }
 
         public async Task<ActionResult<bool>> AVezhgohet(int id)
@@ -92,7 +101,7 @@ namespace Detecto.API.Data.Services.Implementation.PersonatServices
 
         //Strategy Pattern
         //Metoda GetInfo është metodë e klasës bazë, vetëm se tek kjo nënklasë bëhet override!
-        public async override Task<ActionResult<string>> GetInfo(int id)
+        public async Task<ActionResult<string>> GetInfo(int id)
         {
             var dbDeshmitari = await _context.Deshmitaret.FindAsync(id);
             return dbDeshmitari == null 
@@ -112,7 +121,7 @@ namespace Detecto.API.Data.Services.Implementation.PersonatServices
                 return d;
 
             DeshmitariDTO? deshmitari = ((OkObjectResult)d).Value as DeshmitariDTO;
-            await DeleteDeshmitari(id);
+            await SetDyshohet(id);
             iDyshuariDTO dyshuari = ConvertToiDyshuari(deshmitari);
             await AddTeDyshuarin(dyshuari);
             return new OkObjectResult(dyshuari);

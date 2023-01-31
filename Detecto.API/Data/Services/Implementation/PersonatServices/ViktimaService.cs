@@ -77,7 +77,7 @@ namespace Detecto.API.Data.Services.Implementation.PersonatServices
 
         //Strategy Pattern
         //Metoda GetInfo është metodë e klasës bazë, vetëm se tek kjo nënklasë bëhet override!
-        public async override Task<ActionResult<string>> GetInfo(int id)
+        public async Task<ActionResult<string>> GetInfo(int id)
         {
             var dbViktima = await _context.Viktimat.FindAsync(id);
             return dbViktima == null
