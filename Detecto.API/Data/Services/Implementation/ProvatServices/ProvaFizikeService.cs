@@ -54,11 +54,11 @@ namespace Detecto.API.Data.Services.Implementation.ProvatServices
         public async Task<ActionResult> AddProvaFizike(ProvaFizikeDTO provaDTO)
         {
             if (provaDTO == null)
-                return new BadRequestObjectResult("Prova fizike can't be null!");
+                return new BadRequestObjectResult("Prova nuk mund të jetë null!!");
             var mappedProva = _mapper.Map<ProvaFizike>(provaDTO);
             await _context.ProvatFizike.AddAsync(mappedProva);
             await _context.SaveChangesAsync();
-            return new OkObjectResult("Prova added succesfully!");
+            return new OkObjectResult("Prova u shtua me sukses!");
         }
 
         public async Task<ActionResult> UpdateProvaFizike(int id, UpdateProvaFizikeDTO updateProvaDTO)
@@ -81,7 +81,7 @@ namespace Detecto.API.Data.Services.Implementation.ProvatServices
             dbProva.KaGjurmeBiologjike = updateProvaDTO.KaGjurmeBiologjike ?? dbProva.KaGjurmeBiologjike;
             await _context.SaveChangesAsync();
 
-            return new OkObjectResult("Prova updated succesfully!");
+            return new OkObjectResult("Prova u përditësua me sukses!");
         }
 
         public async Task<ActionResult> DeleteProvaFizike(int id)
@@ -92,7 +92,7 @@ namespace Detecto.API.Data.Services.Implementation.ProvatServices
 
             _context.ProvatFizike.Remove(dbProva);
             await _context.SaveChangesAsync();
-            return new OkObjectResult("Prova deleted succesfully!");
+            return new OkObjectResult("Prova u fshi me sukses!");
         }
 
     }

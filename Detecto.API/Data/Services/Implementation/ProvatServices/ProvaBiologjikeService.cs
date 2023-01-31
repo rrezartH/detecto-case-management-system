@@ -23,27 +23,25 @@ namespace Detecto.API.Data.Services.Implementation.ProvatServices
             _gjurmaBiologjikeService = gjurmaBiologjikeService;
         }
 
-        public async Task<ActionResult<List<ProvaBiologjikeDTO>>> GetProvatBiologjike()
-        {
-            return _mapper.Map<List<ProvaBiologjikeDTO>>(await _context.ProvatBiologjike.ToListAsync());
-        }
+        public async Task<ActionResult<List<ProvaBiologjikeDTO>>> GetProvatBiologjike() => 
+            _mapper.Map<List<ProvaBiologjikeDTO>>(await _context.ProvatBiologjike.ToListAsync());
 
         public async Task<ActionResult> GetProvenBiologjikeById(int id)
         {
             var mappedProva = _mapper.Map<ProvaBiologjikeDTO>(await _context.ProvatBiologjike.FindAsync(id));
-            if (mappedProva == null)
-                return new NotFoundObjectResult("Prova nuk ekziston.");
-            return new OkObjectResult(mappedProva);
+            return mappedProva == null 
+                ? new NotFoundObjectResult("Prova nuk ekziston!")
+                : new OkObjectResult(mappedProva);
         }
 
         public async Task<ActionResult> AddProvaBiologjike(ProvaBiologjikeDTO provaDTO)
         {
             if (provaDTO == null)
-                return new BadRequestObjectResult("Prova fizike can't be null!");
+                return new BadRequestObjectResult("Prova nuk mund të jetë null!!");
             var mappedProva = _mapper.Map<ProvaBiologjike>(provaDTO);
             await _context.ProvatBiologjike.AddAsync(mappedProva);
             await _context.SaveChangesAsync();
-            return new OkObjectResult("Prova added succesfully!");
+            return new OkObjectResult("Prova u shtua me sukses!");
         }
 
         public async Task<ActionResult> UpdateProvaBiologjike(int id, UpdateProvaBiologjikeDTO updateProvaDTO)
@@ -65,7 +63,7 @@ namespace Detecto.API.Data.Services.Implementation.ProvatServices
 
             await _context.SaveChangesAsync();
 
-            return new OkObjectResult("Prova updated succesfully!");
+            return new OkObjectResult("Prova u përditësua me sukses!");
         }
 
         public async Task<ActionResult> DeleteProvaBiologjike(int id)
@@ -76,7 +74,7 @@ namespace Detecto.API.Data.Services.Implementation.ProvatServices
 
             _context.ProvatBiologjike.Remove(dbProva);
             await _context.SaveChangesAsync();
-            return new OkObjectResult("Prova deleted succesfully!");
+            return new OkObjectResult("Prova u fshi me sukses!");
         }
 
         public async Task<ActionResult<List<GjurmaBiologjikeDTO>>> Krahaso(int provaId, int personiId)
@@ -92,13 +90,11 @@ namespace Detecto.API.Data.Services.Implementation.ProvatServices
             var objectList = result.Value;
 
             List<GjurmaBiologjikeDTO> gjurmet = new List<GjurmaBiologjikeDTO>();
-            // Check if the first object matches any Lloji dhe Specifikimi of the objects in the list
+            // Kontrollon nëse prova (dbProva) përshtatet me ndonjë "Lloji" dhe "Specifikimi" nga objektet në listë (objectList)
             foreach (var obj in objectList)
             {
                 if (dbProva.Lloji == obj.Lloji && dbProva.Specifikimi == obj.Specifikimi)
-                {
                     gjurmet.Add(obj);
-                }
             }
             return gjurmet;
         }

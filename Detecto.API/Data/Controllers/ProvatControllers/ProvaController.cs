@@ -15,13 +15,13 @@ namespace Detecto.API.Data.Controllers.ProvatControllers
             _provaService = provaService;
         }
 
-        [HttpGet("GetTeGjithaProvat")]
+        [HttpGet("te-gjitha-provat")]
         public async Task<ActionResult<List<ProvaDTO>>> GetProvat()
         {
             return await _provaService.GetProvat();
         }
 
-        [HttpGet("GetProvaById/{id}")]
+        [HttpGet("proven/{id}")]
         public async Task<ActionResult<List<ProvaDTO>>> GetProvaById(int id)
         {
             return await _provaService.GetProvaById(id);

@@ -17,26 +17,20 @@ namespace Detecto.API.Data.Services.Implementation.PersonatServices
             _mapper = mapper;
         }
 
-        public async Task<ICollection<DeshmitariDTO>> GetDeshmitaret(int caseId)
-        {
-            return _mapper.Map<ICollection<DeshmitariDTO>>(await _context.Deshmitaret
+        public async Task<ICollection<DeshmitariDTO>> GetDeshmitaret(int caseId) =>
+            _mapper.Map<ICollection<DeshmitariDTO>>(await _context.Deshmitaret
                                 .Where(p => p.CaseId == caseId)
                                 .ToListAsync());
-        }
 
-        public async Task<ICollection<iDyshuariDTO>> GetTeDyshuarit(int caseId)
-        {
-            return _mapper.Map<ICollection<iDyshuariDTO>>(await _context.TeDyshuarit
+        public async Task<ICollection<iDyshuariDTO>> GetTeDyshuarit(int caseId) =>
+            _mapper.Map<ICollection<iDyshuariDTO>>(await _context.TeDyshuarit
                                 .Where(p => p.CaseId == caseId)
                                 .ToListAsync());
-        }
 
-        public async Task<ICollection<ViktimaDTO>> GetViktimat(int caseId)
-        {
-            return _mapper.Map<ICollection<ViktimaDTO>>(await _context.Viktimat
+        public async Task<ICollection<ViktimaDTO>> GetViktimat(int caseId) =>
+            _mapper.Map<ICollection<ViktimaDTO>>(await _context.Viktimat
                                     .Where(p => p.CaseId == caseId)
                                     .ToListAsync());
-        }
 
         //Strategy Pattern
         //Metoda kthen një empty string sepse bëhet override tek nënklasat!

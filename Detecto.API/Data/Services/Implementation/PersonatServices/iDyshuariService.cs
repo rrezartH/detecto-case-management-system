@@ -19,36 +19,33 @@ namespace Detecto.API.Data.Services.Implementation.PersonatServices
             _mapper = mapper;
         }
 
-        public async Task<ActionResult<List<iDyshuariDTO>>> GetTeDyshuarit()
-        {
-            return _mapper.Map<List<iDyshuariDTO>>(await _context.TeDyshuarit.ToListAsync());
-        }
+        public async Task<ActionResult<List<iDyshuariDTO>>> GetTeDyshuarit() => 
+            _mapper.Map<List<iDyshuariDTO>>(await _context.TeDyshuarit.ToListAsync());
 
         public async Task<ActionResult> GetTeDyshuarinById(int id)
         {
             var mappedIDyshuari = _mapper.Map<iDyshuariDTO>(await _context.TeDyshuarit.FindAsync(id));
-            if (mappedIDyshuari == null)
-                return new NotFoundObjectResult("I dyshuari nuk ekziston!!");
-            return new OkObjectResult(mappedIDyshuari);
+            return mappedIDyshuari == null 
+                ? new NotFoundObjectResult("I dyshuari nuk ekziston!!")
+                : new OkObjectResult(mappedIDyshuari);
         }
 
         public async Task<ActionResult<string>> GetDyshimiMbiTeDyshuarin(int id)
         {
             var dbDyshimi = await _context.TeDyshuarit.FindAsync(id);
-            if (dbDyshimi == null)
-                return new NotFoundObjectResult("Personi nuk dyshohet!!");
-
-            return dbDyshimi.Dyshimi;
+            return dbDyshimi == null 
+                ? new NotFoundObjectResult("Personi nuk dyshohet!!")
+                : dbDyshimi.Dyshimi;
         }
 
         public async Task<ActionResult> AddTeDyshuarin(iDyshuariDTO iDyshuariDto)
         {
             if (iDyshuariDto == null)
-                return new BadRequestObjectResult("I dyshuari can't be null!");
+                return new BadRequestObjectResult("I dyshuari nuk mund të jetë null!!");
             var mappedIDyshuari = _mapper.Map<iDyshuari>(iDyshuariDto);
             await _context.TeDyshuarit.AddAsync(mappedIDyshuari);
             await _context.SaveChangesAsync();
-            return new OkObjectResult("I dyshuari added succesfully!");
+            return new OkObjectResult("I dyshuari u shtua me sukses!");
         }
 
         public async Task<ActionResult> UpdateTeDyshuarin(int id, UpdateiDyshuariDTO updateiDyshuariDto)
@@ -70,7 +67,7 @@ namespace Detecto.API.Data.Services.Implementation.PersonatServices
             dbIDyshuari.Dyshimi = updateiDyshuariDto.Dyshimi ?? dbIDyshuari.Dyshimi;
             await _context.SaveChangesAsync();
 
-            return new OkObjectResult("I dyshuari updated succesfully!");
+            return new OkObjectResult("I dyshuari u përditësua me sukses!");
         }
 
         public async Task<ActionResult> DeleteTeDyshuarin(int id)
@@ -89,11 +86,11 @@ namespace Detecto.API.Data.Services.Implementation.PersonatServices
         public async override Task<ActionResult<string>> GetInfo(int id)
         {
             var dbIDyshuari = await _context.TeDyshuarit.FindAsync(id);
-            if (dbIDyshuari == null)
-                return "I dyshuari nuk ekziston!!";
-            return $"I dyshuari: Emri -> " +
-                dbIDyshuari.Emri + ", Profesioni -> " + dbIDyshuari.Profesioni + ", Vendbanimi -> " + dbIDyshuari.Vendbanimi + ", " +
-                "\nPse dyshohet? " + dbIDyshuari.Dyshimi + ".";
+            return dbIDyshuari == null
+                ? "I dyshuari nuk ekziston!!"
+                : $"I dyshuari: Emri -> " + dbIDyshuari.Emri + ", Profesioni -> " + dbIDyshuari.Profesioni 
+                + ", Vendbanimi -> " + dbIDyshuari.Vendbanimi + ", " 
+                + "\nPse dyshohet? " + dbIDyshuari.Dyshimi + ".";
         }
     }
 }

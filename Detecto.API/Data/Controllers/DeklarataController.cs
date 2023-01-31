@@ -15,43 +15,43 @@ namespace Detecto.API.Data.Controllers
             _deklarataService = deklarataService;
         }
 
-        [HttpGet("GetDeklaratat")]
+        [HttpGet("deklaratat")]
         public async Task<ActionResult<List<DeklarataDTO>>> GetDeklaratat()
         {
             return await _deklarataService.GetDeklaratat();
         }
 
-        [HttpGet("GetDeklarataById/{id}")]
+        [HttpGet("deklaraten/{id}")]
         public async Task<ActionResult<DeklarataDTO>> GetDeklarataById(int id)
         {
             return await _deklarataService.GetDeklarataById(id);
         }
 
-        [HttpGet("GetDeklaratatEPersonit/{id}")]
+        [HttpGet("deklaratat-e-personit/{id}")]
         public async Task<ActionResult<List<DeklarataDTO>>> GetDeklaratatEPersonit(int id)
         {
             return await _deklarataService.GetDeklaratatEPersonit(id);
         }
 
-        [HttpGet("GetPerbajtjaEDeklarates/{id}")]
+        [HttpGet("perbajtja-e-deklarates/{id}")]
         public async Task<ActionResult<string>> GetPerbajtjaEDeklarates(int id)
         {
             return await _deklarataService.GetPerbajtjaEDeklarates(id);
         }
 
-        [HttpPost("AddDeklarata")]
+        [HttpPost("deklaraten")]
         public async Task<ActionResult> AddDeklarata(DeklarataDTO deklarataDTO)
         {
             return await _deklarataService.AddDeklarata(deklarataDTO);
         }
 
-        [HttpPut("UpdateDeklarata/{id}")]
+        [HttpPut("deklaraten/{id}")]
         public async Task<ActionResult> UpdateDeklarata(int id, UpdateDeklarataDTO updateDeklarataDTO)
         {
             return await _deklarataService.UpdateDeklarata(id, updateDeklarataDTO);
         }
 
-        [HttpDelete("DeleteDeklarata/{id}")]
+        [HttpDelete("deklaraten/{id}")]
         public async Task<ActionResult> DeleteDeklarata(int id)
         {
             return await _deklarataService.DeleteDeklarata(id);

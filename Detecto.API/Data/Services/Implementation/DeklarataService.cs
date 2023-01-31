@@ -19,26 +19,23 @@ namespace Detecto.API.Data.Services.Implementation
             _mapper = mapper;
         }
 
-        public async Task<ActionResult<List<DeklarataDTO>>> GetDeklaratat()
-        {
-            return _mapper.Map<List<DeklarataDTO>>(await _context.Deklaratat.ToListAsync());
-        }
+        public async Task<ActionResult<List<DeklarataDTO>>> GetDeklaratat() =>
+            _mapper.Map<List<DeklarataDTO>>(await _context.Deklaratat.ToListAsync());
 
         public async Task<ActionResult<DeklarataDTO>> GetDeklarataById(int id)
         {
             var mappedDeklarata = _mapper.Map<DeklarataDTO>(await _context.Deklaratat.FindAsync(id));
-            if (mappedDeklarata == null)
-                return new NotFoundObjectResult("Deklarata nuk ekziston!!");
-            return new OkObjectResult(mappedDeklarata);
+            return mappedDeklarata == null 
+                ? new NotFoundObjectResult("Deklarata nuk ekziston!!")
+                : new OkObjectResult(mappedDeklarata);
         }
 
         public async Task<ActionResult<List<DeklarataDTO>>> GetDeklaratatEPersonit(int id)
         {
             var dbPersoni = await _context.Personat.FindAsync(id);
-            if (dbPersoni == null)
-                return new NotFoundObjectResult("Personi nuk ekziston!!");
-
-            return _mapper.Map<List<DeklarataDTO>>(await _context.Deklaratat
+            return dbPersoni == null 
+                ? new NotFoundObjectResult("Personi nuk ekziston!!")
+                : _mapper.Map<List<DeklarataDTO>>(await _context.Deklaratat
                                 .Where(p => p.PersoniId == id)
                                 .ToListAsync());
         }
@@ -46,20 +43,19 @@ namespace Detecto.API.Data.Services.Implementation
         public async Task<ActionResult<string>> GetPerbajtjaEDeklarates(int id)
         {
             var dbPermbajtja = await _context.Deklaratat.FindAsync(id);
-            if (dbPermbajtja == null)
-                return new NotFoundObjectResult("Deklarata nuk ekziston!!");
-
-            return dbPermbajtja.Permbajtja;
+            return dbPermbajtja == null
+                ? new NotFoundObjectResult("Deklarata nuk ekziston!!")
+                : dbPermbajtja.Permbajtja;
         }
 
         public async Task<ActionResult> AddDeklarata(DeklarataDTO deklarataDTO)
         {
             if (deklarataDTO == null)
-                return new BadRequestObjectResult("Deklarata can't be null!");
+                return new BadRequestObjectResult("Deklarata nuk mund të jetë null!!");
             var mappedDeklarata = _mapper.Map<Deklarata>(deklarataDTO);
             await _context.Deklaratat.AddAsync(mappedDeklarata);
             await _context.SaveChangesAsync();
-            return new OkObjectResult("Deklarata added succesfully!");
+            return new OkObjectResult("Deklarata u shtua me sukses!");
         }
 
         public async Task<ActionResult> UpdateDeklarata(int id, UpdateDeklarataDTO updateDeklarataDTO)
@@ -75,7 +71,7 @@ namespace Detecto.API.Data.Services.Implementation
             dbDeklarata.Permbajtja = updateDeklarataDTO.Permbajtja ?? dbDeklarata.Permbajtja;
             await _context.SaveChangesAsync();
 
-            return new OkObjectResult("Deklarata updated succesfully!");
+            return new OkObjectResult("Deklarata u përditësua me sukses!");
         }
 
         public async Task<ActionResult> DeleteDeklarata(int id)
@@ -86,7 +82,7 @@ namespace Detecto.API.Data.Services.Implementation
 
             _context.Deklaratat.Remove(dbDeklarata);
             await _context.SaveChangesAsync();
-            return new OkObjectResult("Deklarata deleted succesfully!");
+            return new OkObjectResult("Deklarata u fshi me sukses!");
         }
 
         /*public string Compare(string deklarata1, string deklarata2)

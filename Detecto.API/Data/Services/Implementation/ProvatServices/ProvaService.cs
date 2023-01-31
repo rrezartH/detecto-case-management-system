@@ -17,17 +17,15 @@ namespace Detecto.API.Data.Services.Implementation.ProvatServices
             _mapper = mapper;
         }
 
-        public async Task<ActionResult<List<ProvaDTO>>> GetProvat()
-        {
-            return _mapper.Map<List<ProvaDTO>>(await _context.Provat.ToListAsync());
-        }
+        public async Task<ActionResult<List<ProvaDTO>>> GetProvat() =>
+            _mapper.Map<List<ProvaDTO>>(await _context.Provat.ToListAsync());
 
         public async Task<ActionResult> GetProvaById(int id)
         {
             var mappedProva = _mapper.Map<ProvaDTO>(await _context.Provat.FindAsync(id));
-            if (mappedProva == null)
-                return new NotFoundObjectResult("Prova nuk ekziston.");
-            return new OkObjectResult(mappedProva);
+            return mappedProva == null 
+                ? new NotFoundObjectResult("Prova nuk ekziston.")
+                : new OkObjectResult(mappedProva);
         }
     }
 }

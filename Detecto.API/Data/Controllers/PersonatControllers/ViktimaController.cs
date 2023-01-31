@@ -16,37 +16,37 @@ namespace Detecto.API.Data.Controllers.Personat
             _viktimaService = viktimaService;
         }
 
-        [HttpGet("GetViktimat")]
+        [HttpGet("viktimat")]
         public async Task<ActionResult<List<ViktimaDTO>>> GetViktimat()
         {
             return await _viktimaService.GetViktimat();
         }
 
-        [HttpGet("GetViktimatById/{id}")]
-        public async Task<ActionResult<List<ViktimaDTO>>> GetViktimatById(int id)
+        [HttpGet("viktima/{id}")]
+        public async Task<ActionResult<List<ViktimaDTO>>> GetViktimaById(int id)
         {
             return await _viktimaService.GetViktimaById(id);
         }
 
-        [HttpGet("GetInfo/{id}")]
+        [HttpGet("info/{id}")]
         public async Task<ActionResult<string>> GetInfo(int id)
         {
             return await _viktimaService.GetInfo(id);
         }
 
-        [HttpPost("AddViktima")]
+        [HttpPost("viktimen")]
         public async Task<ActionResult> AddViktima(ViktimaDTO viktimaDTO)
         {
             return await _viktimaService.AddViktima(viktimaDTO);
         }
 
-        [HttpPut("UpdateViktima/{id}")]
+        [HttpPut("viktimen/{id}")]
         public async Task<ActionResult> UpdateViktima(int id, UpdateViktimaDTO updateViktimaDTO)
         {
             return await _viktimaService.UpdateViktima(id, updateViktimaDTO);
         }
 
-        [HttpDelete("DeleteViktimen/{id}")]
+        [HttpDelete("viktimen/{id}")]
         public async Task<ActionResult> DeleteViktima(int id)
         {
             return await _viktimaService.DeleteViktima(id);

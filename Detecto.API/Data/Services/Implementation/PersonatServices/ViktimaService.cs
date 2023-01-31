@@ -18,27 +18,25 @@ namespace Detecto.API.Data.Services.Implementation.PersonatServices
             _mapper = mapper;
         }
 
-        public async Task<ActionResult<List<ViktimaDTO>>> GetViktimat()
-        {
-            return _mapper.Map<List<ViktimaDTO>>(await _context.Viktimat.ToListAsync());
-        }
+        public async Task<ActionResult<List<ViktimaDTO>>> GetViktimat() =>
+            _mapper.Map<List<ViktimaDTO>>(await _context.Viktimat.ToListAsync());
 
         public async Task<ActionResult> GetViktimaById(int id)
         {
             var mappedViktima = _mapper.Map<ViktimaDTO>(await _context.Viktimat.FindAsync(id));
-            if (mappedViktima == null)
-                return new NotFoundObjectResult("Viktima nuk ekziston.");
-            return new OkObjectResult(mappedViktima);
+            return mappedViktima == null 
+                ? new NotFoundObjectResult("Viktima nuk ekziston!")
+                : new OkObjectResult(mappedViktima);
         }
 
         public async Task<ActionResult> AddViktima(ViktimaDTO viktimaDTO)
         {
             if (viktimaDTO == null)
-                return new BadRequestObjectResult("Viktima can't be null!");
+                return new BadRequestObjectResult("Viktima nuk mund të jetë null!!");
             var mappedViktima = _mapper.Map<Viktima>(viktimaDTO);
             await _context.Viktimat.AddAsync(mappedViktima);
             await _context.SaveChangesAsync();
-            return new OkObjectResult("Viktima added succesfully!");
+            return new OkObjectResult("Viktima u shtua me sukses!");
         }
 
         public async Task<ActionResult> UpdateViktima(int id, UpdateViktimaDTO updateViktimaDTO)
@@ -63,7 +61,7 @@ namespace Detecto.API.Data.Services.Implementation.PersonatServices
             dbViktima.Gjendja = updateViktimaDTO.Gjendja ?? dbViktima.Gjendja;
             await _context.SaveChangesAsync();
 
-            return new OkObjectResult("Viktima updated succesfully!");
+            return new OkObjectResult("Viktima u përditësua me sukses!");
         }
 
         public async Task<ActionResult> DeleteViktima(int id)
@@ -74,7 +72,7 @@ namespace Detecto.API.Data.Services.Implementation.PersonatServices
 
             _context.Viktimat.Remove(dbViktima);
             await _context.SaveChangesAsync();
-            return new OkObjectResult("Viktima deleted succesfully!");
+            return new OkObjectResult("Viktima u fshi me sukses!");
         }
 
         //Strategy Pattern
@@ -82,14 +80,14 @@ namespace Detecto.API.Data.Services.Implementation.PersonatServices
         public async override Task<ActionResult<string>> GetInfo(int id)
         {
             var dbViktima = await _context.Viktimat.FindAsync(id);
-            if (dbViktima == null)
-                return "Viktima nuk ekziston!!";
-            return $"Viktima: Emri -> " +
-                dbViktima.Emri + ", Profesioni -> " + dbViktima.Profesioni + ", Vendbanimi -> " + dbViktima.Vendbanimi + ", " +
-                "\nKu u gjet? " + dbViktima.Vendi + 
-                ",\nKur u gjet? " + dbViktima.Koha +
-                ",\nSi u gjet? " + dbViktima.Menyra + 
-                ",\nNë çfarë gjendje u gjet? " + dbViktima.Gjendja + ".";
+            return dbViktima == null
+                ? "Viktima nuk ekziston!!"
+                : $"Viktima: Emri -> " + dbViktima.Emri + ", Profesioni -> " + dbViktima.Profesioni 
+                + ", Vendbanimi -> " + dbViktima.Vendbanimi + ", " 
+                + "\nKu u gjet? " + dbViktima.Vendi 
+                + ",\nKur u gjet? " + dbViktima.Koha 
+                + ",\nSi u gjet? " + dbViktima.Menyra 
+                + ",\nNë çfarë gjendje u gjet? " + dbViktima.Gjendja + ".";
         }
     }
 }

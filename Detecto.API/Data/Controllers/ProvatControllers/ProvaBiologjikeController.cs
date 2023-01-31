@@ -16,37 +16,37 @@ namespace Detecto.API.Data.Controllers.ProvatControllers
             _provaBiologjikeService = provaService;
         }
 
-        [HttpGet("GetProvatBiologjike")]
+        [HttpGet("provat-biologjike")]
         public async Task<ActionResult<List<ProvaBiologjikeDTO>>> GetProvatBiologjike()
         {
             return await _provaBiologjikeService.GetProvatBiologjike();
         }
 
-        [HttpGet("GetProvenBiologjikeById/{id}")]
+        [HttpGet("proven-biologjike/{id}")]
         public async Task<ActionResult<List<ProvaBiologjikeDTO>>> GetProvenBiologjikeById(int id)
         {
             return await _provaBiologjikeService.GetProvenBiologjikeById(id);
         }
 
-        [HttpPost("AddProvaBiologjike")]
+        [HttpPost("proven-biologjike")]
         public async Task<ActionResult> AddProvaBiologjike(ProvaBiologjikeDTO provaDTO)
         {
             return await _provaBiologjikeService.AddProvaBiologjike(provaDTO);
         }
 
-        [HttpPut("UpdateProvaBiologjike/{id}")]
+        [HttpPut("proven-biologjike/{id}")]
         public async Task<ActionResult> UpdateProvaBiologjike(int id, UpdateProvaBiologjikeDTO updateProvaDTO)
         {
             return await _provaBiologjikeService.UpdateProvaBiologjike(id, updateProvaDTO);
         }
 
-        [HttpDelete("DeleteProvaBiologjike/{id}")]
+        [HttpDelete("proven-biologjike/{id}")]
         public async Task<ActionResult> DeleteProvaBiologjike(int id)
         {
             return await _provaBiologjikeService.DeleteProvaBiologjike(id);
         }
 
-        [HttpGet("KrahasoProvat")]
+        [HttpGet("krahaso-provat")]
         public async Task<ActionResult<List<GjurmaBiologjikeDTO>>> KrahasoProvat(int provaId, int personiId)
         {
             return await _provaBiologjikeService.Krahaso(provaId, personiId);

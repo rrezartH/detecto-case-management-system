@@ -16,43 +16,43 @@ namespace Detecto.API.Data.Controllers.Personat
             _iDyshuariService = iDyshuariSrv;
         }
 
-        [HttpGet("GetTeDyshuarit")]
+        [HttpGet("te-dyshuarit")]
         public async Task<ActionResult<List<iDyshuariDTO>>> GetTeDyshuarit()
         {
             return await _iDyshuariService.GetTeDyshuarit();
         }
 
-        [HttpGet("GetTeDyshuaritById/{id}")]
+        [HttpGet("i-dyshuari/{id}")]
         public async Task<ActionResult<iDyshuariDTO>> GetTeDyshuarinById(int id)
         {
             return await _iDyshuariService.GetTeDyshuarinById(id);
         }
 
-        [HttpGet("GetDyshimiMbiTeDyshuarin/{id}")]
+        [HttpGet("dyshimi-mbi-te-dyshuarin/{id}")]
         public async Task<ActionResult<string>> GetDyshimiMbiTeDyshuarin(int id)
         {
             return await _iDyshuariService.GetDyshimiMbiTeDyshuarin(id);
         }
 
-        [HttpGet("GetInfo/{id}")]
+        [HttpGet("info/{id}")]
         public async Task<ActionResult<string>> GetInfo(int id)
         {
             return await _iDyshuariService.GetInfo(id);
         }
 
-        [HttpPost("AddTeDyshuar")]
+        [HttpPost("i-dyshuari")]
         public async Task<ActionResult> AddTeDyshuarin(iDyshuariDTO iDyshuariDto)
         {
             return await _iDyshuariService.AddTeDyshuarin(iDyshuariDto);
         }
 
-        [HttpPut("UpdateTeDyshuarin/{id}")]
+        [HttpPut("te-dyshuarin/{id}")]
         public async Task<ActionResult> UpdateTeDyshuarin(int id, UpdateiDyshuariDTO UpdateiDyshuariDto)
         {
             return await _iDyshuariService.UpdateTeDyshuarin(id, UpdateiDyshuariDto);
         }
 
-        [HttpDelete("DeleteTeDyshuarin/{id}")]
+        [HttpDelete("te-dyshuarin/{id}")]
         public async Task<ActionResult> DeleteTeDyshuarin(int id)
         {
             return await _iDyshuariService.DeleteTeDyshuarin(id);

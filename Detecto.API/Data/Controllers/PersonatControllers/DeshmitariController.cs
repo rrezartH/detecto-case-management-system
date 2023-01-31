@@ -17,55 +17,55 @@ namespace Detecto.API.Data.Controllers.Personat
             _deshmitariService = deshmitariService;
         }
 
-        [HttpGet("GetDeshmitaret")]
+        [HttpGet("deshmitaret")]
         public async Task<ActionResult<List<DeshmitariDTO>>> GetViktimat()
         {
             return await _deshmitariService.GetDeshmitaret();
         }
 
-        [HttpGet("GetDeshmitaretById/{id}")]
+        [HttpGet("deshmitari/{id}")]
         public async Task<ActionResult<List<DeshmitariDTO>>> GetDeshmitaritById(int id)
         {
             return await _deshmitariService.GetDeshmitariById(id);
         }
 
-        [HttpGet("ADyshohet/{id}")]
+        [HttpGet("a-dyshohet/{id}")]
         public async Task<ActionResult<bool>> ADyshohet(int id)
         {
             return await _deshmitariService.ADyshohet(id);
         }
 
-        [HttpGet("AVezhgohet/{id}")]
+        [HttpGet("a-vezhgohet/{id}")]
         public async Task<ActionResult<bool>> AVezhgohet(int id)
         {
             return await _deshmitariService.AVezhgohet(id);
         }
 
-        [HttpGet("GetInfo/{id}")]
+        [HttpGet("info/{id}")]
         public async Task<ActionResult<string>> GetInfo(int id)
         {
             return await _deshmitariService.GetInfo(id);
         }
 
-        [HttpPost("AddDeshmitari")]
+        [HttpPost("deshmitar")]
         public async Task<ActionResult> AddDeshmitari(DeshmitariDTO deshmitariDTO)
         {
             return await _deshmitariService.AddDeshmitari(deshmitariDTO);
         }
 
-        [HttpPut("UpdateDeshmitari/{id}")]
+        [HttpPut("deshmitari/{id}")]
         public async Task<ActionResult> UpdateDeshmitari(int id, UpdateDeshmitariDTO updateDeshmitariDTO)
         {
             return await _deshmitariService.UpdateDeshmitari(id, updateDeshmitariDTO);
         }
 
-        [HttpDelete("DeleteDeshmitari/{id}")]
+        [HttpDelete("deshmitari/{id}")]
         public async Task<ActionResult> DeleteDeshmitari(int id)
         {
             return await _deshmitariService.DeleteDeshmitari(id);
         }
 
-        [HttpHead("RuajSiIDyshuar/{id}")]
+        [HttpPatch("ruaj-si-i-dyshuar/{id}")]
         public async Task<ActionResult> RuajSiIDyshuar(int id)
         {
             return await _deshmitariService.RuajSiIDyshuar(id);

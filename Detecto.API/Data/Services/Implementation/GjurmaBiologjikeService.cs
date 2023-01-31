@@ -19,26 +19,23 @@ namespace Detecto.API.Data.Services.Implementation
             _mapper = mapper;
         }
 
-        public async Task<ActionResult<List<GjurmaBiologjikeDTO>>> GetGjurmetBiologjike()
-        {
-            return _mapper.Map<List<GjurmaBiologjikeDTO>>(await _context.GjurmetBiologjike.ToListAsync());
-        }
+        public async Task<ActionResult<List<GjurmaBiologjikeDTO>>> GetGjurmetBiologjike() =>
+            _mapper.Map<List<GjurmaBiologjikeDTO>>(await _context.GjurmetBiologjike.ToListAsync());
 
         public async Task<ActionResult<GjurmaBiologjikeDTO>> GetGjurmaBiologjikeById(int id)
         {
             var mappedGjurma = _mapper.Map<GjurmaBiologjikeDTO>(await _context.GjurmetBiologjike.FindAsync(id));
-            if (mappedGjurma == null)
-                return new NotFoundObjectResult("Gjurma nuk ekziston.");
-            return new OkObjectResult(mappedGjurma);
+            return mappedGjurma == null 
+                ? new NotFoundObjectResult("Gjurma nuk ekziston.")
+                : new OkObjectResult(mappedGjurma);
         }
 
         public async Task<ActionResult<List<GjurmaBiologjikeDTO>>> GetGjurmetEPersonit(int id)
         {
             var dbPersoni = await _context.Personat.FindAsync(id);
-            if (dbPersoni == null)
-                return new NotFoundObjectResult("Personi nuk ekziston!!");
-
-            return _mapper.Map<List<GjurmaBiologjikeDTO>>(await _context.GjurmetBiologjike
+            return dbPersoni == null
+                ? new NotFoundObjectResult("Personi nuk ekziston!!")
+                : _mapper.Map<List<GjurmaBiologjikeDTO>>(await _context.GjurmetBiologjike
                                 .Where(p => p.PersoniId == id)
                                 .ToListAsync());
         }
@@ -46,11 +43,11 @@ namespace Detecto.API.Data.Services.Implementation
         public async Task<ActionResult> AddGjurmaBiologjike(GjurmaBiologjikeDTO gjurmaBiologjikeDTO)
         {
             if (gjurmaBiologjikeDTO == null)
-                return new BadRequestObjectResult("Gjurma can't be null!");
+                return new BadRequestObjectResult("Gjurma nuk mund të jetë null!!");
             var mappedGjurma = _mapper.Map<ProvaBiologjike>(gjurmaBiologjikeDTO);
             await _context.ProvatBiologjike.AddAsync(mappedGjurma);
             await _context.SaveChangesAsync();
-            return new OkObjectResult("Gjurma added succesfully!");
+            return new OkObjectResult("Gjurma u shtua me sukses!");
         }
 
         public async Task<ActionResult> UpdateGjurmaBiologjike(int id, UpdateGjurmaBiologjikeDTO updateGjurmaBiologjikeDTO)
@@ -67,7 +64,7 @@ namespace Detecto.API.Data.Services.Implementation
             dbGjurma.Specifikimi = updateGjurmaBiologjikeDTO.Specifikimi ?? dbGjurma.Specifikimi;
             await _context.SaveChangesAsync();
 
-            return new OkObjectResult("Gjurma updated succesfully!");
+            return new OkObjectResult("Gjurma u shtua me sukses!");
         }
 
         public async Task<ActionResult> DeleteGjurmenBiologjike(int id)
@@ -78,7 +75,7 @@ namespace Detecto.API.Data.Services.Implementation
 
             _context.GjurmetBiologjike.Remove(dbGjurma);
             await _context.SaveChangesAsync();
-            return new OkObjectResult("Gjurma deleted succesfully!");
+            return new OkObjectResult("Gjurma u fshi me sukses!");
         }
     }
 }

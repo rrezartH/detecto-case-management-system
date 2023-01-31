@@ -18,49 +18,49 @@ namespace Detecto.API.Data.Controllers.Provat
             _provaFizikeService = provaService;
         }
 
-        [HttpGet("GetProvatFizike")]
+        [HttpGet("provat-fizike")]
         public async Task<ActionResult<List<ProvaFizikeDTO>>> GetProvatFizike()
         {
             return await _provaFizikeService.GetProvatFizike();
         }
 
-        [HttpGet("GetProvenFizikeById/{id}")]
+        [HttpGet("proven-fizike/{id}")]
         public async Task<ActionResult<List<ProvaFizikeDTO>>> GetProvenFizikeById(int id)
         {
             return await _provaFizikeService.GetProvenFizikeById(id);
         }
 
-        [HttpGet("GetPerEkzaminim")]
+        [HttpGet("per-ekzaminim")]
         public async Task<ActionResult<List<ProvaFizikeDTO>>> GetPerEkzaminim(bool b)
         {
             return await _provaFizikeService.GetPerEkzaminim(b);
         }
 
-        [HttpGet("GetMeGjurmeBiologjike")]
+        [HttpGet("me-gjurme-biologjike")]
         public async Task<ActionResult<List<ProvaFizikeDTO>>> GetMeGjurmeBiologjike(bool b)
         {
             return await _provaFizikeService.GetMeGjurmeBiologjike(b);
         }
 
-        [HttpGet("GetSipasRrezikut")]
+        [HttpGet("sipas-rrezikut")]
         public async Task<ActionResult<List<ProvaFizikeDTO>>> GetSipasRrezikut(string str)
         {
             return await _provaFizikeService.GetSipasRrezikut(str);
         }
 
-        [HttpPost("AddProvaFizike")]
+        [HttpPost("proven-fizike")]
         public async Task<ActionResult> AddProvaFizike(ProvaFizikeDTO provaDTO)
         {
             return await _provaFizikeService.AddProvaFizike(provaDTO);
         }
 
-        [HttpPut("UpdateProvaFizike/{id}")]
+        [HttpPut("proven-fizike/{id}")]
         public async Task<ActionResult> UpdateProvaFizike(int id, UpdateProvaFizikeDTO updateProvaDTO)
         {
             return await _provaFizikeService.UpdateProvaFizike(id, updateProvaDTO);
         }
 
-        [HttpDelete("DeleteProvaFizike/{id}")]
+        [HttpDelete("proven-fizike/{id}")]
         public async Task<ActionResult> DeleteProvaFizike(int id)
         {
             return await _provaFizikeService.DeleteProvaFizike(id);
