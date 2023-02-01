@@ -2,11 +2,13 @@
 
 namespace Detecto.API.Case.Models
 {
-    public class PDF : IFileUploader
+    public class PDF : DFile
     {
-        public Task<bool> UploadFile(IFormFile file)
+        public long FileSize { get; set; }
+
+        public void SetFileSize(IFormFile file)
         {
-            throw new NotImplementedException();
+            FileSize = file.Length;
         }
     }
 }

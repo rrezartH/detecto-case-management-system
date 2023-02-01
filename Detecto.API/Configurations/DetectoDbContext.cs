@@ -25,5 +25,6 @@ namespace Detecto.API.Configurations
         public DbSet<ProvaBiologjike> ProvatBiologjike { get; set; } = null!;
         public DbSet<GjurmaBiologjike> GjurmetBiologjike { get; set; } = null!;
         public DbSet<Deklarata> Deklaratat { get; set; } = null!;
+        public DbSet<DFile> Files { get; set; } = null!;
     }
 }

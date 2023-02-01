@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Detecto.API.Case.DTOs;
 using Detecto.API.Case.Models;
+using Detecto.API.Case.Services.Interfaces;
 using Detecto.API.Configurations;
 using Detecto.API.Data.DTOs.PersonatDTOs;
 using Detecto.API.Data.Services.Interfaces;
@@ -10,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Detecto.API.Case.Services.Implementation
 {
-    public class CaseService
+    public class CaseService : ICaseService
     {
         private readonly IMapper _mapper;
         private readonly DetectoDbContext _context;
@@ -82,6 +83,19 @@ namespace Detecto.API.Case.Services.Implementation
             _context.Cases.Remove(dbCase);
             await _context.SaveChangesAsync();
             return new OkObjectResult("Dosja u fshi me sukses!");
+        }
+
+        public async Task<ActionResult> ChangeCaseStatus(int id, string status)
+        {
+            var dbCase = await _context.Cases.FindAsync(id);
+            if (dbCase == null)
+                return new NotFoundObjectResult("Dosja nuk ekziston");
+            
+            dbCase.Status = status;
+
+            await _context.SaveChangesAsync();
+            return new OkObjectResult("Dosja updated succesfully!");
+
         }
     }
 }

@@ -39,7 +39,8 @@ builder.Services.AddScoped<IGjurmaBiologjikeService, GjurmaBiologjikeService>();
 builder.Services.AddScoped<IDeklarataService, DeklarataService>();
 builder.Services.AddScoped<ITaskService, TaskService>();
 builder.Services.AddScoped<IPala, PalaService>();
-
+builder.Services.AddScoped<ICaseService, CaseService>();
+builder.Services.AddScoped<IFileService, FileService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
