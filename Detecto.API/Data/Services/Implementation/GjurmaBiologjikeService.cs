@@ -36,7 +36,7 @@ namespace Detecto.API.Data.Services.Implementation
             return dbPersoni == null
                 ? new NotFoundObjectResult("Personi nuk ekziston!!")
                 : _mapper.Map<List<GjurmaBiologjikeDTO>>(await _context.GjurmetBiologjike
-                                .Where(p => p.PersoniId == id)
+                                .Where(p => p.Personi.Id == id)
                                 .ToListAsync());
         }
 
@@ -44,8 +44,8 @@ namespace Detecto.API.Data.Services.Implementation
         {
             if (gjurmaBiologjikeDTO == null)
                 return new BadRequestObjectResult("Gjurma nuk mund të jetë null!!");
-            var mappedGjurma = _mapper.Map<ProvaBiologjike>(gjurmaBiologjikeDTO);
-            await _context.ProvatBiologjike.AddAsync(mappedGjurma);
+            var mappedGjurma = _mapper.Map<GjurmaBiologjike>(gjurmaBiologjikeDTO);
+            await _context.GjurmetBiologjike.AddAsync(mappedGjurma);
             await _context.SaveChangesAsync();
             return new OkObjectResult("Gjurma u shtua me sukses!");
         }

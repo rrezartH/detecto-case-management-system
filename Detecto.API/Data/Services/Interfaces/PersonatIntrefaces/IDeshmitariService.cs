@@ -1,4 +1,5 @@
-﻿using Detecto.API.Data.DTOs.PersonatDTOs;
+﻿using Detecto.API.Data.DTOs;
+using Detecto.API.Data.DTOs.PersonatDTOs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Detecto.API.Data.Services.Interfaces.PersonatIntrefaces

@@ -33,10 +33,10 @@ namespace Detecto.API.Data.Services.Implementation
         public async Task<ActionResult<List<DeklarataDTO>>> GetDeklaratatEPersonit(int id)
         {
             var dbPersoni = await _context.Personat.FindAsync(id);
-            return dbPersoni == null 
+            return dbPersoni == null
                 ? new NotFoundObjectResult("Personi nuk ekziston!!")
                 : _mapper.Map<List<DeklarataDTO>>(await _context.Deklaratat
-                                .Where(p => p.PersoniId == id)
+                                .Where(p => p.Personi.Id == id)
                                 .ToListAsync());
         }
 

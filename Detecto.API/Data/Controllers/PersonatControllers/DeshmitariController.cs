@@ -1,5 +1,7 @@
-﻿using Detecto.API.Data.DTOs.PersonatDTOs;
+﻿using Detecto.API.Data.DTOs;
+using Detecto.API.Data.DTOs.PersonatDTOs;
 using Detecto.API.Data.Models;
+using Detecto.API.Data.Services.Implementation.PersonatServices;
 using Detecto.API.Data.Services.Interfaces.PersonatIntrefaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
