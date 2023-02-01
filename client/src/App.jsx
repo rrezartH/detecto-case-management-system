@@ -1,6 +1,6 @@
 import "./styles/App.scss";
 import Navbar from "./components/navbar/Navbar";
-import { Tasks, CaseList, Dashboard, Case } from "./pages/index";
+import { Tasks, CaseList, Dashboard, Case, ProvaList } from "./pages/index";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
@@ -12,6 +12,7 @@ function App() {
         <Route path="/cases" element={<CaseList />} />
         <Route path="/tasks" element={<Tasks />} />
         <Route path="/case/:caseId" element={<Case />} />
+        <Route path="/provat" element={<ProvaList />} />
       </Routes>
     </div>
   );
