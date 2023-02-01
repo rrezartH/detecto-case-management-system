@@ -12,6 +12,6 @@ namespace Detecto.API.Data.Services.Interfaces
         public Task<ActionResult> AddDeklarata(DeklarataDTO deklarataDTO);
         public Task<ActionResult> UpdateDeklarata(int id, UpdateDeklarataDTO updateDeklarataDTO);
         public Task<ActionResult> DeleteDeklarata(int id);
-        //public string Compare(string deklarata1, string deklarata2);
+        public Task<string> Compare(int d1Id, int d2Id);
     }
 }

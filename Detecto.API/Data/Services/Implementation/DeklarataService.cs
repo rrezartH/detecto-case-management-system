@@ -85,10 +85,18 @@ namespace Detecto.API.Data.Services.Implementation
             return new OkObjectResult("Deklarata u fshi me sukses!");
         }
 
-        /*public string Compare(string deklarata1, string deklarata2)
+        public async Task<string> Compare(int d1Id, int d2Id)
         {
-            KrahasoTekst kT = new KrahasoTekst();
-            return kT.Compare(deklarata1, deklarata2);
-        }*/
+            var deklarata1 = (await GetPerbajtjaEDeklarates(d1Id)).Value;
+            var deklarata2 = (await GetPerbajtjaEDeklarates(d2Id)).Value;
+            string[] str1Words = deklarata1.ToLower().Split(' ');
+            string[] str2Words = deklarata2.ToLower().Split(' ');
+            var uniqueWords = str2Words.Except(str1Words).ToList();
+
+            // Do whatever you want with uniqueWords instead
+            return "Deklarata e parë -> " + deklarata1 + "\n" 
+                + "Dallimet e deklaratës së dytë nga ajo e para -> "
+                + $"{String.Join(" ", uniqueWords)}";
+        }
     }
 }

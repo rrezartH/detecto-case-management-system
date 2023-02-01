@@ -57,10 +57,10 @@ namespace Detecto.API.Data.Controllers
             return await _deklarataService.DeleteDeklarata(id);
         }
 
-        /*[HttpPost("KrahasoDeklaratat")]
-        public void Compare(string deklarata1, string deklarata2)
+        [HttpOptions("KrahasoDeklaratat")]
+        public async Task<string> Compare(int d1Id, int d2Id)
         {
-            _deklarataService.Compare(deklarata1, deklarata2);
-        }*/
+            return await _deklarataService.Compare(d1Id, d2Id);
+        }
     }
 }
