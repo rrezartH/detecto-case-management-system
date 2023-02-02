@@ -6,6 +6,7 @@ using Detecto.API.Data.Services.Interfaces.PersonatIntrefaces;
 using Detecto.API.Data.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Detecto.API.Data.DTOs;
 
 namespace Detecto.API.Data.Services.Implementation.PersonatServices
 {
@@ -19,15 +20,39 @@ namespace Detecto.API.Data.Services.Implementation.PersonatServices
             _mapper = mapper;
         }
 
-        public async Task<ActionResult<List<iDyshuariDTO>>> GetTeDyshuarit() => 
-            _mapper.Map<List<iDyshuariDTO>>(await _context.TeDyshuarit.ToListAsync());
+        public async Task<ActionResult<List<iDyshuariDTO>>> GetTeDyshuarit()
+        {
+            var teDyshuarit = await _context.TeDyshuarit.ToListAsync();
+            if (!teDyshuarit.Any())
+                return new NotFoundObjectResult("Nuk ka te dyshuar te regjistruar!");
+
+            var mappedTeDyshuarit = _mapper.Map<List<iDyshuariDTO>>(teDyshuarit);
+
+            foreach (var mappedIDyshuari in mappedTeDyshuarit)
+            {
+                var id = mappedIDyshuari.Id;
+                var deklaratat = _context.Deklaratat.Where(d => d.PersoniId == id).ToList();
+                mappedIDyshuari.Deklaratat = _mapper.Map<List<DeklarataDTO>>(deklaratat);
+                var gjurmet = _context.GjurmetBiologjike.Where(g => g.PersoniId == id).ToList();
+                mappedIDyshuari.GjurmetBiologjike = _mapper.Map<List<GjurmaBiologjikeDTO>>(gjurmet);
+            }
+
+            return new OkObjectResult(mappedTeDyshuarit);
+        }
 
         public async Task<ActionResult> GetTeDyshuarinById(int id)
         {
-            var mappedIDyshuari = _mapper.Map<iDyshuariDTO>(await _context.TeDyshuarit.FindAsync(id));
-            return mappedIDyshuari == null 
-                ? new NotFoundObjectResult("I dyshuari nuk ekziston!!")
-                : new OkObjectResult(mappedIDyshuari);
+            var iDyshuari = await _context.TeDyshuarit.FindAsync(id);
+            if (iDyshuari == null)
+                return new NotFoundObjectResult("I dyshuari nuk ekziston!!");
+
+            var mappediDyshuari = _mapper.Map<iDyshuariDTO>(iDyshuari);
+            var deklaratat = _context.Deklaratat.Where(d => d.PersoniId == id).ToList();
+            mappediDyshuari.Deklaratat = _mapper.Map<List<DeklarataDTO>>(deklaratat);
+            var gjurmet = _context.GjurmetBiologjike.Where(g => g.PersoniId == id).ToList();
+            mappediDyshuari.GjurmetBiologjike = _mapper.Map<List<GjurmaBiologjikeDTO>>(gjurmet);
+
+            return new OkObjectResult(mappediDyshuari);
         }
 
         public async Task<ActionResult<string>> GetDyshimiMbiTeDyshuarin(int id)
@@ -47,6 +72,12 @@ namespace Detecto.API.Data.Services.Implementation.PersonatServices
             await _context.SaveChangesAsync();
             return new OkObjectResult("I dyshuari u shtua me sukses!");
         }
+
+        /*public async Task<ActionResult> AddDeklarata(DeklarataDTO deklarataDTO)
+        {
+            DeklarataService d = new DeklarataService(_context, _mapper);
+            return await d.AddDeklarata(deklarataDTO);
+        }*/
 
         public async Task<ActionResult> UpdateTeDyshuarin(int id, UpdateiDyshuariDTO updateiDyshuariDto)
         {

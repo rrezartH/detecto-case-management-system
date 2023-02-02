@@ -19,15 +19,39 @@ namespace Detecto.API.Data.Services.Implementation.PersonatServices
             _mapper = mapper;
         }
 
-        public async Task<ActionResult<List<DeshmitariDTO>>> GetDeshmitaret() => 
-            _mapper.Map<List<DeshmitariDTO>>(await _context.Deshmitaret.ToListAsync());
+        public async Task<ActionResult<List<DeshmitariDTO>>> GetDeshmitaret()
+        {
+            var deshmitaret = await _context.Deshmitaret.ToListAsync();
+            if (!deshmitaret.Any())
+                return new NotFoundObjectResult("Nuk ka Deshmitare te regjistruar!");
+
+            var mappedDeshmitaret = _mapper.Map<List<DeshmitariDTO>>(deshmitaret);
+
+            foreach (var mappedDeshmitari in mappedDeshmitaret)
+            {
+                var id = mappedDeshmitari.Id;
+                var deklaratat = _context.Deklaratat.Where(d => d.PersoniId == id).ToList();
+                mappedDeshmitari.Deklaratat = _mapper.Map<List<DeklarataDTO>>(deklaratat);
+                var gjurmet = _context.GjurmetBiologjike.Where(g => g.PersoniId == id).ToList();
+                mappedDeshmitari.GjurmetBiologjike = _mapper.Map<List<GjurmaBiologjikeDTO>>(gjurmet);
+            }
+
+            return new OkObjectResult(mappedDeshmitaret);
+        }
 
         public async Task<ActionResult> GetDeshmitariById(int id)
         {
-            var mappedDeshmitari = _mapper.Map<DeshmitariDTO>(await _context.Deshmitaret.FindAsync(id));
-            return mappedDeshmitari == null 
-                ? new NotFoundObjectResult("Deshmitari nuk ekziston!!")
-                : new OkObjectResult(mappedDeshmitari);
+            var deshmitari = await _context.Deshmitaret.FindAsync(id);
+            if (deshmitari == null)
+                return new NotFoundObjectResult("Deshmitari nuk ekziston!!");
+
+            var mappedDeshmitari = _mapper.Map<DeshmitariDTO>(deshmitari);
+            var deklaratat = _context.Deklaratat.Where(d => d.PersoniId == id).ToList();
+            mappedDeshmitari.Deklaratat = _mapper.Map<List<DeklarataDTO>>(deklaratat);
+            var gjurmet = _context.GjurmetBiologjike.Where(g => g.PersoniId == id).ToList();
+            mappedDeshmitari.GjurmetBiologjike = _mapper.Map<List<GjurmaBiologjikeDTO>>(gjurmet);
+
+            return new OkObjectResult(mappedDeshmitari);
         }
 
         public async Task<ActionResult<bool>> ADyshohet(int id)
@@ -136,7 +160,7 @@ namespace Detecto.API.Data.Services.Implementation.PersonatServices
              * dhe inicializohet menjëher ashtu që të marr të njëjtat të dhëna si dëshmitari
              * vetëm se Dyshimi duhet të ndryshohet më vonë.             
              */
-            iDyshuariDTO dyshuari = new iDyshuariDTO
+            iDyshuariDTO dyshuari = new iDyshuariDTO()
             {
                 Emri = deshmitari.Emri,
                 Gjinia = deshmitari.Gjinia,

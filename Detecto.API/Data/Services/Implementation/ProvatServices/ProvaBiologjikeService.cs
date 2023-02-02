@@ -60,6 +60,7 @@ namespace Detecto.API.Data.Services.Implementation.ProvatServices
             dbProva.TeknikaENxjerrjes = updateProvaDTO.TeknikaENxjerrjes ?? dbProva.TeknikaENxjerrjes;
             dbProva.Specifikimi = updateProvaDTO.Specifikimi ?? dbProva.Specifikimi;
             dbProva.Lloji = updateProvaDTO.Lloji ?? dbProva.Lloji;
+            dbProva.PersoniId = updateProvaDTO.PersoniId ?? dbProva.PersoniId;
 
             await _context.SaveChangesAsync();
 
