@@ -7,7 +7,8 @@
         public string Lloji { get; set; } = null!;
         public string Specifikimi { get; set; } = null!;
 
-        //Navigation Properties
+        // Composition requires the relationship to be exclusive, so the Personi property
+        // should be mandatory
         public int PersoniId { get; set; }
         public Personi Personi { get; set; } = null!;
     }

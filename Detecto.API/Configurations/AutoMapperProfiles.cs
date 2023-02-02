@@ -16,6 +16,7 @@ namespace Detecto.API.Configurations
             CreateMap<DCase, GetCaseDTO>().ReverseMap();
             CreateMap<DCase, GetCasesDetailsDTO>().ReverseMap();
             CreateMap<AddCaseDTO, DCase>();
+            CreateMap<Personi, PersoniDTO>().ReverseMap();
             CreateMap<Viktima, ViktimaDTO>().ReverseMap();
             CreateMap<Deshmitari, DeshmitariDTO>().ReverseMap();
             CreateMap<iDyshuari, iDyshuariDTO>().ReverseMap();

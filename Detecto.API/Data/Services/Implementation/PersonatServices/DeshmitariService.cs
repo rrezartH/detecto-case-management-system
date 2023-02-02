@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Detecto.API.Configurations;
+using Detecto.API.Data.DTOs;
 using Detecto.API.Data.DTOs.PersonatDTOs;
 using Detecto.API.Data.Models;
 using Detecto.API.Data.Services.Interfaces.PersonatIntrefaces;
