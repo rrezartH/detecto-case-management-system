@@ -94,6 +94,9 @@ namespace Detecto.API.Migrations
                     b.Property<int?>("DCaseId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("DateUploaded")
+                        .HasColumnType("datetime2");
+
                     b.Property<byte[]>("FileData")
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
