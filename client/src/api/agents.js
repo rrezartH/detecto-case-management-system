@@ -34,11 +34,20 @@ const ProvatFizike = {
     create: (values) => requests.post(`Data/ProvaFizike/proven-fizike`, values)
 }
 
+const Tasks = {
+    get: () => requests.get('Task/tasks'),
+    getById: (id) => requests.get(`Task/get-task-by-id/${id}`),
+    create: (values) => requests.post(`Task/add-task`, values),
+    update: (values,id) => requests.put(`Task/put-task/${id}`, values),
+    delete: (id) => requests.del(`Task/delete-task/${id}`)
+}
+
 const agent = {
     Cases,
     Provat,
     ProvatBiologjike,
-    ProvatFizike
+    ProvatFizike,
+    Tasks
 }
 
 export default agent

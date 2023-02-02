@@ -20,14 +20,14 @@ namespace Detecto.API.Case.Controllers
             _taskService = taskService;
         }
 
-        [HttpGet]
+        [HttpGet("tasks")]
         public async Task<IEnumerable<TaskDTO>> GetTasks()
         {
             return await _taskService.GetTasks();
            
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("get-task-by-id/{id}")]
         public async Task<ActionResult<TaskDTO>> GetTaskByID(int id)
         {
             return await _taskService.GetTaskByID(id);
@@ -37,14 +37,14 @@ namespace Detecto.API.Case.Controllers
             //return Ok(task);
         }
 
-        [HttpPost]
+        [HttpPost("add-task")]
         public async Task<ActionResult<TaskDTO>> CreateTask(TaskDTO taskDto)
         {
             return await _taskService.CreateTask(taskDto);
            
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("put-task/{id}")]
         public async Task<ActionResult<TaskDTO>> UpdateTask(UpdateTaskDTO taskDto, int id)
         {
             return await _taskService.UpdateTask(taskDto, id);
@@ -54,7 +54,7 @@ namespace Detecto.API.Case.Controllers
             //return Ok(task);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("delete-task/{id}")]
         public async Task<ActionResult> DeleteTask(int id)
         {
             return await _taskService.DeleteTask(id);

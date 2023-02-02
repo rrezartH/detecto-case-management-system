@@ -2,11 +2,11 @@ import { useState } from "react";
 import "../../../styles/popup.scss";
 import {
   FormInput,
-  FormSelectStatusi,
+  // FormSelectStatusi,
 } from "../../../components/formComponents/FormComponents";
 import agent from "../../../api/agents";
 
-const CreateProvaB = ({ setIsOpen, isOpen }) => {
+const CreateProvaB = ({ setIsOpen, isOpen }) => { 
   const [provaB, setProvaB] = useState({
     imageUrl: "",
     identifier: "",

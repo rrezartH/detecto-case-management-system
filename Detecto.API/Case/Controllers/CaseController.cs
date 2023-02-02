@@ -13,7 +13,7 @@ namespace Detecto.API.Case.Controllers
         public CaseController(ICaseService caseService)
         {
             _caseService = caseService;
-        }
+        } 
 
         [HttpGet("cases")]
         public async Task<ActionResult<List<GetCasesDetailsDTO>>> GetCases()

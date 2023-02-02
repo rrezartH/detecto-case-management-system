@@ -1,6 +1,6 @@
 import "./styles/App.scss";
 import Navbar from "./components/navbar/Navbar";
-import { Tasks, CaseList, Dashboard, Case, ProvaList } from "./pages/index";
+import { TaskList, CaseList, Dashboard, Case, ProvaList } from "./pages/index";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/cases" element={<CaseList />} />
-        <Route path="/tasks" element={<Tasks />} />
+        <Route path="/tasks" element={<TaskList />} />
         <Route path="/case/:caseId" element={<Case />} />
         <Route path="/provat" element={<ProvaList />} />
       </Routes>

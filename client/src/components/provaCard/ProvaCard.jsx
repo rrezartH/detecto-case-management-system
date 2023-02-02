@@ -1,7 +1,7 @@
 import "./provaCard.scss";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 const ProvaCard = ({ provaId, emri, koha, vendndodhja, attachment }) => {
-  return (
+  return ( 
     <div className="card">
       <div className="card-text">
         <p className="card-id">ID: {provaId}</p>

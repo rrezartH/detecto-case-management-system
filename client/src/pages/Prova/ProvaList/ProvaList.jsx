@@ -5,7 +5,7 @@ import agent from "../../../api/agents";
 import CreateProvaB from "../CreateProva/CreateProvaB";
 import CreateProvaF from "../CreateProva/CreateProvaF";
 
-const ProvaList = () => {
+const ProvaList = () => { 
   const [provat, setProvat] = useState([]);
   const [isOpenB, setIsOpenB] = useState(false);
   const [isOpenF, setIsOpenF] = useState(false);
