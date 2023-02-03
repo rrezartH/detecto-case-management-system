@@ -1,6 +1,6 @@
 import "./styles/App.scss";
 import Navbar from "./components/navbar/Navbar";
-import { TaskList, CaseList, Dashboard, Case, ProvaList } from "./pages/index";
+import { TaskList, CaseList, Dashboard, Case, ProvaList, DeshmitariList } from "./pages/index";
 import { Route, Routes } from "react-router-dom";
 
 function App() {

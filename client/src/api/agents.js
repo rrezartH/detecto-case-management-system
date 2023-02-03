@@ -17,6 +17,21 @@ const Cases = {
     create: (values) => requests.post(`Case/Case/case`, values)
 }
 
+const Deshmitaret = {
+    get: () => requests.get('Data/Deshmitari/deshmitaret'),
+    create: (values) => requests.post(`Data/Deshmitari/deshmitar`, values)
+}
+
+const teDyshuarit = {
+    get: () => requests.get('Data/IDyshuari/te-dyshuarit'),
+    create: (values) => requests.post(`Data/IDyshuari/i-dyshuari`, values)
+}
+
+const Viktimat = {
+    get: () => requests.get('Data/Viktima/viktimat'),
+    create: (values) => requests.post(`Data/Viktima/viktime`, values)
+}
+
 const Provat = {
     get: () => requests.get('Data/Prova/te-gjitha-provat'),
     getById: (id) => requests.get(`Data/Prova/proven/${id}`)
@@ -44,6 +59,9 @@ const Tasks = {
 
 const agent = {
     Cases,
+    Deshmitaret,
+    teDyshuarit,
+    Viktimat,
     Provat,
     ProvatBiologjike,
     ProvatFizike,

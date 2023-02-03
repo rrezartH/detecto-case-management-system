@@ -56,7 +56,7 @@ namespace Detecto.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Cases");
+                    b.ToTable("Cases", (string)null);
                 });
 
             modelBuilder.Entity("Detecto.API.Case.Models.Detective", b =>
@@ -77,7 +77,7 @@ namespace Detecto.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Detectives");
+                    b.ToTable("Detectives", (string)null);
                 });
 
             modelBuilder.Entity("Detecto.API.Case.Models.DFile", b =>
@@ -109,7 +109,7 @@ namespace Detecto.API.Migrations
 
                     b.HasIndex("DCaseId");
 
-                    b.ToTable("Files");
+                    b.ToTable("Files", (string)null);
                 });
 
             modelBuilder.Entity("Detecto.API.Case.Models.DTask", b =>
@@ -136,7 +136,7 @@ namespace Detecto.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tasks");
+                    b.ToTable("Tasks", (string)null);
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("DTask");
                 });
@@ -163,7 +163,7 @@ namespace Detecto.API.Migrations
 
                     b.HasIndex("PersoniId");
 
-                    b.ToTable("Deklaratat");
+                    b.ToTable("Deklaratat", (string)null);
                 });
 
             modelBuilder.Entity("Detecto.API.Data.Models.GjurmaBiologjike", b =>
@@ -193,7 +193,7 @@ namespace Detecto.API.Migrations
 
                     b.HasIndex("PersoniId");
 
-                    b.ToTable("GjurmetBiologjike");
+                    b.ToTable("GjurmetBiologjike", (string)null);
                 });
 
             modelBuilder.Entity("Detecto.API.Data.Models.Personi", b =>
@@ -241,7 +241,7 @@ namespace Detecto.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Personat");
+                    b.ToTable("Personat", (string)null);
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Personi");
                 });
@@ -279,7 +279,7 @@ namespace Detecto.API.Migrations
 
                     b.HasIndex("PersoniId");
 
-                    b.ToTable("Provat");
+                    b.ToTable("Provat", (string)null);
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Prova");
                 });

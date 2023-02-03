@@ -2,18 +2,22 @@ import { useState } from "react";
 import "../../../styles/popup.scss";
 import {
   FormInput,
-  FormSelect,
-  FormSelectStatusi,
+  FormSelectBool
 } from "../../../components/formComponents/FormComponents";
 import agent from "../../../api/agents";
 
 const CreateProvaF = ({ setIsOpen, isOpen }) => {
   const [provaF, setProvaF] = useState({
-    imageUrl: "",
-    identifier: "",
-    title: "",
-    status: "",
-    details: "",
+    emri: "",
+    koha: "",
+    vendndodhja: "",
+    attachment: "",
+    personiId: "",
+    ePerdorurNeKrim: false,
+    rrezikshmeria: "",
+    klasifikimi: "",
+    duhetEkzaminim: false,
+    kaGjurmeBiologjike: false
   });
 
   const handleClose = () => {
@@ -22,7 +26,13 @@ const CreateProvaF = ({ setIsOpen, isOpen }) => {
 
   const handleChange = (e) => {
     const name = e.target.name;
-    const value = e.target.value;
+    let value = e.target.value;
+    if(value === "true"){
+      value = true
+    }
+    else if(value === "false"){
+      value = false
+    }
     setProvaF((prev) => {
       return { ...prev, [name]: value };
     });
@@ -30,7 +40,7 @@ const CreateProvaF = ({ setIsOpen, isOpen }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    console.log(provaF);
     agent.ProvatFizike.create(provaF).catch(function (error) {
       console.log(error.response.data);
     });
@@ -42,7 +52,7 @@ const CreateProvaF = ({ setIsOpen, isOpen }) => {
         <button className="popup__close-button" onClick={handleClose}>
           X
         </button>
-        <h1>Shto Dosje</h1>
+        <h1>Shto Provë Fizike</h1>
         <form className="popup__form" onSubmit={handleSubmit}>
         <FormInput
             label="Emri"
@@ -53,7 +63,7 @@ const CreateProvaF = ({ setIsOpen, isOpen }) => {
           />
           <FormInput
             label="Koha"
-            type="text"
+            type="datetime"
             name="koha"
             placeholder="Koha"
             onChange={handleChange}
@@ -73,10 +83,16 @@ const CreateProvaF = ({ setIsOpen, isOpen }) => {
             onChange={handleChange}
           />
           <FormInput
-            label="EPerdorurNeKrim"
+            label="PersoniId"
             type="text"
+            name="personiId"
+            placeholder="PersoniId"
+            onChange={handleChange}
+          />
+          <FormSelectBool
+            label="E përdorur në krim"
+            type="radio"
             name="ePerdorurNeKrim"
-            placeholder="EPerdorurNeKrim"
             onChange={handleChange}
           />
           <FormInput
@@ -93,18 +109,16 @@ const CreateProvaF = ({ setIsOpen, isOpen }) => {
             placeholder="Klasifikimi"
             onChange={handleChange}
           />
-          <FormInput
-            label="DuhetEkzaminim"
-            type="text"
+          <FormSelectBool
+            label="Duhet ekzaminim"
+            type="radio"
             name="duhetEkzaminim"
-            placeholder="DuhetEkzaminim"
             onChange={handleChange}
           />
-          <FormInput
-            label="KaGjurmeBiologjike"
-            type="text"
+          <FormSelectBool
+            label="Ka gjurme biologjike"
+            type="radio"
             name="kaGjurmeBiologjike"
-            placeholder="KaGjurmeBiologjike"
             onChange={handleChange}
           />
           <button type="submit">Shto Provën Fizike</button>
