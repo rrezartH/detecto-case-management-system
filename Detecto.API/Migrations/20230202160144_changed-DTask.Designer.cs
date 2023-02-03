@@ -4,6 +4,7 @@ using Detecto.API.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Detecto.API.Migrations
 {
     [DbContext(typeof(DetectoDbContext))]
-    partial class DetectoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230202160144_changed-DTask")]
+    partial class changedDTask
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,7 +58,7 @@ namespace Detecto.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Cases", (string)null);
+                    b.ToTable("Cases");
                 });
 
             modelBuilder.Entity("Detecto.API.Case.Models.Detective", b =>
@@ -77,7 +79,7 @@ namespace Detecto.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Detectives", (string)null);
+                    b.ToTable("Detectives");
                 });
 
             modelBuilder.Entity("Detecto.API.Case.Models.DFile", b =>
@@ -94,9 +96,6 @@ namespace Detecto.API.Migrations
                     b.Property<int?>("DCaseId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DateUploaded")
-                        .HasColumnType("datetime2");
-
                     b.Property<byte[]>("FileData")
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
@@ -109,7 +108,7 @@ namespace Detecto.API.Migrations
 
                     b.HasIndex("DCaseId");
 
-                    b.ToTable("Files", (string)null);
+                    b.ToTable("Files");
                 });
 
             modelBuilder.Entity("Detecto.API.Case.Models.DTask", b =>
@@ -143,7 +142,7 @@ namespace Detecto.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tasks", (string)null);
+                    b.ToTable("Tasks");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("DTask");
                 });
@@ -170,7 +169,7 @@ namespace Detecto.API.Migrations
 
                     b.HasIndex("PersoniId");
 
-                    b.ToTable("Deklaratat", (string)null);
+                    b.ToTable("Deklaratat");
                 });
 
             modelBuilder.Entity("Detecto.API.Data.Models.GjurmaBiologjike", b =>
@@ -200,7 +199,7 @@ namespace Detecto.API.Migrations
 
                     b.HasIndex("PersoniId");
 
-                    b.ToTable("GjurmetBiologjike", (string)null);
+                    b.ToTable("GjurmetBiologjike");
                 });
 
             modelBuilder.Entity("Detecto.API.Data.Models.Personi", b =>
@@ -248,7 +247,7 @@ namespace Detecto.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Personat", (string)null);
+                    b.ToTable("Personat");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Personi");
                 });
@@ -286,7 +285,7 @@ namespace Detecto.API.Migrations
 
                     b.HasIndex("PersoniId");
 
-                    b.ToTable("Provat", (string)null);
+                    b.ToTable("Provat");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Prova");
                 });

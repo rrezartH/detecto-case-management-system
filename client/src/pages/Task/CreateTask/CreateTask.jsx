@@ -8,9 +8,8 @@ import agent from "../../../api/agents";
 
 const CreateTask = ({ setIsOpen, isOpen }) => {
   const [task, setTask] = useState({
-    details:"",
-    dateCreated:"",
-    dueDate:"",
+    title:"",
+    details:""
   });
 
   const handleClose = () => {
@@ -27,9 +26,9 @@ const CreateTask = ({ setIsOpen, isOpen }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    agent.Tasks.create(task).catch(function (error) {
-      console.log(error.response.data);
-    });
+    agent.Tasks.create(task)
+      // .then(task => setTask(task))
+      .catch(function (error) {console.log(error.response.data)});
   };
 
   return isOpen ? (
@@ -40,8 +39,15 @@ const CreateTask = ({ setIsOpen, isOpen }) => {
         </button>
         <h1>Shto taskun</h1>
         <form className="popup__form" onSubmit={handleSubmit}>
+        <FormInput
+            label="Title"
+            type="text"
+            name="title"
+            placeholder="title"
+            onChange={handleChange}
+          />
           <FormInput
-            label="details"
+            label="Details"
             type="text"
             name="details"
             placeholder="details"
