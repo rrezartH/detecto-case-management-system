@@ -25,7 +25,9 @@ namespace Detecto.API.Case.Services
             return tasks.Select(task => new TaskDTO
             {
                 Id = task.Id,
+                Title = task.Title,
                 Details = task.Details,
+                Statusi = task.Statusi,
                 DateCreated = task.DateCreated,
                 DueDate = task.DueDate
             });
@@ -43,7 +45,9 @@ namespace Detecto.API.Case.Services
             return new TaskDTO
             {
                 Id = task.Id,
+                Title = task.Title,
                 Details = task.Details,
+                Statusi = task.Statusi,
                 DateCreated = task.DateCreated,
                 DueDate = task.DueDate
             };
@@ -58,7 +62,9 @@ namespace Detecto.API.Case.Services
                 throw new ArgumentException("Task not found");
             }
 
+            originalTask.Title = task.Title;
             originalTask.Details = task.Details;
+            originalTask.Statusi = task.Statusi;
             originalTask.DueDate = task.DueDate;
 
             _context.Tasks.Update(originalTask);
@@ -86,7 +92,9 @@ namespace Detecto.API.Case.Services
         {
             var newTask = new DTask
             {
+                Title = task.Title,
                 Details = task.Details,
+                Statusi = task.Statusi,
                 DateCreated = DateTime.Now,
                 DueDate = task.DueDate
             };
