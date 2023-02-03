@@ -20,13 +20,13 @@ namespace Detecto.API.Data.Controllers.Personat
         }
 
         [HttpGet("deshmitaret")]
-        public async Task<ActionResult<List<DeshmitariDTO>>> GetViktimat()
+        public async Task<ActionResult<List<DeshmitariDTO>>> GetDeshmitaret()
         {
             return await _deshmitariService.GetDeshmitaret();
         }
 
         [HttpGet("deshmitari/{id}")]
-        public async Task<ActionResult<List<DeshmitariDTO>>> GetDeshmitaritById(int id)
+        public async Task<ActionResult> GetDeshmitariById(int id)
         {
             return await _deshmitariService.GetDeshmitariById(id);
         }

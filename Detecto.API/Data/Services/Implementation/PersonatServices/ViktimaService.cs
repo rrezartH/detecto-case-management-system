@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Detecto.API.Configurations;
+using Detecto.API.Data.DTOs;
 using Detecto.API.Data.DTOs.PersonatDTOs;
 using Detecto.API.Data.Models;
 using Detecto.API.Data.Services.Interfaces.PersonatIntrefaces;
@@ -18,15 +19,39 @@ namespace Detecto.API.Data.Services.Implementation.PersonatServices
             _mapper = mapper;
         }
 
-        public async Task<ActionResult<List<ViktimaDTO>>> GetViktimat() =>
-            _mapper.Map<List<ViktimaDTO>>(await _context.Viktimat.ToListAsync());
+        public async Task<ActionResult<List<ViktimaDTO>>> GetViktimat()
+        {
+            var viktimat = await _context.Viktimat.ToListAsync();
+            if (!viktimat.Any())
+                return new NotFoundObjectResult("Nuk ka viktima te regjistruar!");
+
+            var mappedViktimat = _mapper.Map<List<ViktimaDTO>>(viktimat);
+
+            foreach (var mappedViktima in mappedViktimat)
+            {
+                var id = mappedViktima.Id;
+                var deklaratat = _context.Deklaratat.Where(d => d.PersoniId == id).ToList();
+                mappedViktima.Deklaratat = _mapper.Map<List<DeklarataDTO>>(deklaratat);
+                var gjurmet = _context.GjurmetBiologjike.Where(g => g.PersoniId == id).ToList();
+                mappedViktima.GjurmetBiologjike = _mapper.Map<List<GjurmaBiologjikeDTO>>(gjurmet);
+            }
+
+            return new OkObjectResult(mappedViktimat);
+        }
 
         public async Task<ActionResult> GetViktimaById(int id)
         {
-            var mappedViktima = _mapper.Map<ViktimaDTO>(await _context.Viktimat.FindAsync(id));
-            return mappedViktima == null 
-                ? new NotFoundObjectResult("Viktima nuk ekziston!")
-                : new OkObjectResult(mappedViktima);
+            var viktima = await _context.Viktimat.FindAsync(id);
+            if (viktima == null)
+                return new NotFoundObjectResult("Viktima nuk ekziston!!");
+
+            var mappediViktima = _mapper.Map<ViktimaDTO>(viktima);
+            var deklaratat = _context.Deklaratat.Where(d => d.PersoniId == id).ToList();
+            mappediViktima.Deklaratat = _mapper.Map<List<DeklarataDTO>>(deklaratat);
+            var gjurmet = _context.GjurmetBiologjike.Where(g => g.PersoniId == id).ToList();
+            mappediViktima.GjurmetBiologjike = _mapper.Map<List<GjurmaBiologjikeDTO>>(gjurmet);
+
+            return new OkObjectResult(mappediViktima);
         }
 
         public async Task<ActionResult> AddViktima(ViktimaDTO viktimaDTO)

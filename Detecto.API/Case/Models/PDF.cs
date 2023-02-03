@@ -5,10 +5,5 @@ namespace Detecto.API.Case.Models
     public class PDF : DFile
     {
         public long FileSize { get; set; }
-
-        public void SetFileSize(IFormFile file)
-        {
-            FileSize = file.Length;
-        }
     }
 }

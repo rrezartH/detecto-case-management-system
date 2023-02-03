@@ -1,12 +1,19 @@
 ﻿using Detecto.API.Case.Models;
 using Detecto.API.Case.Services.Interfaces;
 using Detecto.API.Configurations;
+using NuGet.Packaging;
 
 namespace Detecto.API.Case.Services.Implementation
 {
     public class FileService : IFileService
     {
         private readonly DetectoDbContext _context;
+        private IFileUpload? _fileUpload;
+        private readonly Dictionary<string, IFileUpload> supportedFiles = new()
+        {
+            {"application/pdf", new PdfService() },
+            {"image/png", new PngService() }
+        };
 
         public FileService(DetectoDbContext context)
         {
@@ -17,39 +24,12 @@ namespace Detecto.API.Case.Services.Implementation
         {
             try
             {
-                DFile file = new();
-
-                if (fileData.ContentType.Equals("application/pdf"))
-                {
-                    file = new PDF()
-                    {
-                        CaseId = caseId,
-                        FileName = fileData.FileName,
-                    };
-                    (file as PDF).SetFileSize(fileData);
-                }
-                else if (fileData.ContentType.Equals("image/png"))
-                {
-                    file = new PNG()
-                    {
-                        CaseId = caseId,
-                        FileName = fileData.FileName,
-                    };
-                }
-
-                if (file == null)
-                {
+                _fileUpload = supportedFiles[fileData.ContentType];
+                if (_fileUpload == null)
                     throw new Exception("Unsupported file type.");
-                }
 
-
-                using (var stream = new MemoryStream())
-                {
-                    fileData.CopyTo(stream);
-                    file.FileData = stream.ToArray();
-                }
-
-                var result = _context.Files.Add(file);
+                var uploadedFile = _fileUpload.UploadFile(fileData, caseId);
+                await _context.Files.AddAsync(uploadedFile);
                 await _context.SaveChangesAsync();
             }
             catch (Exception)
@@ -81,7 +61,7 @@ namespace Detecto.API.Case.Services.Implementation
             }
         }
 
-        public async Task CopyStream(Stream stream, string downloadPath)
+        private async Task CopyStream(Stream stream, string downloadPath)
         {
             using (var fileStream = new FileStream(downloadPath, FileMode.Create, FileAccess.Write))
             {

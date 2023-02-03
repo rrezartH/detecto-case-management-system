@@ -13,8 +13,8 @@
         public string EKaluara { get; set; } = null!;
 
         //Krijohen lidhjet mes klases Personi dhe klasave tjera te nevojshme
-        public List<Deklarata> Deklaratat { get; set; } = null!;
-        public List<GjurmaBiologjike> GjurmetBiologjike { get; set; } = null!;
+        public List<Deklarata>? Deklaratat { get; set; }
+        public List<GjurmaBiologjike>? GjurmetBiologjike { get; set; }
         public List<Prova> Provat { get; set; } = null!;
     }
 }

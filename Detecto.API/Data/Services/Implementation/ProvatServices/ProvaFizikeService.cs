@@ -79,6 +79,7 @@ namespace Detecto.API.Data.Services.Implementation.ProvatServices
             dbProva.Klasifikimi = updateProvaDTO.Klasifikimi ?? dbProva.Klasifikimi;
             dbProva.DuhetEkzaminim = updateProvaDTO.DuhetEkzaminim ?? dbProva.DuhetEkzaminim;
             dbProva.KaGjurmeBiologjike = updateProvaDTO.KaGjurmeBiologjike ?? dbProva.KaGjurmeBiologjike;
+            dbProva.PersoniId = updateProvaDTO?.PersoniId ?? dbProva.PersoniId;
             await _context.SaveChangesAsync();
 
             return new OkObjectResult("Prova u përditësua me sukses!");
