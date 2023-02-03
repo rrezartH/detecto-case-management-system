@@ -11,8 +11,8 @@ const TaskCard = ({ taskID,title,details, dateCreated, dueDate, statusi}) => {
     setShowPopup(true);
   };
 
-  dueDate = moment(dueDate).format('DD/MM/YYYY');
-  dateCreated = moment(dateCreated).format('DD/MM/YYYY');
+  dueDate = moment(dueDate).format('YYYY-MM-DD');
+  dateCreated = moment(dateCreated).format('YYYY-MM-DD');
 
   return (
     <div className="card row">
@@ -35,7 +35,7 @@ const TaskCard = ({ taskID,title,details, dateCreated, dueDate, statusi}) => {
 
       <div className="card-extra column">
         <div className="center">
-        <h3 className="card-due">DUE: {dueDate}</h3>
+        <h3 className="card-due">DUE: {moment(dueDate).format('DD/MM/YYYY')}</h3>
         </div>
         <div className="card-button">
         <button className="button" onClick={handleShowPopup} >SHIKO</button>
