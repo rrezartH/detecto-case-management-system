@@ -2,7 +2,7 @@ import "./styles/App.scss";
 import Navbar from "./components/navbar/Navbar";
 import { TaskList, CaseList, Dashboard, Case, ProvaList } from "./pages/index";
 import { Route, Routes } from "react-router-dom";
-import backImg from "./assets/Rectangle 1.png";
+// import backImg from "./assets/Rectangle 1.png";
 
 function App() {
   return (

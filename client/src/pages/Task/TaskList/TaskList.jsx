@@ -34,13 +34,12 @@ const TaskList = () => {
               details={taskat.details}
               dateCreated={taskat.dateCreated}
               dueDate={taskat.dueDate}
-              status={taskat.statusi}
+              statusi={taskat.statusi}
             />
           ))
         )}
       </div>
       <CreateTask setIsOpen={setIsOpen} isOpen={isOpen} />
-     {/*  <CreateProvaF setIsOpen={setIsOpenF} isOpen={isOpenF} /> */}
     </>
   );
 };
