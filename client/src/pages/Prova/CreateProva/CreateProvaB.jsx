@@ -8,11 +8,14 @@ import agent from "../../../api/agents";
 
 const CreateProvaB = ({ setIsOpen, isOpen }) => { 
   const [provaB, setProvaB] = useState({
-    imageUrl: "",
-    identifier: "",
-    title: "",
-    status: "",
-    details: "",
+    emri: "",
+    koha: "",
+    vendndodhja: "",
+    attachment: "",
+    personiId: "",
+    lloji: "",
+    specifikimi: "",
+    teknikaENxjerrjes: ""
   });
 
   const handleClose = () => {
@@ -69,6 +72,13 @@ const CreateProvaB = ({ setIsOpen, isOpen }) => {
             type="text"
             name="attachment"
             placeholder="Attachment"
+            onChange={handleChange}
+          />
+          <FormInput
+            label="PersoniId"
+            type="text"
+            name="personiId"
+            placeholder="PersoniId"
             onChange={handleChange}
           />
           <FormInput

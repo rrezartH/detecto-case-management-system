@@ -32,6 +32,19 @@ export const FormSelect = (props) => {
   );
 };
 
+export const FormSelectBool = (props) => {
+  return (
+    <div className="form">
+      <label htmlFor={props.name}>{props.label}</label>
+      <select onChange={props.onChange} name={props.name} required>
+        <option value="">Zgjedh</option>
+        <option value={true}>Po</option>
+        <option value={false}>Jo</option>
+      </select>
+    </div>
+  );
+};
+
 export const FormSelectStatusi = (props) => {
   return (
     <div className="form">

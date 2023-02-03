@@ -1,10 +1,17 @@
-import React from "react";
+import React, {useState} from "react";
 import "../../../styles/popup.scss";
 import PersonCard from "../../../components/caseCard/PersonCard";
+import CreatePersoni from "../../Personi/CreatePersoni/CreatePersoni";
 
-const PersonPage = ({ personArray, personType, setIsOpen, isOpen }) => {
+const PersonPage = ({ personArray, personType, setIsOpen, isOpen, caseId}) => {
+  const [isOpenP, setIsOpenP] = useState(false);
+  
   const handleClose = () => {
     setIsOpen((prev) => !prev);
+  };
+
+  const handleOpen = () => {
+    setIsOpenP((prev) => !prev);
   };
 
   return isOpen ? (
@@ -14,6 +21,9 @@ const PersonPage = ({ personArray, personType, setIsOpen, isOpen }) => {
           X
         </button>
         <div className="popup__card-grid">
+        <button className="card-layout__add-case" onClick={handleOpen}>
+          Shto Personin
+        </button>
           {personArray.map((person) => {
             return (
               <PersonCard
@@ -25,6 +35,11 @@ const PersonPage = ({ personArray, personType, setIsOpen, isOpen }) => {
           })}
         </div>
       </div>
+      <CreatePersoni
+      personType={personType}
+      setIsOpenP={setIsOpenP}
+      isOpenP={isOpenP}
+      />
     </div>
   ) : (
     ""

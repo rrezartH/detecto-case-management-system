@@ -14,6 +14,7 @@ namespace Detecto.API.Data.DTOs.PersonatDTOs
         public string EKaluara { get; set; } = null!;
         public List<DeklarataDTO> Deklaratat { get; set; } = null!;
         public List<GjurmaBiologjikeDTO> GjurmetBiologjike { get; set; } = null!;
+        public int CaseId { get; set; }
     }
 
     public class UpdatePersoniDTO
