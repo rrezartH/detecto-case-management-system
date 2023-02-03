@@ -87,13 +87,24 @@ namespace Detecto.API.Data.Services.Implementation
 
         public async Task<string> Compare(int d1Id, int d2Id)
         {
+            Deklarata d1 = await _context.Deklaratat.FindAsync(d1Id);
+            Deklarata d2 = await _context.Deklaratat.FindAsync(d2Id);
+
+            if (d1 == null)
+                return "Deklarata e parë është e zbrazët!!";
+            if (d2 == null)
+                return "Deklarata e dytë është e zbrazët!!";
+
             var deklarata1 = (await GetPerbajtjaEDeklarates(d1Id)).Value;
             var deklarata2 = (await GetPerbajtjaEDeklarates(d2Id)).Value;
+
+            if (d1.PersoniId != d2.PersoniId)
+                return "Deklaratat nuk janë nga i njejti person!!";            
+
             string[] str1Words = deklarata1.ToLower().Split(' ');
             string[] str2Words = deklarata2.ToLower().Split(' ');
             var uniqueWords = str2Words.Except(str1Words).ToList();
 
-            // Do whatever you want with uniqueWords instead
             return "Deklarata e parë -> " + deklarata1 + "\n" 
                 + "Dallimet e deklaratës së dytë nga ajo e para -> "
                 + $"{String.Join(" ", uniqueWords)}";
