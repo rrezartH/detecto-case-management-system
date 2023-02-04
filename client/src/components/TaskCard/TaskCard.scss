@@ -1,7 +1,8 @@
-.card{
+.cardT{
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif !important;
   padding: 20px;
   max-width: 800px;
+  justify-content: space-between;
   background: #B0C2FF !important;
 }
 
@@ -17,14 +18,14 @@
  
 }
 
-.card-button{
+.cardT-button{
   margin-left: auto;
   margin-right: 0px;
   margin-top: auto;
   margin-bottom: 10px;
 }
 
-.card-button .button {
+.cardT-button .button {
   padding: 10px 30px 10px 30px;
   border: none;
   color: white;
@@ -37,34 +38,37 @@
   margin-top: 10%;
 }
 
-.card-id{
+.cardT-id{
+  padding-left: 5px;
   font-size: 10px;
-  color: #aaa;
+  color: rgba(0, 0, 0, 0.326);
+  text-align: left !important;
 }
 
-.card-date{
+.cardT-date{
   font-size: 10px;
   color: rgba(0, 0, 0, 0.544);
   padding: 5px;
-  
+  text-align: left !important;
 
 }
 
-.card-details{
+.cardT-details{
   font-size: 12px;
   color: rgba(55, 55, 55, 0.844);
   padding: 5px;
   font-weight: 100 !important;
+  text-align: left !important;
 }
 
-.card-status{
+.cardT-status{
   font-size: 18px;
   color: rgba(0, 0, 0, 0.450);
   border-left: 2px solid rgba(0, 0, 0, 0.644);
   padding: 5px;
 }
 
-.card-title{
+.cardT-title{
   font-size: 18px;
   color: black;
   padding: 5px;
@@ -78,6 +82,6 @@
   color: #00176a !important;
 }
 
-.card-due{
+.cardT-due{
   font-size: 16px;
 }
