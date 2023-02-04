@@ -45,11 +45,5 @@ namespace Detecto.API.Data.Controllers.Personat
         {
             return await _viktimaService.UpdateViktima(id, updateViktimaDTO);
         }
-
-        [HttpDelete("viktimen/{id}")]
-        public async Task<ActionResult> DeleteViktima(int id)
-        {
-            return await _viktimaService.DeleteViktima(id);
-        }
     }
 }

@@ -47,22 +47,10 @@ namespace Detecto.API.Data.Controllers.Personat
             return await _iDyshuariService.AddTeDyshuarin(iDyshuariDto);
         }
 
-        /*[HttpPost("shto-deklarata")]
-        public async Task<ActionResult> AddDeklarata(DeklarataDTO deklarataDTO)
-        {
-            return await _iDyshuariService.AddDeklarata(deklarataDTO);
-        }*/
-
         [HttpPut("te-dyshuarin/{id}")]
         public async Task<ActionResult> UpdateTeDyshuarin(int id, UpdateiDyshuariDTO UpdateiDyshuariDto)
         {
             return await _iDyshuariService.UpdateTeDyshuarin(id, UpdateiDyshuariDto);
-        }
-
-        [HttpDelete("te-dyshuarin/{id}")]
-        public async Task<ActionResult> DeleteTeDyshuarin(int id)
-        {
-            return await _iDyshuariService.DeleteTeDyshuarin(id);
         }
     }
 }

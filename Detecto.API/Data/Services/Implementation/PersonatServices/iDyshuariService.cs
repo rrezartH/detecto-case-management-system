@@ -10,7 +10,7 @@ using Detecto.API.Data.DTOs;
 
 namespace Detecto.API.Data.Services.Implementation.PersonatServices
 {
-    public class iDyshuariService : PalaService, IiDyshuariService, GetInfo
+    public class iDyshuariService : PalaService, IiDyshuariService
     {
         private readonly DetectoDbContext _context;
         private readonly IMapper _mapper;
@@ -73,12 +73,6 @@ namespace Detecto.API.Data.Services.Implementation.PersonatServices
             return new OkObjectResult("I dyshuari u shtua me sukses!");
         }
 
-        /*public async Task<ActionResult> AddDeklarata(DeklarataDTO deklarataDTO)
-        {
-            DeklarataService d = new DeklarataService(_context, _mapper);
-            return await d.AddDeklarata(deklarataDTO);
-        }*/
-
         public async Task<ActionResult> UpdateTeDyshuarin(int id, UpdateiDyshuariDTO updateiDyshuariDto)
         {
             if (updateiDyshuariDto == null)
@@ -101,19 +95,11 @@ namespace Detecto.API.Data.Services.Implementation.PersonatServices
             return new OkObjectResult("I dyshuari u përditësua me sukses!");
         }
 
-        public async Task<ActionResult> DeleteTeDyshuarin(int id)
-        {
-            var dbIDyshuari = await _context.TeDyshuarit.FindAsync(id);
-            if (dbIDyshuari == null)
-                return new NotFoundObjectResult("I dyshuari nuk ekziston!!");
-
-            _context.TeDyshuarit.Remove(dbIDyshuari);
-            await _context.SaveChangesAsync();
-            return new OkObjectResult("I dyshuari u fshi me sukses!");
-        }
-
-        //Strategy Pattern
-        //Metoda GetInfo është metodë e klasës bazë, vetëm se tek kjo nënklasë bëhet override!
+        /*
+         * Strategy Pattern
+         * Metoda GetInfo është metodë e interface-it GetInfo. 
+         * Përmes kësaj metode arrijmë të implementojmë Strategy Patternin.
+         */
         public async Task<ActionResult<string>> GetInfo(int id)
         {
             var dbIDyshuari = await _context.TeDyshuarit.FindAsync(id);

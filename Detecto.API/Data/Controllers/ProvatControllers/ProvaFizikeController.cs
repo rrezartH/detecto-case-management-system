@@ -59,12 +59,5 @@ namespace Detecto.API.Data.Controllers.Provat
         {
             return await _provaFizikeService.UpdateProvaFizike(id, updateProvaDTO);
         }
-
-        [HttpDelete("proven-fizike/{id}")]
-        public async Task<ActionResult> DeleteProvaFizike(int id)
-        {
-            return await _provaFizikeService.DeleteProvaFizike(id);
-        }
-
     }
 }

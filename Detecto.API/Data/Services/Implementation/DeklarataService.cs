@@ -97,15 +97,55 @@ namespace Detecto.API.Data.Services.Implementation
 
             var deklarata1 = (await GetPerbajtjaEDeklarates(d1Id)).Value;
             var deklarata2 = (await GetPerbajtjaEDeklarates(d2Id)).Value;
-
+            
             if (d1.PersoniId != d2.PersoniId)
-                return "Deklaratat nuk janë nga i njejti person!!";            
+                return "Deklaratat nuk janë nga i njejti person!!";
+            /*
+             * // API request payload
+            string API_KEY = "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";
+            string endpoint = "https://api.openai.com/v1/models/text-davinci-002/engines/text-curie/jobs";
+
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Add("Authorization", $"Bearer {API_KEY}");
+
+            // Define the input for the API
+            var input = new
+            {
+                prompt = "Compare the semantics of the following two strings:",
+                strings = new[] { deklarata1, deklarata2 }
+            };
+
+            // Serialize the input to a JSON string
+            var content = new StringContent(JsonConvert.SerializeObject(input), Encoding.UTF8, "application/json");
+
+            // Make the API request
+            var response = await client.PostAsync(endpoint, content);
+
+            // Check if the API call was successful
+            if (response.IsSuccessStatusCode)
+            {
+                // Read the response content
+                var responseContent = await response.Content.ReadAsStringAsync();
+
+                // Deserialize the response content to a dynamic object
+                dynamic responseData = JsonConvert.DeserializeObject(responseContent);
+
+                // Extract the comparison result from the response
+                bool isSemanticMatch = responseData.result;
+
+                return (isSemanticMatch ? "The semantics of the two strings are the same." : "The semantics of the two strings are different.");
+            }
+            else
+            {
+                return ($"The API request failed with status code {(int)response.StatusCode}.");
+            }
+            */
 
             string[] str1Words = deklarata1.ToLower().Split(' ');
             string[] str2Words = deklarata2.ToLower().Split(' ');
             var uniqueWords = str2Words.Except(str1Words).ToList();
 
-            return "Deklarata e parë -> " + deklarata1 + "\n" 
+            return "Deklarata e parë -> " + deklarata1 + "\n"
                 + "Dallimet e deklaratës së dytë nga ajo e para -> "
                 + $"{String.Join(" ", uniqueWords)}";
         }

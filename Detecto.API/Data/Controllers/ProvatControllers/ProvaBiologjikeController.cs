@@ -40,12 +40,6 @@ namespace Detecto.API.Data.Controllers.ProvatControllers
             return await _provaBiologjikeService.UpdateProvaBiologjike(id, updateProvaDTO);
         }
 
-        [HttpDelete("proven-biologjike/{id}")]
-        public async Task<ActionResult> DeleteProvaBiologjike(int id)
-        {
-            return await _provaBiologjikeService.DeleteProvaBiologjike(id);
-        }
-
         [HttpGet("krahaso-provat")]
         public async Task<ActionResult<List<GjurmaBiologjikeDTO>>> KrahasoProvat(int provaId, int personiId)
         {

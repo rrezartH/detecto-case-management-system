@@ -64,7 +64,7 @@ namespace Detecto.API.Data.Services.Implementation
             dbGjurma.Specifikimi = updateGjurmaBiologjikeDTO.Specifikimi ?? dbGjurma.Specifikimi;
             await _context.SaveChangesAsync();
 
-            return new OkObjectResult("Gjurma u shtua me sukses!");
+            return new OkObjectResult("Gjurma u përditësua me sukses!");
         }
 
         public async Task<ActionResult> DeleteGjurmenBiologjike(int id)

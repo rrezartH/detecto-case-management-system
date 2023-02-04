@@ -27,5 +27,16 @@ namespace Detecto.API.Data.Services.Implementation.ProvatServices
                 ? new NotFoundObjectResult("Prova nuk ekziston.")
                 : new OkObjectResult(mappedProva);
         }
+
+        public async Task<ActionResult> DeleteProva(int id)
+        {
+            var dbProva = await _context.Provat.FindAsync(id);
+            if (dbProva == null)
+                return new NotFoundObjectResult("Prova nuk ekziston!!");
+
+            _context.Provat.Remove(dbProva);
+            await _context.SaveChangesAsync();
+            return new OkObjectResult("Prova u fshi me sukses!");
+        }
     }
 }

@@ -84,17 +84,5 @@ namespace Detecto.API.Data.Services.Implementation.ProvatServices
 
             return new OkObjectResult("Prova u përditësua me sukses!");
         }
-
-        public async Task<ActionResult> DeleteProvaFizike(int id)
-        {
-            var dbProva = await _context.ProvatFizike.FindAsync(id);
-            if (dbProva == null)
-                return new NotFoundObjectResult("Prova nuk ekziston!!");
-
-            _context.ProvatFizike.Remove(dbProva);
-            await _context.SaveChangesAsync();
-            return new OkObjectResult("Prova u fshi me sukses!");
-        }
-
     }
 }

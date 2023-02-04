@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Detecto.API.Data.Services.Implementation.PersonatServices
 {
-    public class DeshmitariService : PalaService, IDeshmitariService, GetInfo
+    public class DeshmitariService : PalaService, IDeshmitariService
     {
         private readonly DetectoDbContext _context;
         private readonly IMapper _mapper;
@@ -62,7 +62,7 @@ namespace Detecto.API.Data.Services.Implementation.PersonatServices
             return dbDeshmitari.Dyshohet;
         }
 
-        public async Task SetDyshohet(int id)
+        private async Task SetDyshohet(int id)
         {
             var dbDeshmitari = await _context.Deshmitaret.FindAsync(id);
             if (dbDeshmitari == null)
@@ -113,19 +113,11 @@ namespace Detecto.API.Data.Services.Implementation.PersonatServices
             return new OkObjectResult("Dëshmitari u përditësua me sukses!");
         }
 
-        public async Task<ActionResult> DeleteDeshmitari(int id)
-        {
-            var dbDeshmitari = await _context.Deshmitaret.FindAsync(id);
-            if (dbDeshmitari == null)
-                return new NotFoundObjectResult("Dëshmitari nuk ekziston!!");
-
-            _context.Deshmitaret.Remove(dbDeshmitari);
-            await _context.SaveChangesAsync();
-            return new OkObjectResult("Dëshmitari u fshi me sukses!");
-        }
-
-        //Strategy Pattern
-        //Metoda GetInfo është metodë e klasës bazë, vetëm se tek kjo nënklasë bëhet override!
+        /*
+         * Strategy Pattern
+         * Metoda GetInfo është metodë e interface-it GetInfo. 
+         * Përmes kësaj metode arrijmë të implementojmë Strategy Patternin.
+         */
         public async Task<ActionResult<string>> GetInfo(int id)
         {
             var dbDeshmitari = await _context.Deshmitaret.FindAsync(id);
@@ -160,7 +152,7 @@ namespace Detecto.API.Data.Services.Implementation.PersonatServices
              * dhe inicializohet menjëher ashtu që të marr të njëjtat të dhëna si dëshmitari
              * vetëm se Dyshimi duhet të ndryshohet më vonë.             
              */
-            iDyshuariDTO dyshuari = new iDyshuariDTO()
+            iDyshuariDTO dyshuari = new ()
             {
                 Emri = deshmitari.Emri,
                 Gjinia = deshmitari.Gjinia,
@@ -183,7 +175,7 @@ namespace Detecto.API.Data.Services.Implementation.PersonatServices
              * Krijohet instancë e klasës iDyshuariService për ta përdorur metoden AddTeDyshuarin
              * ashtu që të mos implementohet logjika e njejt në dy klasa të ndryshme!
              */
-            iDyshuariService d = new iDyshuariService(_context, _mapper);
+            iDyshuariService d = new(_context, _mapper);
             await d.AddTeDyshuarin(dyshuari);
         }
     }

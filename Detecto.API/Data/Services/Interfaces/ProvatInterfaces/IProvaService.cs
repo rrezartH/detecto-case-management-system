@@ -7,5 +7,7 @@ namespace Detecto.API.Data.Services.Interfaces.ProvatInterfaces
     {
         public Task<ActionResult<List<ProvaDTO>>> GetProvat();
         public Task<ActionResult> GetProvaById(int id);
+
+        public Task<ActionResult> DeleteProva(int id);
     }
 }

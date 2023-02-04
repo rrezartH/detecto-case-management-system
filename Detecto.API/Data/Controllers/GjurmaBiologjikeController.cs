@@ -28,24 +28,6 @@ namespace Detecto.API.Data.Controllers
             return await _gjurmetBiologjikeService.GetGjurmaBiologjikeById(id);
         }
 
-        [HttpGet("gjurmet-e-personit/{id}")]
-        public async Task<ActionResult<List<GjurmaBiologjikeDTO>>> GetGjurmetEPersonit(int id)
-        {
-            return await _gjurmetBiologjikeService.GetGjurmetEPersonit(id);
-        }
-
-        [HttpPost("gjurmen-biologjike")]
-        public async Task<ActionResult> AddGjurmaBiologjike(GjurmaBiologjikeDTO gjurmaBiologjikeDTO)
-        {
-            return await _gjurmetBiologjikeService.AddGjurmaBiologjike(gjurmaBiologjikeDTO);
-        }
-
-        [HttpPut("gjurmen-biologjike/{id}")]
-        public async Task<ActionResult> UpdateGjurmaBiologjike(int id, UpdateGjurmaBiologjikeDTO updateGjurmaBiologjikeDTO)
-        {
-            return await _gjurmetBiologjikeService.UpdateGjurmaBiologjike(id, updateGjurmaBiologjikeDTO);
-        }
-
         [HttpDelete("gjurmen-biologjike/{id}")]
         public async Task<ActionResult> DeleteGjurmaBiologjike(int id)
         {

@@ -14,13 +14,11 @@ namespace Detecto.API.Data.Services.Implementation.ProvatServices
     {
         private readonly IMapper _mapper;
         private readonly DetectoDbContext _context;
-        private readonly IGjurmaBiologjikeService _gjurmaBiologjikeService;
 
-        public ProvaBiologjikeService(IMapper mapper, DetectoDbContext detectoDbContext, IGjurmaBiologjikeService gjurmaBiologjikeService)
+        public ProvaBiologjikeService(IMapper mapper, DetectoDbContext detectoDbContext)
         {
             _mapper = mapper;
             _context = detectoDbContext;
-            _gjurmaBiologjikeService = gjurmaBiologjikeService;
         }
 
         public async Task<ActionResult<List<ProvaBiologjikeDTO>>> GetProvatBiologjike() => 
@@ -67,17 +65,6 @@ namespace Detecto.API.Data.Services.Implementation.ProvatServices
             return new OkObjectResult("Prova u përditësua me sukses!");
         }
 
-        public async Task<ActionResult> DeleteProvaBiologjike(int id)
-        {
-            var dbProva = await _context.ProvatBiologjike.FindAsync(id);
-            if (dbProva == null)
-                return new NotFoundObjectResult("Prova nuk ekziston!!");
-
-            _context.ProvatBiologjike.Remove(dbProva);
-            await _context.SaveChangesAsync();
-            return new OkObjectResult("Prova u fshi me sukses!");
-        }
-
         public async Task<ActionResult<List<GjurmaBiologjikeDTO>>> Krahaso(int provaId, int personiId)
         {
             // Merr proven ne baze te provaId
@@ -86,11 +73,14 @@ namespace Detecto.API.Data.Services.Implementation.ProvatServices
             if(dbProva == null)
                 return new NotFoundObjectResult("Prova nuk ekziston!!");
 
+            GjurmaBiologjikeService gjurmaBiologjikeService = new (_context, _mapper);
             // Merr listen e Gjurmeve te nje personi ne baze te personiId
-            var result = await _gjurmaBiologjikeService.GetGjurmetEPersonit(personiId);
+            var result = await gjurmaBiologjikeService.GetGjurmetEPersonit(personiId);
             var objectList = result.Value;
+            if (objectList == null)
+                return new NotFoundObjectResult($"Nuk u gjetën gjurmë biologjike të personit {personiId}!!");
 
-            List<GjurmaBiologjikeDTO> gjurmet = new List<GjurmaBiologjikeDTO>();
+            List<GjurmaBiologjikeDTO> gjurmet = new();
             // Kontrollon nëse prova (dbProva) përshtatet me ndonjë "Lloji" dhe "Specifikimi" nga objektet në listë (objectList)
             foreach (var obj in objectList)
             {

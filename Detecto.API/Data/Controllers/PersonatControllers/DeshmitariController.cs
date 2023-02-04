@@ -61,12 +61,6 @@ namespace Detecto.API.Data.Controllers.Personat
             return await _deshmitariService.UpdateDeshmitari(id, updateDeshmitariDTO);
         }
 
-        [HttpDelete("deshmitari/{id}")]
-        public async Task<ActionResult> DeleteDeshmitari(int id)
-        {
-            return await _deshmitariService.DeleteDeshmitari(id);
-        }
-
         [HttpPatch("ruaj-si-i-dyshuar/{id}")]
         public async Task<ActionResult> RuajSiIDyshuar(int id)
         {

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Detecto.API.Data.Services.Implementation.PersonatServices
 {
-    public class ViktimaService : PalaService, IViktimaService, GetInfo
+    public class ViktimaService : PalaService, IViktimaService
     {
         private readonly DetectoDbContext _context;
         private readonly IMapper _mapper;
@@ -89,19 +89,11 @@ namespace Detecto.API.Data.Services.Implementation.PersonatServices
             return new OkObjectResult("Viktima u përditësua me sukses!");
         }
 
-        public async Task<ActionResult> DeleteViktima(int id)
-        {
-            var dbViktima = await _context.Viktimat.FindAsync(id);
-            if (dbViktima == null)
-                return new NotFoundObjectResult("Viktima nuk ekziston!!");
-
-            _context.Viktimat.Remove(dbViktima);
-            await _context.SaveChangesAsync();
-            return new OkObjectResult("Viktima u fshi me sukses!");
-        }
-
-        //Strategy Pattern
-        //Metoda GetInfo është metodë e klasës bazë, vetëm se tek kjo nënklasë bëhet override!
+        /*
+         * Strategy Pattern
+         * Metoda GetInfo është metodë e interface-it GetInfo. 
+         * Përmes kësaj metode arrijmë të implementojmë Strategy Patternin.
+         */
         public async Task<ActionResult<string>> GetInfo(int id)
         {
             var dbViktima = await _context.Viktimat.FindAsync(id);
