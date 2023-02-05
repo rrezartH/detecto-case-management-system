@@ -13,19 +13,19 @@ const PersonCard = ({ person, personType }) => {
       <p>E Kaluara: {person.eKaluara}</p>
       {personType === "viktimat" && (
         <>
-          <p>Date: {person.koha}</p>
-          <p>Manner: {person.menyra}</p>
-          <p>Situation: {person.gjendja}</p>
+          <p>Koha: {person.koha}</p>
+          <p>Menyra: {person.menyra}</p>
+          <p>Gjendja: {person.gjendja}</p>
         </>
       )}
       {personType === "deshmitaret" && (
         <>
-          <p>Observed: {person.vezhgohet ? "Po" : "Jo"}</p>
-          <p>Suspected: {person.dyshohet ? "Po" : "Jo"}</p>
-          <p>Relation with victim: {person.raportiMeViktimen}</p>
+          <p>A vëzhgohet: {person.vezhgohet ? "Po" : "Jo"}</p>
+          <p>A dyshohet: {person.dyshohet ? "Po" : "Jo"}</p>
+          <p>Raporti me viktimën: {person.raportiMeViktimen}</p>
         </>
       )}
-      {personType === "viktimat" && <p>Suspicion: {person.dyshimi}</p>}
+      {personType === "teDyshuarit" && <p>Dyshimi: {person.dyshimi}</p>}
     </div>
   );
 };

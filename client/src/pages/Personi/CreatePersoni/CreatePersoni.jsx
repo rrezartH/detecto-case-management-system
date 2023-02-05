@@ -6,7 +6,7 @@ import {
 } from "../../../components/formComponents/FormComponents";
 import agent from "../../../api/agents";
 
-const CreatePersoni = ({ person, personType, setIsOpenP, isOpenP }) => { 
+const CreatePersoni = ({ personType, setIsOpenP, isOpenP }) => { 
   const [personi, setPersoni] = useState({
     emri: "",
     gjinia: "",
@@ -15,8 +15,6 @@ const CreatePersoni = ({ person, personType, setIsOpenP, isOpenP }) => {
     vendbanimi: "",
     gjendjaMendore: "",
     eKaluara: "",
-    deklaratat: [],
-    gjurmetBiologjike: [],
     vendi: "",
     koha: "",
     menyra: "",
