@@ -21,9 +21,17 @@ const ProvaList = ({provaType, setIsOpenP, isOpenP}) => {
   };
 
   useEffect(() => {
-     agent.Provat.get().then((response) => {
-       setProvat(response);
-     });
+      console.log(provaType);
+      if(provaType === "ProvatFizike"){
+        agent["ProvatFizike"].get().then((response) => {
+          setProvat(response);
+        });
+      }
+      else {
+        agent.ProvatBiologjike.get().then((response) => {
+          setProvat(response)
+        });
+      }
    }, []);
 
   return isOpenP ? (
@@ -44,7 +52,7 @@ const ProvaList = ({provaType, setIsOpenP, isOpenP}) => {
           </button>
         )}
         {React.Children.toArray(
-          [provaType].map((provat) => (
+          provat.map((provat) => (
             <ProvaCard
               provaId={provat.id}
               emri={provat.emri}
