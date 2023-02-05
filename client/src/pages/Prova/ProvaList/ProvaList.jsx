@@ -5,7 +5,7 @@ import agent from "../../../api/agents";
 import CreateProvaB from "../CreateProva/CreateProvaB";
 import CreateProvaF from "../CreateProva/CreateProvaF";
 
-const ProvaList = () => { 
+const ProvaList = ({provaType, setIsOpen, isOpen}) => { 
   const [provat, setProvat] = useState([]);
   const [isOpenB, setIsOpenB] = useState(false);
   const [isOpenF, setIsOpenF] = useState(false);
@@ -18,21 +18,26 @@ const ProvaList = () => {
   };
 
   useEffect(() => {
-    agent.Provat.get().then((response) => {
-      setProvat(response);
-    });
-  }, []);
+     agent.Provat.get().then((response) => {
+       setProvat(response);
+     });
+   }, []);
 
   return (
     <>
       <h1>Provat</h1>
       <div className="card-layout">
-        <button className="card-layout__add" onClick={handleOpenB}>
-          Shto Provë Biologjike
-        </button>
-        <button className="card-layout__add" onClick={handleOpenF}>
-          Shto Provë Fizike
-        </button>
+        {provaType === "ProvatFizike" && (
+          <button className="card-layout__add" onClick={handleOpenF}>
+            Shto Provë Fizike
+          </button>
+        )}
+        {provaType === "ProvatBiologjike" && (
+          <button className="card-layout__add" onClick={handleOpenB}>
+            Shto Provë Biologjike
+          </button>
+        )}
+        
         {React.Children.toArray(
           provat.map((provat) => (
             <ProvaCard
@@ -45,8 +50,13 @@ const ProvaList = () => {
           ))
         )}
       </div>
-      <CreateProvaB setIsOpen={setIsOpenB} isOpen={isOpenB} />
-      <CreateProvaF setIsOpen={setIsOpenF} isOpen={isOpenF} />
+      {provaType === "ProvatFizike" && (
+        <CreateProvaF setIsOpen={setIsOpenF} isOpen={isOpenF} />
+      )}
+      {provaType === "ProvatBiologjike" && (
+        <CreateProvaB setIsOpen={setIsOpenB} isOpen={isOpenB} />
+      )}
+      
     </>
   );
 };

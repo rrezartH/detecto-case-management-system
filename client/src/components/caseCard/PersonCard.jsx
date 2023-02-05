@@ -4,6 +4,7 @@ import "./PersonCard.scss";
 const PersonCard = ({ person, personType }) => {
   return (
     <div className="person-card">
+      {console.log(person)}
       <h3>{person.emri}</h3>
       <p>Gjinia: {person.gjinia === "F" ? "Femer" : "Mashkull"}</p>
       <p>Profesioni: {person.profesioni}</p>
@@ -11,6 +12,11 @@ const PersonCard = ({ person, personType }) => {
       <p>Vendbanimi: {person.vendbanimi}</p>
       <p>Gjendja Mendore: {person.gjendjaMendore}</p>
       <p>E Kaluara: {person.eKaluara}</p>
+      <p>Deklaratat:</p>
+      {person.deklaratat.map((deklarata) => (
+        <p>Hello</p>
+        //<p>{deklarata.permbajtja}</p>
+      ))}
       {personType === "viktimat" && (
         <>
           <p>Koha: {person.koha}</p>

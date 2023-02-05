@@ -3,11 +3,15 @@ import "./case.scss";
 import { useParams } from "react-router-dom";
 import agent from "../../api/agents";
 import PersonPage from "./Persons/PersonPage";
+import ProvaCard from "../../components/provaCard/ProvaCard";
+import ProvaList from "../Prova/ProvaList/ProvaList";
 
 const Case = () => {
   let params = useParams();
   const [personType, setPersonType] = useState("");
+  const [provaType, setProvaType] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpenP, setIsOpenP] = useState(false);
   const [caseData, setCaseData] = useState({
     photo: "",
     title: "",
@@ -24,6 +28,10 @@ const Case = () => {
     setIsOpen((prev) => !prev);
   };
 
+  const handleOpenP = () => {
+    setIsOpenP((prev) => !prev);
+  };
+  
   useEffect(() => {
     agent.Cases.getById(params.caseId).then((response) => {
       setCaseData(response);
@@ -84,6 +92,32 @@ const Case = () => {
         personType={personType}
         setIsOpen={setIsOpen}
         isOpen={isOpen}
+      />
+      <div className="case-page__persons">
+        <h1>Provat</h1>
+        <div className="case-page__persons-list">
+          <button
+            onClick={() => {
+              handleOpenP();
+              setProvaType("ProvatBiologjike");
+            }}
+          >
+            ProvatBiologjike
+          </button>
+          <button
+            onClick={() => {
+              handleOpenP();
+              setProvaType("ProvatFizike");
+            }}
+          >
+            ProvatFizike
+          </button>
+        </div>
+      </div>
+      <ProvaList
+        provaType={provaType}
+        setIsOpenP={setIsOpenP}
+        isOpenP={isOpenP}
       />
     </div>
   );

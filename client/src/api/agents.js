@@ -17,7 +17,7 @@ const Cases = {
     create: (values) => requests.post(`Case/Case/case`, values)
 }
 
-const Deshmitaret = {
+const deshmitaret = {
     get: () => requests.get('Data/Deshmitari/deshmitaret'),
     create: (values) => requests.post(`Data/Deshmitari/deshmitar`, values)
 }
@@ -27,7 +27,7 @@ const teDyshuarit = {
     create: (values) => requests.post(`Data/IDyshuari/i-dyshuari`, values)
 }
 
-const Viktimat = {
+const viktimat = {
     get: () => requests.get('Data/Viktima/viktimat'),
     create: (values) => requests.post(`Data/Viktima/viktime`, values)
 }
@@ -59,9 +59,9 @@ const Tasks = {
 
 const agent = {
     Cases,
-    Deshmitaret,
+    deshmitaret,
     teDyshuarit,
-    Viktimat,
+    viktimat,
     Provat,
     ProvatBiologjike,
     ProvatFizike,
