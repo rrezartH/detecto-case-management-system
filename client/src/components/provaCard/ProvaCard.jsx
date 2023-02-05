@@ -1,5 +1,4 @@
 import "./provaCard.scss";
-// import { Link } from "react-router-dom";
 const ProvaCard = ({ provaId, emri, koha, vendndodhja, attachment }) => {
   return ( 
     <div className="card">

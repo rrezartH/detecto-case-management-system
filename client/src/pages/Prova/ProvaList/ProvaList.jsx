@@ -5,11 +5,14 @@ import agent from "../../../api/agents";
 import CreateProvaB from "../CreateProva/CreateProvaB";
 import CreateProvaF from "../CreateProva/CreateProvaF";
 
-const ProvaList = ({provaType, setIsOpen, isOpen}) => { 
+const ProvaList = ({provaType, setIsOpenP, isOpenP}) => { 
   const [provat, setProvat] = useState([]);
   const [isOpenB, setIsOpenB] = useState(false);
   const [isOpenF, setIsOpenF] = useState(false);
 
+  const handleClose = () => {
+    setIsOpenP((prev) => !prev);
+  };
   const handleOpenB = () => {
     setIsOpenB((prev) => !prev);
   };
@@ -23,10 +26,13 @@ const ProvaList = ({provaType, setIsOpen, isOpen}) => {
      });
    }, []);
 
-  return (
-    <>
-      <h1>Provat</h1>
-      <div className="card-layout">
+  return isOpenP ? (
+    <div className="popup">
+      <div className="popup__inner">
+        <button className="popup__close-button" onClick={handleClose}>
+          X
+        </button>
+        <div className="popup__card-grid">
         {provaType === "ProvatFizike" && (
           <button className="card-layout__add" onClick={handleOpenF}>
             Shto Provë Fizike
@@ -37,9 +43,8 @@ const ProvaList = ({provaType, setIsOpen, isOpen}) => {
             Shto Provë Biologjike
           </button>
         )}
-        
         {React.Children.toArray(
-          provat.map((provat) => (
+          [provaType].map((provat) => (
             <ProvaCard
               provaId={provat.id}
               emri={provat.emri}
@@ -49,6 +54,7 @@ const ProvaList = ({provaType, setIsOpen, isOpen}) => {
             />
           ))
         )}
+        </div>
       </div>
       {provaType === "ProvatFizike" && (
         <CreateProvaF setIsOpen={setIsOpenF} isOpen={isOpenF} />
@@ -56,8 +62,9 @@ const ProvaList = ({provaType, setIsOpen, isOpen}) => {
       {provaType === "ProvatBiologjike" && (
         <CreateProvaB setIsOpen={setIsOpenB} isOpen={isOpenB} />
       )}
-      
-    </>
+    </div>
+  ) : (
+    ""
   );
 };
 
