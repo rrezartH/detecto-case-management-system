@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Threading.Tasks;
 using Detecto.API.Case.Models;
 using Detecto.API.Case.DTOs;
 using Detecto.API.Configurations;
@@ -25,11 +25,13 @@ namespace Detecto.API.Case.Services
             return tasks.Select(task => new TaskDTO
             {
                 Id = task.Id,
+                //CaseId = task.CaseId,
                 Title = task.Title,
                 Details = task.Details,
                 Statusi = task.Statusi,
                 DateCreated = task.DateCreated,
-                DueDate = task.DueDate
+                DueDate = task.DueDate,
+
             });
         }
 
@@ -45,6 +47,7 @@ namespace Detecto.API.Case.Services
             return new TaskDTO
             {
                 Id = task.Id,
+                //CaseId = task.CaseId,
                 Title = task.Title,
                 Details = task.Details,
                 Statusi = task.Statusi,
@@ -92,11 +95,12 @@ namespace Detecto.API.Case.Services
         {
             var newTask = new DTask
             {
+                //CaseId = task.CaseId,
                 Title = task.Title,
                 Details = task.Details,
                 Statusi = task.Statusi,
                 DateCreated = DateTime.Now,
-                DueDate = task.DueDate
+                DueDate = task.DueDate,
             };
 
             _context.Tasks.Add(newTask);
