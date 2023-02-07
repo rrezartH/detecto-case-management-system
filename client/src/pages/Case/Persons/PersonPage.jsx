@@ -1,11 +1,11 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "../../../styles/popup.scss";
 import PersonCard from "../../../components/caseCard/PersonCard";
 import CreatePersoni from "../../Personi/CreatePersoni/CreatePersoni";
 
-const PersonPage = ({ personArray, personType, setIsOpen, isOpen, caseId}) => {
+const PersonPage = ({ personArray, personType, setIsOpen, isOpen, caseId }) => {
   const [isOpenP, setIsOpenP] = useState(false);
-  
+
   const handleClose = () => {
     setIsOpen((prev) => !prev);
   };
@@ -36,9 +36,9 @@ const PersonPage = ({ personArray, personType, setIsOpen, isOpen, caseId}) => {
         </div>
       </div>
       <CreatePersoni
-      personType={personType}
-      setIsOpenP={setIsOpenP}
-      isOpenP={isOpenP}
+        personType={personType}
+        setIsOpenP={setIsOpenP}
+        isOpenP={isOpenP}
       />
     </div>
   ) : (

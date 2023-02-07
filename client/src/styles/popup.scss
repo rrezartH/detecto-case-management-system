@@ -10,8 +10,6 @@
   overflow: auto;
   transition: all 0.2s ease-in-out;
 
-  
-
   &__close-button {
     position: absolute;
     right: 0;
@@ -53,6 +51,7 @@
 
     button {
       color: white;
+      background-color: #00176a;
       height: 3rem;
       font-weight: bolder;
       transition: all 0.2s ease-in-out;
@@ -64,5 +63,3 @@
     }
   }
 }
-
-

@@ -2,11 +2,11 @@ import { useState } from "react";
 import "../../../styles/popup.scss";
 import {
   FormInput,
-  FormSelectBool
+  FormSelectBool,
 } from "../../../components/formComponents/FormComponents";
 import agent from "../../../api/agents";
 
-const CreatePersoni = ({ personType, setIsOpenP, isOpenP }) => { 
+const CreatePersoni = ({ person, personType, setIsOpenP, isOpenP }) => {
   const [personi, setPersoni] = useState({
     emri: "",
     gjinia: "",
@@ -25,7 +25,7 @@ const CreatePersoni = ({ personType, setIsOpenP, isOpenP }) => {
     vezhgohet: false,
     dyshohet: false,
     Dyshimi: "",
-    caseId: ""
+    caseId: "",
   });
 
   const handleClose = () => {
@@ -35,11 +35,10 @@ const CreatePersoni = ({ personType, setIsOpenP, isOpenP }) => {
   const handleChange = (e) => {
     const name = e.target.name;
     let value = e.target.value;
-    if(value === "true"){
-      value = true
-    }
-    else if(value === "false"){
-      value = false
+    if (value === "true") {
+      value = true;
+    } else if (value === "false") {
+      value = false;
     }
     setPersoni((prev) => {
       return { ...prev, [name]: value };
@@ -48,9 +47,21 @@ const CreatePersoni = ({ personType, setIsOpenP, isOpenP }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    agent[personType].create(personi).catch(function (error) {
-      console.log(error.response.data);
-    });
+    if (personType === "viktimat") {
+      agent.Viktimat.create(personi).catch(function (error) {
+        console.log(error.response.data);
+        console.log(personi);
+      });
+    } else if (personType === "teDyshuarit") {
+      agent.teDyshuarit.create(personi).catch(function (error) {
+        console.log(error.response.data);
+      });
+    } else if (personType === "deshmitaret") {
+      console.log(personi);
+      agent.Deshmitaret.create(personi).catch(function (error) {
+        console.log(error.response.data);
+      });
+    }
   };
 
   return isOpenP ? (

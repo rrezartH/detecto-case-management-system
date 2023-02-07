@@ -1,6 +1,5 @@
 ﻿using Detecto.API.Case.Models;
 using Detecto.API.Case.Services.Interfaces;
-using Detecto.API.Configurations;
 
 namespace Detecto.API.Case.Services.Implementation
 {

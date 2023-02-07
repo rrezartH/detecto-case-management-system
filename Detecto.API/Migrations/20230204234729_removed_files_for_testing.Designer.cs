@@ -4,6 +4,7 @@ using Detecto.API.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Detecto.API.Migrations
 {
     [DbContext(typeof(DetectoDbContext))]
-    partial class DetectoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230204234729_removed_files_for_testing")]
+    partial class removed_files_for_testing
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -97,10 +99,6 @@ namespace Detecto.API.Migrations
                     b.Property<DateTime>("DateUploaded")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<byte[]>("FileData")
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
@@ -113,9 +111,7 @@ namespace Detecto.API.Migrations
 
                     b.HasIndex("DCaseId");
 
-                    b.ToTable("Files");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("DFile");
+                    b.ToTable("DFile");
                 });
 
             modelBuilder.Entity("Detecto.API.Case.Models.DTask", b =>
@@ -310,29 +306,6 @@ namespace Detecto.API.Migrations
                     b.HasIndex("DCaseId");
 
                     b.HasDiscriminator().HasValue("CaseTask");
-                });
-
-            modelBuilder.Entity("Detecto.API.Case.Models.PDF", b =>
-                {
-                    b.HasBaseType("Detecto.API.Case.Models.DFile");
-
-                    b.Property<long>("FileSize")
-                        .HasColumnType("bigint");
-
-                    b.HasDiscriminator().HasValue("PDF");
-                });
-
-            modelBuilder.Entity("Detecto.API.Case.Models.PNG", b =>
-                {
-                    b.HasBaseType("Detecto.API.Case.Models.DFile");
-
-                    b.Property<double>("Height")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Width")
-                        .HasColumnType("float");
-
-                    b.HasDiscriminator().HasValue("PNG");
                 });
 
             modelBuilder.Entity("Detecto.API.Data.Models.Deshmitari", b =>

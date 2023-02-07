@@ -25,6 +25,8 @@ namespace Detecto.API.Configurations
             CreateMap<ProvaBiologjike, ProvaBiologjikeDTO>().ReverseMap();
             CreateMap<GjurmaBiologjike, GjurmaBiologjikeDTO>().ReverseMap();
             CreateMap<Deklarata, DeklarataDTO>().ReverseMap();
+            CreateMap<DFile, FileDTO>().ReverseMap();
+           // CreateMap<List<PNG>, List<CasePngDTO>>().ReverseMap();
         }
     }
 }

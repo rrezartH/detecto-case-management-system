@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./case-list.scss";
-import { CaseCard } from "../../components";
-import agent from "../../api/agents";
-import CreateCase from "../Case/CreateCase/CreateCase";
+import { CaseCard } from "../../../components";
+import agent from "../../../api/agents";
+import CreateCase from "../CreateCase/CreateCase";
 
 const CaseList = () => {
   const [cases, setCases] = useState([]);

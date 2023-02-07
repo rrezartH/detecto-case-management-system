@@ -26,5 +26,7 @@ namespace Detecto.API.Configurations
         public DbSet<GjurmaBiologjike> GjurmetBiologjike { get; set; } = null!;
         public DbSet<Deklarata> Deklaratat { get; set; } = null!;
         public DbSet<DFile> Files { get; set; } = null!;
+        public DbSet<PNG> PNGs { get; set; } = null!;
+        public DbSet<PDF> PDFs { get; set; } = null!;
     }
 }

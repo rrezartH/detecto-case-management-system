@@ -5,6 +5,7 @@ import agent from "../../api/agents";
 import PersonPage from "./Persons/PersonPage";
 import ProvaCard from "../../components/provaCard/ProvaCard";
 import ProvaList from "../Prova/ProvaList/ProvaList";
+import Images from "./Files/Images";
 
 const Case = () => {
   let params = useParams();
@@ -12,6 +13,7 @@ const Case = () => {
   const [provaType, setProvaType] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenP, setIsOpenP] = useState(false);
+  const [isFileOpen, setIsFileOpen] = useState(false);
   const [caseData, setCaseData] = useState({
     photo: "",
     title: "",
@@ -24,14 +26,17 @@ const Case = () => {
     deshmitaret: [],
     teDyshuarit: [],
   });
+
   const handleOpen = () => {
     setIsOpen((prev) => !prev);
   };
-
+  const handleOpenFiles = () => {
+    setIsFileOpen((prev) => !prev);
+  };
   const handleOpenP = () => {
     setIsOpenP((prev) => !prev);
   };
-  
+
   useEffect(() => {
     agent.Cases.getById(params.caseId).then((response) => {
       setCaseData(response);
@@ -58,6 +63,20 @@ const Case = () => {
         <h1>Details</h1>
         <p> {caseData.details}</p>
       </div>
+      <div className="case-page__files">
+        <button
+          onClick={() => {
+            handleOpenFiles();
+          }}
+        >
+          Files
+        </button>
+      </div>
+      <Images
+        setIsFileOpen={setIsFileOpen}
+        caseId={params.caseId}
+        isFileOpen={isFileOpen}
+      />
       <div className="case-page__persons">
         <h1>Palet</h1>
         <div className="case-page__persons-list">

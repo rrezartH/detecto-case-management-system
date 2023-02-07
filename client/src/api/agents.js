@@ -17,6 +17,10 @@ const Cases = {
     create: (values) => requests.post(`Case/Case/case`, values)
 }
 
+const Files = {
+    getCaseImages: (id) => requests.get(`/File/get-case-png/${id}`)
+}
+
 const deshmitaret = {
     get: () => requests.get('Data/Deshmitari/deshmitaret'),
     create: (values) => requests.post(`Data/Deshmitari/deshmitar`, values)
@@ -59,6 +63,7 @@ const Tasks = {
 
 const agent = {
     Cases,
+    Files,
     deshmitaret,
     teDyshuarit,
     viktimat,
