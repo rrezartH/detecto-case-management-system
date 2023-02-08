@@ -27,7 +27,7 @@ const PersonPage = ({ personArray, personType, setIsOpen, isOpen, caseId }) => {
           {personArray.map((person) => {
             return (
               <PersonCard
-                key={person.emri}
+                key={person.id}
                 person={person}
                 personType={personType}
               />

@@ -133,11 +133,15 @@ const Case = () => {
           </button>
         </div>
       </div>
-      <ProvaList
-        provaType={provaType}
-        setIsOpenP={setIsOpenP}
-        isOpenP={isOpenP}
-      />
+      {isOpenP != false ? (
+        <ProvaList
+          provaType={provaType}
+          setIsOpenP={setIsOpenP}
+          isOpenP={isOpenP}
+        />
+      ) : (
+        " "
+      )}
     </div>
   );
 };

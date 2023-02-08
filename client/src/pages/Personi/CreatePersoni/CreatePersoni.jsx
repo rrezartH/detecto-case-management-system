@@ -47,21 +47,9 @@ const CreatePersoni = ({ person, personType, setIsOpenP, isOpenP }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (personType === "viktimat") {
-      agent.Viktimat.create(personi).catch(function (error) {
-        console.log(error.response.data);
-        console.log(personi);
-      });
-    } else if (personType === "teDyshuarit") {
-      agent.teDyshuarit.create(personi).catch(function (error) {
-        console.log(error.response.data);
-      });
-    } else if (personType === "deshmitaret") {
-      console.log(personi);
-      agent.Deshmitaret.create(personi).catch(function (error) {
-        console.log(error.response.data);
-      });
-    }
+    agent[personType].create(personi).catch(function (error) {
+      console.log(error.response.data);
+    });
   };
 
   return isOpenP ? (
@@ -121,7 +109,7 @@ const CreatePersoni = ({ person, personType, setIsOpenP, isOpenP }) => {
             placeholder="E kaluara"
             onChange={handleChange}
           />
-          {personType === "Deshmitaret" && (
+          {personType === "deshmitaret" && (
             <>
               <FormInput
                 label="Raporti me viktimen"
@@ -144,7 +132,7 @@ const CreatePersoni = ({ person, personType, setIsOpenP, isOpenP }) => {
               />
             </>
           )}
-          {personType === "Viktimat" && (
+          {personType === "viktimat" && (
             <>
               <FormInput
                 label="Vendi"

@@ -21,18 +21,10 @@ const ProvaList = ({provaType, setIsOpenP, isOpenP}) => {
   };
 
   useEffect(() => {
-      console.log(provaType);
-      if(provaType === "ProvatFizike"){
-        agent["ProvatFizike"].get().then((response) => {
-          setProvat(response);
-        });
-      }
-      else {
-        agent.ProvatBiologjike.get().then((response) => {
-          setProvat(response)
-        });
-      }
-   }, []);
+      agent[provaType].get().then((response) => {
+        setProvat(response)
+      });
+   }, [provaType]);
 
   return isOpenP ? (
     <div className="popup">
