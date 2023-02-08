@@ -113,19 +113,14 @@ namespace Detecto.API.Data.Services.Implementation.PersonatServices
             return new OkObjectResult("Dëshmitari u përditësua me sukses!");
         }
 
-        /*
-         * Strategy Pattern
-         * Metoda GetInfo është metodë e interface-it GetInfo. 
-         * Përmes kësaj metode arrijmë të implementojmë Strategy Patternin.
-         */
         public async Task<ActionResult<string>> GetInfo(int id)
         {
             var dbDeshmitari = await _context.Deshmitaret.FindAsync(id);
-            return dbDeshmitari == null 
+            return dbDeshmitari == null
                 ? "Dëshmitari nuk ekziston!!"
                 : $"Deshmitari: Emri -> " +
-                dbDeshmitari.Emri + ", Profesioni -> " + dbDeshmitari.Profesioni + ", Vendbanimi -> " + dbDeshmitari.Vendbanimi 
-                + ", " + "\nRaporti me viktimen -> " + dbDeshmitari.RaportiMeViktimen + ", A vëzhgohet? " 
+                dbDeshmitari.Emri + ", Profesioni -> " + dbDeshmitari.Profesioni + ", Vendbanimi -> " + dbDeshmitari.Vendbanimi
+                + ", " + "\nRaporti me viktimen -> " + dbDeshmitari.RaportiMeViktimen + ", A vëzhgohet? "
                 + dbDeshmitari.Vezhgohet + ", A dyshohet? " + dbDeshmitari.Dyshohet + ".";
         }
 
