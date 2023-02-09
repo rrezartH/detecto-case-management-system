@@ -5,7 +5,7 @@ import agent from "../../../api/agents";
 import CreateProvaB from "../CreateProva/CreateProvaB";
 import CreateProvaF from "../CreateProva/CreateProvaF";
 
-const ProvaList = ({provaType, setIsOpenP, isOpenP}) => { 
+const ProvaList = ({ provaType, setIsOpenP, isOpenP }) => {
   const [provat, setProvat] = useState([]);
   const [isOpenB, setIsOpenB] = useState(false);
   const [isOpenF, setIsOpenF] = useState(false);
@@ -21,10 +21,10 @@ const ProvaList = ({provaType, setIsOpenP, isOpenP}) => {
   };
 
   useEffect(() => {
-      agent[provaType].get().then((response) => {
-        setProvat(response)
-      });
-   }, [provaType]);
+    agent[provaType].get().then((response) => {
+      setProvat(response);
+    });
+  }, [provaType]);
 
   return isOpenP ? (
     <div className="popup">
@@ -33,27 +33,27 @@ const ProvaList = ({provaType, setIsOpenP, isOpenP}) => {
           X
         </button>
         <div className="popup__card-grid">
-        {provaType === "ProvatFizike" && (
-          <button className="card-layout__add" onClick={handleOpenF}>
-            Shto Provë Fizike
-          </button>
-        )}
-        {provaType === "ProvatBiologjike" && (
-          <button className="card-layout__add" onClick={handleOpenB}>
-            Shto Provë Biologjike
-          </button>
-        )}
-        {React.Children.toArray(
-          provat.map((provat) => (
-            <ProvaCard
-              provaId={provat.id}
-              emri={provat.emri}
-              koha={provat.koha}
-              vendndodhja={provat.vendndodhja}
-              attachment={provat.attachment}
-            />
-          ))
-        )}
+          {provaType === "ProvatFizike" && (
+            <button className="card-layout__add" onClick={handleOpenF}>
+              Shto Provë Fizike
+            </button>
+          )}
+          {provaType === "ProvatBiologjike" && (
+            <button className="card-layout__add" onClick={handleOpenB}>
+              Shto Provë Biologjike
+            </button>
+          )}
+          {React.Children.toArray(
+            provat.map((provat) => (
+              <ProvaCard
+                provaId={provat.id}
+                emri={provat.emri}
+                koha={provat.koha}
+                vendndodhja={provat.vendndodhja}
+                attachment={provat.attachment}
+              />
+            ))
+          )}
         </div>
       </div>
       {provaType === "ProvatFizike" && (

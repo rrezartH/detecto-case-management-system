@@ -4,6 +4,21 @@
   align-items: center;
   margin-top: 30px;
 
+  &__files {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    button {
+      width: 30%;
+      padding: 16px;
+      background-color: #00176a;
+      color: white;
+      font-size: 2rem;
+      font-weight: bolder;
+      text-align: left;
+    }
+  }
+
   h1 {
     color: #00176a;
     font-size: 3rem;
@@ -52,6 +67,23 @@
     flex-direction: column;
     text-align: left;
     margin-top: 30px;
+
+    &-prova {
+      display: flex;
+      justify-content: flex-start;
+      gap: 5%;
+      height: 8vw;
+
+      button {
+        width: 30%;
+        padding: 16px;
+        background-color: #00176a;
+        color: white;
+        font-size: 2rem;
+        font-weight: bolder;
+        text-align: left;
+      }
+    }
 
     &-list {
       display: flex;

@@ -1,6 +1,5 @@
 ﻿using Detecto.API.Case.Models;
 using Detecto.API.Data.DTOs.PersonatDTOs;
-using Detecto.API.Data.Models;
 
 namespace Detecto.API.Case.DTOs
 {

@@ -1,6 +1,4 @@
-﻿using Detecto.API.Case.Services.Interfaces;
-
-namespace Detecto.API.Case.Models
+﻿namespace Detecto.API.Case.Models
 {
     public class DFile
     {
@@ -11,4 +9,3 @@ namespace Detecto.API.Case.Models
         public int CaseId { get; set; }
     }
 }
-

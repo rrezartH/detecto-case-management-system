@@ -18,7 +18,8 @@ const Cases = {
 }
 
 const Files = {
-    getCaseImages: (id) => requests.get(`/File/get-case-png/${id}`)
+    getCaseImages: (id) => requests.get(`/File/get-case-png/${id}`),
+    uploadfile: (id, values) => requests.post(`/File/upload/${id}`, values)
 }
 
 const deshmitaret = {

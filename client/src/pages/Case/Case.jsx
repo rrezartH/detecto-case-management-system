@@ -114,7 +114,7 @@ const Case = () => {
       />
       <div className="case-page__persons">
         <h1>Provat</h1>
-        <div className="case-page__persons-list">
+        <div className="case-page__persons-prova">
           <button
             onClick={() => {
               handleOpenP();

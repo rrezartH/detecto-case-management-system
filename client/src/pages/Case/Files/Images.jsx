@@ -1,22 +1,25 @@
 import { useState, useEffect } from "react";
 import "../../../styles/popup.scss";
 import agent from "../../../api/agents";
+import ImageCard from "./ImageCard";
+import ImageUpload from "./ImageUpload";
 
 const Images = ({ caseId, setIsFileOpen, isFileOpen }) => {
   const [images, setImages] = useState([]);
-
+  const [isFileUploadOpen, setIsFileUploadOpen] = useState(false);
   const handleClose = () => {
     setIsFileOpen((prev) => !prev);
   };
 
   const handleOpen = () => {
-    setIsFileOpen((prev) => !prev);
+    setIsFileUploadOpen((prev) => !prev);
   };
   useEffect(() => {
+    console.log("i run");
     agent.Files.getCaseImages(caseId).then((response) => {
       setImages(response);
-    }, []);
-  });
+    });
+  }, []);
 
   return isFileOpen ? (
     <div className="popup">
@@ -26,17 +29,18 @@ const Images = ({ caseId, setIsFileOpen, isFileOpen }) => {
         </button>
         <div className="popup__card-grid">
           <button className="card-layout__add-case" onClick={handleOpen}>
-            Shto Personin
+            Shto Foto
           </button>
           {images.map((image) => (
-            <li key={image.id}>
-              <p>File name: {image.fileName}</p>
-              <p>Date uploaded: {image.dateUploaded}</p>
-              <img src={`data:image/png;base64,${image.fileData}`} />
-            </li>
+            <ImageCard key={image.id} image={image} />
           ))}
         </div>
       </div>
+      <ImageUpload
+        caseId={caseId}
+        setIsFileUploadOpen={setIsFileUploadOpen}
+        isFileUploadOpen={isFileUploadOpen}
+      />
     </div>
   ) : (
     ""
