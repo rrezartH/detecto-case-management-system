@@ -62,15 +62,6 @@ namespace Detecto.API.Data.Services.Implementation.PersonatServices
             return dbDeshmitari.Dyshohet;
         }
 
-        private async Task SetDyshohet(int id)
-        {
-            var dbDeshmitari = await _context.Deshmitaret.FindAsync(id);
-            if (dbDeshmitari == null)
-                 return;
-            dbDeshmitari.Dyshohet = true;
-            await _context.SaveChangesAsync();
-        }
-
         public async Task<ActionResult<bool>> AVezhgohet(int id)
         {
             var dbDeshmitari = await _context.Deshmitaret.FindAsync(id);
@@ -139,9 +130,18 @@ namespace Detecto.API.Data.Services.Implementation.PersonatServices
             return new OkObjectResult(dyshuari);
         }
 
+        private async Task SetDyshohet(int id)
+        {
+            var dbDeshmitari = await _context.Deshmitaret.FindAsync(id);
+            if (dbDeshmitari == null)
+                return;
+            dbDeshmitari.Dyshohet = true;
+            await _context.SaveChangesAsync();
+        }
+
 
         //Kjo metodë thirret nga metoda RuajSiIDyshuar për të konvertuar një dëshmitar në të dyshuar.
-        public iDyshuariDTO ConvertToiDyshuari(DeshmitariDTO deshmitari)
+        private iDyshuariDTO ConvertToiDyshuari(DeshmitariDTO deshmitari)
         {
             /*Krijohet një objekt i tipit iDyshuariDTO 
              * dhe inicializohet menjëher ashtu që të marr të njëjtat të dhëna si dëshmitari
@@ -164,7 +164,7 @@ namespace Detecto.API.Data.Services.Implementation.PersonatServices
 
 
         //Kjo metodë thirret nga metoda RuajSiIDyshuar për të shtyar një të dyshuar.
-        public async Task AddTeDyshuarin(iDyshuariDTO dyshuari)
+        private async Task AddTeDyshuarin(iDyshuariDTO dyshuari)
         {
             /*
              * Krijohet instancë e klasës iDyshuariService për ta përdorur metoden AddTeDyshuarin
