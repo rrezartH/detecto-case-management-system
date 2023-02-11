@@ -16,7 +16,7 @@ namespace Detecto.API.Case.Models
         public ICollection<Deshmitari>? Deshmitaret { get; set; }
         public ICollection<iDyshuari>? TeDyshuarit { get; set; }
 
-        public ICollection<CaseTask>? CaseTasks { get; set; }
+        public ICollection<DTask>? CaseTasks { get; set; }
         public ICollection<DFile>? Files { get; set; }
     }
 }

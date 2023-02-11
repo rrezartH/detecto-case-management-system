@@ -4,7 +4,7 @@ import { useState } from "react";
 import TaskPopup from "../../pages/Task/ViewTask/TaskPopup";
 
 // import { Link } from "react-router-dom";
-const TaskCard = ({ taskID,title,details, dateCreated, dueDate, statusi}) => {
+const TaskCard = ({ taskID,CaseId,title,details, dateCreated, dueDate, statusi}) => {
   const [showPopup, setShowPopup] = useState(false);
 
   const handleShowPopup = () => {
@@ -22,6 +22,7 @@ const TaskCard = ({ taskID,title,details, dateCreated, dueDate, statusi}) => {
 
       <div className="main-text column">
         <p className="cardT-id">ID: {taskID}</p>
+        <p className="cardT-id">caseID: {CaseId}</p>
         <div className="row">
         <h1 className="cardT-title">{title}</h1>
         
