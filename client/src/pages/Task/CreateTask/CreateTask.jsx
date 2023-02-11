@@ -10,14 +10,14 @@ import agent from "../../../api/agents";
 const CreateTask = ({ setIsOpen, isOpen }) => {
 
   const [Dcase, setDCase] = useState([]);
-  const [selectedCase, setSelectedCase] = useState();
+  const [selectedCase, setSelectedCase] = useState(0);
   const [task, setTask] = useState({
     title: "",
     details: "",
     dueDate: "",
     statusi: false,
     isCase: false,
-    // CaseId: selectedCase
+    CaseId: 0,
   });
 
   useEffect(() => {
@@ -34,9 +34,11 @@ const CreateTask = ({ setIsOpen, isOpen }) => {
     const name = e.target.name;
     const value =
       e.target.type === "checkbox" ? e.target.checked : e.target.value;
+      setSelectedCase(e.target.value)
     setTask((prev) => {
       return { ...prev, [name]: value };
     });
+    
   };
 
   const handleSubmit = (e) => {
@@ -117,7 +119,10 @@ const CreateTask = ({ setIsOpen, isOpen }) => {
         
                  {task.isCase ? (
                 <div className="select-container">
-                  <select value={selectedCase} onChange={e => setSelectedCase(e.target.value)}>
+                  <select
+                  name="CaseId"
+                  value={selectedCase} 
+                  onChange={handleChange}>
                     <option value="">Select a case</option>
                     {Dcase.map(caseItem => (
                       <option key={caseItem.id} value={caseItem.id}>
@@ -126,7 +131,10 @@ const CreateTask = ({ setIsOpen, isOpen }) => {
                       
                     ))}
                   </select>
-                  <div className="select-scroller">case id:{selectedCase}</div>
+                  <div className="select-scroller"  
+                  name="CaseId"
+                  value={selectedCase} 
+                  onChange={handleChange}>case id:{selectedCase}</div>
                 </div>
               ) : (
                 <></>

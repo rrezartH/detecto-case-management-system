@@ -25,7 +25,7 @@ namespace Detecto.API.Case.Services
             return tasks.Select(task => new TaskDTO
             {
                 Id = task.Id,
-                //CaseId = task.CaseId,
+                CaseId = task.CaseId,
                 Title = task.Title,
                 Details = task.Details,
                 Statusi = task.Statusi,
@@ -47,7 +47,7 @@ namespace Detecto.API.Case.Services
             return new TaskDTO
             {
                 Id = task.Id,
-                //CaseId = task.CaseId,
+                CaseId = task.CaseId,
                 Title = task.Title,
                 Details = task.Details,
                 Statusi = task.Statusi,
@@ -95,7 +95,7 @@ namespace Detecto.API.Case.Services
         {
             var newTask = new DTask
             {
-                //CaseId = task.CaseId,
+                CaseId = task.CaseId,
                 Title = task.Title,
                 Details = task.Details,
                 Statusi = task.Statusi,
