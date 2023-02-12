@@ -8,6 +8,8 @@ using Detecto.API.Data.Services.Implementation.ProvatServices;
 using Detecto.API.Data.Services.Interfaces;
 using Detecto.API.Data.Services.Interfaces.PersonatIntrefaces;
 using Detecto.API.Data.Services.Interfaces.ProvatInterfaces;
+using Detecto.API.Suspicion.Services.Implementations;
+using Detecto.API.Suspicion.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -41,6 +43,7 @@ builder.Services.AddScoped<ITaskService, TaskService>();
 builder.Services.AddScoped<IPala, PalaService>();
 builder.Services.AddScoped<ICaseService, CaseService>();
 builder.Services.AddScoped<IFileService, FileService>();
+builder.Services.AddScoped<IDyshimiService, DyshimiService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
