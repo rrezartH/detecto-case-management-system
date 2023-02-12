@@ -2,6 +2,8 @@
 using Detecto.API.Case.Models;
 
 using Microsoft.EntityFrameworkCore;
+using Detecto.API.Suspicion.DTOs;
+using Detecto.API.Suspicion.Models;
 
 namespace Detecto.API.Configurations
 {
@@ -15,6 +17,8 @@ namespace Detecto.API.Configurations
 
         public DbSet<DCase> Cases { get; set; } = null!;
         public DbSet<DTask> Tasks { get; set; } = null!;
+        public DbSet<Dyshimi> Dyshimet { get; set; } = null!;
+        public DbSet<Detektivi> Detektivet { get; set; } = null!;
         public DbSet<Detective> Detectives { get; set; } = null!;
         public DbSet<Personi> Personat { get; set; } = null!;
         public DbSet<Viktima> Viktimat { get; set; } = null!;
