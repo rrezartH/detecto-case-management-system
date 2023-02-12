@@ -115,6 +115,7 @@ namespace Detecto.API.Data.Services.Implementation.PersonatServices
                 + dbDeshmitari.Vezhgohet + ", A dyshohet? " + dbDeshmitari.Dyshohet + ".";
         }
 
+        //Këtu është implementuar Facade Pattern
 
         //Kjo metodë e bën zhvendosjen e një personi nga Dëshmitar në të dyshuar.
         public async Task<ActionResult> RuajSiIDyshuar(int id)
