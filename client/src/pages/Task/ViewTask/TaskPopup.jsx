@@ -49,99 +49,96 @@ import "./TaskPop.scss";
 import "../../../assets/style/toggle-switch.css";
 import agent from "../../../api/agents";
 
-
 const TaskPopup = ({ isOpen, setIsOpen, task }) => {
-const [title, setTitle] = useState(task.title);
-const [details, setDetails] = useState(task.details);
-const [dueDate, setDueDate] = useState(task.dueDate);
-const [statusi, setStatusi] = useState(task.statusi);
+  const [title, setTitle] = useState(task.title);
+  const [details, setDetails] = useState(task.details);
+  const [dueDate, setDueDate] = useState(task.dueDate);
+  const [statusi, setStatusi] = useState(task.statusi);
 
-const handleClose = () => {
-setIsOpen(false);
-};
+  const handleClose = () => {
+    setIsOpen(false);
+  };
 
-const handleSubmit = () => {
-const updatedTask = {
-...task,
-title: title,
-details: details,
-dueDate: dueDate,
-statusi: statusi
-};
-agent.Tasks.update(updatedTask, task.taskID);
-setIsOpen(false);
-window.location.reload();
-};
+  const handleSubmit = () => {
+    const updatedTask = {
+      ...task,
+      title: title,
+      details: details,
+      dueDate: dueDate,
+      statusi: statusi,
+    };
+    agent.Tasks.update(updatedTask, task.taskID);
+    setIsOpen(false);
+    window.location.reload();
+  };
 
-const handleChange = () => {
-  setStatusi(!statusi); 
-};
+  const handleChange = () => {
+    setStatusi(!statusi);
+  };
 
+  return isOpen ? (
+    <div className="popup">
+      <div className="popup__inner">
+        <button className="popup__close-button" onClick={handleClose}>
+          X
+        </button>
+        <div className="column content">
+          <h4 className="info">Task Information ID:{task.taskID}</h4>
 
-return isOpen ? (
-<div className="popup">
-<div className="popup__inner">
-<button className="popup__close-button" onClick={handleClose}>
-X
-</button>
-<div className="column content">
-      <h4 className="info">Task Information ID:{task.taskID}</h4>
-
-      <h1 className="">
-        <input
-          type="text"
-          value={title}
-          onChange={e => setTitle(e.target.value)}
-        />
-      </h1>
-      <div className="details">
-        <textarea
-          value={details}
-          onChange={e => setDetails(e.target.value)}
-        />
-      </div>
-      <div className="row parent">
-        <div className="column pop-button">
-          <p>
-            Due Date:
+          <h1 className="">
             <input
-              type="date"
-              value={dueDate}
-              onChange={e => setDueDate(e.target.value)}
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
             />
-          </p>
-        </div>
-        <div className="pop-button">
-        <div>
-            <label htmlFor="statusi" >
-              Is this task done:
-            </label>
-            <div className="toggler">
-            <label className="toggle-switch">
-              <input
-                type="checkbox"
-                id="statusi"
-                name="statusi"
-                checked={statusi}
-                onChange={handleChange}
-                className="toggle-switch__input"
-              />
-              <span className="slider round"></span>
-            </label>
+          </h1>
+          <div className="details">
+            <textarea
+              value={details}
+              onChange={(e) => setDetails(e.target.value)}
+            />
+          </div>
+          <div className="row parent">
+            <div className="column pop-button">
+              <p>
+                Due Date:
+                <input
+                  type="date"
+                  value={dueDate}
+                  onChange={(e) => setDueDate(e.target.value)}
+                />
+              </p>
+            </div>
+            <div className="pop-button">
+              <div>
+                <label htmlFor="statusi">Is this task done:</label>
+                <div className="toggler">
+                  <label className="toggle-switch">
+                    <input
+                      type="checkbox"
+                      id="statusiPop"
+                      name="statusiPop"
+                      checked={statusi}
+                      onChange={handleChange}
+                      className="toggle-switch__input"
+                    />
+                    <span className="slider round"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div className="pop-button">
+              <button name="update-task" onClick={handleSubmit}>
+                Update
+              </button>
             </div>
           </div>
         </div>
-        <div className="pop-button">
-          <button onClick={handleSubmit}>Update</button>
-        </div>
       </div>
     </div>
-  </div>
-  </div>
-
-) : (
-  ""
+  ) : (
+    ""
   );
-  };
-  
-  export default TaskPopup;
+};
+
+export default TaskPopup;

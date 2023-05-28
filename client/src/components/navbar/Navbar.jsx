@@ -8,13 +8,19 @@ const Navbar = () => {
       <img src={Logo} alt="logo" />
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link name="home" to="/">
+            Home
+          </Link>
         </li>
         <li>
-          <Link to="./cases">Cases</Link>
+          <Link name="cases" to="./cases">
+            Cases
+          </Link>
         </li>
         <li>
-          <Link to="./tasks">Tasks</Link>
+          <Link name="tasks" to="./tasks">
+            Tasks
+          </Link>
         </li>
         <li>Support</li>
         <li>Sign Out</li>

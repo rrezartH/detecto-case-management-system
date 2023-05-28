@@ -38,7 +38,9 @@ export const FormSelectBool = (props) => {
       <label htmlFor={props.name}>{props.label}</label>
       <select onChange={props.onChange} name={props.name} required>
         <option value="">Zgjedh</option>
-        <option value={true}>Po</option>
+        <option name={props.name} value={true}>
+          Po
+        </option>
         <option value={false}>Jo</option>
       </select>
     </div>

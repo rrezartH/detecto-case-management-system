@@ -33,6 +33,8 @@ const CreateCase = ({ setIsOpen, isOpen }) => {
     agent.Cases.create(dCase).catch(function (error) {
       console.log(error.response.data);
     });
+
+    e.location.reload();
   };
 
   return isOpen ? (
@@ -72,7 +74,9 @@ const CreateCase = ({ setIsOpen, isOpen }) => {
             placeholder="Details"
             onChange={handleChange}
           />
-          <button type="submit">Shto Dosje</button>
+          <button name="create-case-btn" type="submit">
+            Shto Dosje
+          </button>
         </form>
       </div>
     </div>

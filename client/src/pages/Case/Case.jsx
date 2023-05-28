@@ -48,7 +48,7 @@ const Case = () => {
       <div className="case-page__header">
         <img src={caseData.imageUrl} alt={caseData.title} />
         <div className="case-page__title">
-          <h1>{caseData.title}</h1>
+          <h1 name="caseTitle">{caseData.title}</h1>
           <p>{caseData.identifier}</p>
           <p className="case-page__status">Status: {caseData.status}</p>
           <p className="case-page__date-opened">
@@ -65,6 +65,7 @@ const Case = () => {
       </div>
       <div className="case-page__files">
         <button
+          name="files"
           onClick={() => {
             handleOpenFiles();
           }}
@@ -81,6 +82,7 @@ const Case = () => {
         <h1>Palet</h1>
         <div className="case-page__persons-list">
           <button
+            name="victims"
             onClick={() => {
               handleOpen();
               setPersonType("viktimat");
@@ -89,6 +91,7 @@ const Case = () => {
             {caseData.viktimat.length} Viktima
           </button>
           <button
+            name="witnesses"
             onClick={() => {
               handleOpen();
               setPersonType("deshmitaret");

@@ -5,7 +5,7 @@ const PersonCard = ({ person, personType }) => {
   return (
     <div className="person-card">
       {console.log(person)}
-      <h3>{person.emri}</h3>
+      <h3 name={person.emri}>{person.emri}</h3>
       <p>Gjinia: {person.gjinia === "F" ? "Femer" : "Mashkull"}</p>
       <p>Profesioni: {person.profesioni}</p>
       <p>Statusi: {person.statusi}</p>

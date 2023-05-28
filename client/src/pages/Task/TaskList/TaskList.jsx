@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./task-list.scss";
-import TaskCard from "../../../components/TaskCard/TaskCard"
+import TaskCard from "../../../components/TaskCard/TaskCard";
 import agent from "../../../api/agents";
 import CreateTask from "../CreateTask/CreateTask";
-import moment from 'moment';
-
+import moment from "moment";
 
 const TaskList = () => {
   const [Dcase, setDCase] = useState([]);
@@ -26,7 +25,7 @@ const TaskList = () => {
     // setSelectedCase(e.target.value)
     setFilters({
       ...filters,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
     console.log(filters.statusi);
     console.log(filters.caseId);
@@ -44,36 +43,34 @@ const TaskList = () => {
     });
   }, []);
 
-  let filteredTasks = taskat
+  let filteredTasks = taskat;
 
   if (filters.statusi !== "all") {
     filteredTasks = filteredTasks.filter(
-      task => String(task.statusi) === filters.statusi
+      (task) => String(task.statusi) === filters.statusi
     );
   }
 
   if (filters.dueDate !== "") {
     filteredTasks = filteredTasks.filter(
-      task => moment(task.dueDate).format('YYYY-MM-DD') === filters.dueDate
-    )
+      (task) => moment(task.dueDate).format("YYYY-MM-DD") === filters.dueDate
+    );
   }
-
 
   if (filters.caseId !== "") {
     filteredTasks = filteredTasks.filter(
-      task => String(task.caseId) === filters.caseId
-    )
+      (task) => String(task.caseId) === filters.caseId
+    );
   }
 
   // taskat.forEach(task => {
   //   console.log(task.caseId)
   // });
 
-
   return (
     <>
       <h1>Taskat</h1>
-      <button className="card-layout__add" onClick={handleOpen}>
+      <button name="add-task" className="card-layout__add" onClick={handleOpen}>
         + Shto task
       </button>
       <div className="filters">
@@ -89,21 +86,26 @@ const TaskList = () => {
           <option value="false">Not Done</option>
         </select>
         <label htmlFor="due-date-filter">Filter by due date:</label>
-        <input type="date" id="due-date-filter" value={filters.dueDate} onChange={e => setFilters({ ...filters, dueDate: e.target.value })} />
+        <input
+          type="date"
+          id="due-date-filter"
+          value={filters.dueDate}
+          onChange={(e) => setFilters({ ...filters, dueDate: e.target.value })}
+        />
         <div className="select-container">
-        <label htmlFor="case-filter">Filter by case:</label>
+          <label htmlFor="case-filter">Filter by case:</label>
           <select
             id="case-filter"
             name="caseId"
             value={filters.caseId}
-            onChange={handleFilterChange}>
+            onChange={handleFilterChange}
+          >
             <option value="">All</option>
             <option value="0">No case</option>
-            {Dcase.map(caseItem => (
+            {Dcase.map((caseItem) => (
               <option key={caseItem.id} value={caseItem.id}>
                 {caseItem.title}
               </option>
-
             ))}
           </select>
         </div>
@@ -111,7 +113,6 @@ const TaskList = () => {
       <div className="card-layout column">
         {React.Children.toArray(
           filteredTasks.map((taskat) => (
-            
             <TaskCard
               taskID={taskat.id}
               CaseId={taskat.caseId}

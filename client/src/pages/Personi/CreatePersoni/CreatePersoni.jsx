@@ -182,7 +182,9 @@ const CreatePersoni = ({ person, personType, setIsOpenP, isOpenP }) => {
             placeholder="Case id"
             onChange={handleChange}
           />
-          <button type="submit">Shto Personin</button>
+          <button name="add-person-btn" type="submit">
+            Shto Personin
+          </button>
         </form>
       </div>
     </div>

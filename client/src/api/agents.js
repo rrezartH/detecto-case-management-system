@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = "https://localhost:7275/api/";
+axios.defaults.baseURL = "https://localhost:7119/api/";
 
 const responseBody = (response) => response.data;
 

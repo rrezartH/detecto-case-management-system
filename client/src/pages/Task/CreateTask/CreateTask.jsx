@@ -1,4 +1,4 @@
-import React,{ useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../../styles/popup.scss";
 import "../../../assets/style/toggle-switch.css";
 import {
@@ -8,7 +8,6 @@ import {
 import agent from "../../../api/agents";
 
 const CreateTask = ({ setIsOpen, isOpen }) => {
-
   const [Dcase, setDCase] = useState([]);
   const [selectedCase, setSelectedCase] = useState(0);
   const [task, setTask] = useState({
@@ -34,22 +33,21 @@ const CreateTask = ({ setIsOpen, isOpen }) => {
     const name = e.target.name;
     const value =
       e.target.type === "checkbox" ? e.target.checked : e.target.value;
-      setSelectedCase(e.target.value)
+    setSelectedCase(e.target.value);
     setTask((prev) => {
       return { ...prev, [name]: value };
     });
-    
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     agent.Tasks.create(task)
-      .then(task => setTask(task))
-      .catch(function (error) { console.log(error.response.data) });
+      .then((task) => setTask(task))
+      .catch(function (error) {
+        console.log(error.response.data);
+      });
     window.location.reload();
   };
-
-
 
   return isOpen ? (
     <div className="popup">
@@ -80,9 +78,7 @@ const CreateTask = ({ setIsOpen, isOpen }) => {
             onChange={handleChange}
           />
           <div>
-            <label htmlFor="statusi" >
-              Is this task done:
-            </label>
+            <label htmlFor="statusi">Is this task done:</label>
             <div className="toggler">
               <label className="toggle-switch">
                 <input
@@ -95,14 +91,11 @@ const CreateTask = ({ setIsOpen, isOpen }) => {
                 />
                 <span className="slider round"></span>
               </label>
-
             </div>
           </div>
 
           <div>
-            <label htmlFor="isCase" >
-              Is this a case task:
-            </label>
+            <label htmlFor="isCase">Is this a case task:</label>
             <div className="toggler">
               <label className="toggle-switch">
                 <input
@@ -116,34 +109,38 @@ const CreateTask = ({ setIsOpen, isOpen }) => {
                 <span className="slider round"></span>
               </label>
 
-        
-                 {task.isCase ? (
+              {task.isCase ? (
                 <div className="select-container">
                   <select
-                  name="CaseId"
-                  value={selectedCase} 
-                  onChange={handleChange}>
+                    name="CaseId"
+                    value={selectedCase}
+                    onChange={handleChange}
+                  >
                     <option value="">Select a case</option>
-                    {Dcase.map(caseItem => (
+                    {Dcase.map((caseItem) => (
                       <option key={caseItem.id} value={caseItem.id}>
                         {caseItem.title}
                       </option>
-                      
                     ))}
                   </select>
-                  <div className="select-scroller"  
-                  name="CaseId"
-                  value={selectedCase} 
-                  onChange={handleChange}>case id:{selectedCase}</div>
+                  <div
+                    className="select-scroller"
+                    name="CaseId"
+                    value={selectedCase}
+                    onChange={handleChange}
+                  >
+                    case id:{selectedCase}
+                  </div>
                 </div>
               ) : (
                 <></>
               )}
-
             </div>
           </div>
 
-          <button type="submit">Shtot taskun</button>
+          <button name="add-case-btn" type="submit">
+            Shtot taskun
+          </button>
         </form>
       </div>
     </div>

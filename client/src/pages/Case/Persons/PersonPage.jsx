@@ -21,7 +21,11 @@ const PersonPage = ({ personArray, personType, setIsOpen, isOpen, caseId }) => {
           X
         </button>
         <div className="popup__card-grid">
-          <button className="card-layout__add-case" onClick={handleOpen}>
+          <button
+            name="add-victim"
+            className="card-layout__add-case"
+            onClick={handleOpen}
+          >
             Shto Personin
           </button>
           {personArray.map((person) => {

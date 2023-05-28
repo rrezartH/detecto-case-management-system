@@ -20,9 +20,13 @@ const CaseList = () => {
 
   return (
     <>
-      <h1>Cases</h1>
+      <h1 name="casesTitle">Cases</h1>
       <div className="card-layout">
-        <button className="card-layout__add-case" onClick={handleOpen}>
+        <button
+          name="add-case"
+          className="card-layout__add-case"
+          onClick={handleOpen}
+        >
           Shto Case
         </button>
         {React.Children.toArray(

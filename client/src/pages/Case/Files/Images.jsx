@@ -28,7 +28,11 @@ const Images = ({ caseId, setIsFileOpen, isFileOpen }) => {
           X
         </button>
         <div className="popup__card-grid">
-          <button className="card-layout__add-case" onClick={handleOpen}>
+          <button
+            name="add-photo"
+            className="card-layout__add-case"
+            onClick={handleOpen}
+          >
             Shto Foto
           </button>
           {images.map((image) => (

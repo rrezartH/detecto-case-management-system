@@ -6,11 +6,15 @@ const CaseCard = ({ caseId, imgUrl, identifier, title, details, status }) => {
       <img src={imgUrl} alt="Case Card" />
       <div className="card-text">
         <p className="card-id">ID: {identifier}</p>
-        <h2 className="card-title">{title}</h2>
+        <h2 name={title} className="card-title">
+          {title}
+        </h2>
         <p className="card-details">{details}</p>
       </div>
       <div className="card-buttons">
-        <Link to={`../case/${caseId}`}>Shiko</Link>
+        <Link name={`shiko${caseId}`} to={`../case/${caseId}`}>
+          Shiko
+        </Link>
         <button className="card-status">{status}</button>
       </div>
     </div>

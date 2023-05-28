@@ -41,9 +41,18 @@ const ImageUpload = ({ caseId, setIsFileUploadOpen, isFileUploadOpen }) => {
           X
         </button>
         <form onSubmit={handleSubmit} className="popup__form">
-          <input type="file" onChange={handleChange} accept="image/png" />
+          <input
+            className="file-input-class"
+            id="add-png"
+            name="add-image"
+            type="file"
+            onChange={handleChange}
+            accept="image/png"
+          />
           {error && <p className="error">{error}</p>}
-          <button type="submit">Upload</button>
+          <button id="upload-file" type="submit">
+            Upload
+          </button>
         </form>
       </div>
     </div>
